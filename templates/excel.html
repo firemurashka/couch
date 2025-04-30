@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <title>Загрузка excel</title>
+</head>
+<body style="width:80%; margin-left:auto;margin-right:auto;" onload="">
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <script type="text/javascript">
+        function change_selection(value) {
+            let name = document.getElementById('name');
+            // let output = document.getElementById('output');
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', '/excel_search?query=' + value, true);
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    q = JSON.parse(xhr.responseText);
+                    name.innerHTML = "Имя: "+q.name+" | Дата: "+q.date;
+                    clearTable();
+                    createTables(q);
+                }
+            }
+            xhr.send();
+        }
+        function clearTable() {
+            const old_tbody = document.getElementById("output")
+            let new_tbody = document.createElement('div');
+            new_tbody.id = "output";
+            new_tbody.style.cssText = "margin-top: 2em;"
+            old_tbody.parentNode.replaceChild(new_tbody, old_tbody)
+            for (let i = 1; i < 22; i++) {
+                let old_tbody = document.getElementById("output"+i)
+                let new_tbody = document.createElement('div');
+                new_tbody.id = "output"+i;
+                new_tbody.style.cssText = "margin-top: 2em;"
+                old_tbody.parentNode.replaceChild(new_tbody, old_tbody)
+            }
+        }
+        function validate_column(column) {
+            if (column === ""){
+                return "_" // gridjs doesn't like empty strings
+            }
+            return column
+        }
+        function createTables(o) {
+            o.data = o.data.filter(function(val) { return val !== null; })
+            new gridjs.Grid({columns: JSON.parse(o.data[0].replace(/(?:\r\n|\r|\n)/g, ' '))[0].map(validate_column), data: JSON.parse(o.data[0].replace(/(?:\r\n|\r|\n)/g, ' ')).slice(1)}).render(document.getElementById("output"));
+            for (let i = 1; i < 25; i++) {
+                console.log(o.data[i])
+                if (o.data[i] != null) {
+                    new gridjs.Grid({columns: JSON.parse(o.data[i].replace(/(?:\r\n|\r|\n)/g, ' '))[0].map(validate_column), data: JSON.parse(o.data[i].replace(/(?:\r\n|\r|\n)/g, ' ')).slice(1)}).render(document.getElementById("output"+i));
+                }
+            }
+            for(let i = 1; i < 25; i++) {
+                let p = document.getElementById('desc' + i);
+                p.removeAttribute("hidden");
+            }
+        }
+    </script>
+
+    <header>
+        <h3>Загрузка excel</h3>
+        <a href="/">Вернуться</a>
+    </header>
+
+    <form enctype="multipart/form-data" action="/upload" method="post">
+		<label for="file-chooser">Файл:</label> <input type="file" name="filearg" id="file-chooser"/>
+		<input type="submit" value="Загрузить" />
+		{% raw xsrf_form_html() %}
+	</form>
+    <hr>
+    <div id="excel-explore" style="margin-top: 2em;">
+        <label for="recent">Ранее загруженное:</label>
+        <select id="recent" name="recent" onchange="change_selection(this.value)">
+                    <option selected></option>
+                    {% for namedate in excel_list %}
+                    <option>{{ namedate }}</option>
+                    {% end %}
+        </select>
+    </div>
+    <p id="name"></p>
+    <div style="font-size: x-small;">
+        <p hidden="hidden" id="desc11">Знакомство (Блок: «Демография»)</p>
+        <div id="output"></div>
+        <div id="output1"></div>
+        <p hidden="hidden" id="desc1">Знакомство (блок «Самооценка»)</p>
+        <div id="output2"></div>
+        <div id="output3"></div>
+        <p hidden="hidden" id="desc2">Знакомство (блок «Идентичность»)</p>
+        <div id="output4"></div>
+        <div id="output5"></div>
+        <p hidden="hidden" id="desc3">Выявление триггеров успеха/алгоритм переживания неудачи</p>
+        <div id="output6"></div>
+        <div id="output7"></div>
+        <p hidden="hidden" id="desc4">Диагностика 1. «Представление Клиента о краткосрочных целях» (от 3 до 12 месяцев в моменте)</p>
+        <div id="output8"></div>
+        <div id="output9"></div>
+        <p hidden="hidden" id="desc5">Диагностика 2  «Визуализация цели»</p>
+        <div id="output10"></div>
+        <div id="output11"></div>
+        <p hidden="hidden" id="desc6"> Диагностика 3 «Помощь и поддержка»</p>
+        <div id="output12"></div>
+        <div id="output13"></div>
+        <p hidden="hidden" id="desc7">Диагностика 4  «Изменения»</p>
+        <div id="output14"></div>
+        <div id="output15"></div>
+        <p hidden="hidden" id="desc8">Диагностика 5  "Траектория развития_Цели"</p>
+        <div id="output16"></div>
+        <div id="output17"></div>
+        <p hidden="hidden" id="desc9">Диагностика 6  «Траектория Развития_Фокус»</p>
+        <div id="output18"></div>
+        <div id="output19"></div>
+        <p hidden="hidden" id="desc10">Диагностика 7 «Планирование и контроль»</p>
+        <div id="output20"></div>
+        <div id="output21"></div>
+    </div>
+</body>
+</html>

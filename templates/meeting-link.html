@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Профиль клиента</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="../static/css/style_couch.min.css?_v=20230403215316">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<!-- 	&display=swap -->
+	<!-- 	&subset=cyrillic-ext -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Reset CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css?_v=20230403215316">
+
+	<!-- Calendar Style CSS -->
+{#	<link rel="stylesheet" href="scr/styles.css?_v=20230403215316">#}
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230403215316" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230403215316" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__body">
+					<a href="/couch" class="header__logo">
+						<img src="static/img/header/logo-header.svg" alt="">
+					</a>
+					<div class="header_menu menu" data-da=".header__profile,991.98">
+						<button type="button" class="menu__icon icon-menu">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<nav class="menu__body">
+							<ul data-spollers="992,max" class="menu__list">
+								<li class="menu__item menu__item_logo">
+									<a href="/couch" class="header__logo">
+										<img src="static/img/header/logo-header.svg" alt="">
+									</a>
+								</li>
+								<li class="menu__item">
+									<a href="/couch" class="menu__link">Главная</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_profile" class="menu__link">Мой профиль</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_clients" class="menu__link">Мои клиенты</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_articles" class="menu__link">Мои статьи</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_news" class="menu__link">Мои новости</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_messages" class="menu__link">Мои сообщения</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_organizer" class="menu__link">Мой органайзер</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="header__profile">
+						<div data-da=".menu__body,767.98" class="header__search">
+							<input placeholder="Поиск" type="text" name="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="255" class="header__input">
+							<button class="header__button _icon-search"></button>
+						</div>
+						<a class="header__bell _icon-bell" href=""></a>
+						<div class="header__image-box">
+							<a href="/couch_settings" class="header__image">
+								<span class="header__word">К</span>
+								<span class="header__word_hidden">Изменить фото</span>
+							</a>
+						</div>
+						<a class="header__exit _icon-exit" href="/login"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="page">
+			<section class="account">
+				<div class="account__container">
+					<div class="account__body">
+						<aside class="aside__aside">
+							<div class="aside__column-left">
+								<div class="couch-my-clients">
+									<div class="aside__logo">
+										<div class="aside__image-box">
+
+											<picture><source srcset="../static/img/aside/aside-photo.webp" type="image/webp"><img src="../static/img/aside/aside-photo.jpg" alt=""></picture>
+										</div>
+
+
+										<div class="aside__name">
+											<div>{{data[0][0]}}</div>
+											<div>{{data[0][1]}}</div>
+										</div>
+									</div>
+								</div>
+								<ul class="aside__sidebar-list">
+									<li class="aside__sidebar-item">
+										<a href="/couch" class="aside__sidebar-link">Главная</a>
+									</li>
+									<li class="aside__sidebar-item">
+										<a href="/my_messages" class="aside__sidebar-link">Мои сообщения</a>
+									</li>
+									<li class="aside__sidebar-item">
+										<a href="/applications_for_ds" class="aside__sidebar-link">Заявки на ДС</a>
+									</li>
+									<li class="aside__sidebar-item">
+										<a href="/my_clients" class="aside__sidebar-link">Мои клиенты</a>
+									</li>
+									<li class="aside__sidebar-item">
+										<a href="/schedule" class="aside__sidebar-link">Расписание</a>
+									</li>
+									<li class="aside__sidebar-item">
+										<a href="/couch_settings" class="aside__sidebar-link">Настройки</a>
+									</li>
+								</ul>
+							</div>
+						</aside>
+
+						<div class="account-client">
+							<div class="account-client__body">
+								<div class="account-client__top">
+									<div class="text-block-my-clients__image-box">
+										<div class="text-block-my-clients__image">
+											<span class="text-block-my-clients__word">К</span>
+										</div>
+									</div>
+									<div class="account-client__title title">
+										{{data2[0][0] +" "+ data2[0][1]}}
+									</div>
+								</div>
+								<div class="couch-my-clients__content">
+									<div class="client__menu-list">
+										<a href="/viduploading" class="client__menu-link">Загрузка ДС</a>
+										<a href="/page" class="client__menu-link">Просмотр ДС</a>
+										<a href="/view_customer_profile" class="client__menu-link">Просмотр профиля клиента</a>
+										<a href="/feedback" class="client__menu-link">Обратная связь</a>
+										<a href="/preanalysis" class="client__menu-link">ИТР</a>
+										<a href="/preanalysis" class="client__menu-link">График выполнения ИТР</a>
+                                        <a href="/coach_meeting_link" class="client__menu-link">Подключиться к сессии</a>
+									</div>
+								</div>
+							</div>
+							<div class="account-client__right right-client">
+								<div class="right-client__title title">
+									Подключиться к сессии
+								</div>
+								<div class="right-client__content">
+                                    <a href="{{ session_link }}" target="_blank">Подключиться к сессии</a>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<!--
+<div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+			</div>
+		</div>
+	</div>
+</div>
+ -->
+	<script src="../static/js/app_couch.min.js?_v=20230403215316"></script>
+</body>
+
+</html>

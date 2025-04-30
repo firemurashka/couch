@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Страница Администратора</title>
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="../session_web_pages/css/foundation.css"/>
+    <link href="../session_web_pages/css/theme.css" rel="stylesheet" type="text/css"/>
+    <link href="../session_web_pages/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../session_web_pages/offcanvas.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../session_web_pages/style1.css"/>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Администратор</a>
+            <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="offcanvas" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/couch">Мой профиль</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Настройки</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"/>
+                    <button class="btn btn-outline-success" type="submit">Поиск</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="nav-scroller bg-white shadow-sm">
+        <nav class="nav nav-underline" aria-label="Secondary navigation">
+            <a href="/add_user" class="nav-link active" aria-current="page">Добавить клиента</a>
+        </nav>
+    </div>
+
+            <div class="grid-container">
+            <div class="grid-x">
+                <div class="large-12 cell">
+                    <div class="grid-x grid-padding-x">
+                        <div class="large-4 cell">
+</div>
+                    </div>
+                    <hr/>
+                    <div class="grid-x grid-padding-x">
+                        <div class="large-3 cell">
+</div>
+                        <div class="large-8 small-6 cell">
+                            <form method="post">
+                                {% for user in users %}
+                                <button class="large button" name="link" value = "{{user[4]}}">{{user[0]+ " " + user[2] + " " + str(user[9])}}</button>
+                                {% end %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="../session_web_pages/assets/js/popper.min.js"></script>
+    <script src="../session_web_pages/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Просмотр ДС</title>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../static/css/style_couch.min.css?_v=20230417171951">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css?_v=20230417171951">
+    <!-- Calendar Style CSS -->
+    <link rel="stylesheet" href="scr/styles.css?_v=20230410151735">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230417171951" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230417171951" rel="stylesheet">
+    <link rel="stylesheet" href="dhtmlxscheduler_material.css?_v=20230417171951" type="text/css" charset="utf-8">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container">
+                <div class="header__body">
+                    <a href="/couch" class="header__logo">
+                        <img src="../static/img/header/logo-header.svg" alt="">
+                    </a>
+                    <div class="header_menu menu" data-da=".header__profile,991.98">
+                        <button type="button" class="menu__icon icon-menu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <nav class="menu__body">
+                            <ul class="menu__list">
+                                <li class="menu__item menu__item_logo">
+                                    <a href="/couch" class="header__logo">
+                                        <img src="../static/img/header/logo-header.svg" alt="">
+                                    </a>
+                                </li>
+                                <li class="menu__item">
+                                    <a href="/couch" class="menu__link">Главная</a>
+                                </li>
+                                <li class="menu__item">
+                                    <a href="/my_profile" class="menu__link">Мой профиль</a>
+                                </li>
+                                <li class="menu__item">
+                                    <a href="/my_clients" class="menu__link">Мои клиенты</a>
+                                </li>
+                                <li class="menu__item">
+                                    <a href="/my_articles" class="menu__link">Мои статьи</a>
+                                </li>
+                                <li class="menu__item">
+                                    <a href="/my_news" class="menu__link">Мои новости</a>
+                                </li>
+                                <li class="menu__item">
+                                    <a href="/my_messages" class="menu__link">Мои сообщения</a>
+                                </li>
+                                <li class="menu__item">
+                                    <a href="/my_organizer" class="menu__link">Мой органайзер</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header__profile">
+                        <a href="#" data-popup="#popup-search" class="header__button _icon-search"></a>
+                        <a class="header__bell _icon-bell" href=""></a>
+                        <div class="header__image-box">
+                            <a href="/my_profile" class="header__image">
+                                <span class="header__word">К</span>
+                                <span class="header__word_hidden">Изменить фото</span>
+                            </a>
+                        </div>
+                        <a class="header__exit _icon-exit" href="/login"></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="page page-ds-view page-subpage">
+            <section class="client-subpage">
+                <div class="client-subpage__container">
+                    <div class="client-subpage__block">
+                        <div class="client-subpage__top">
+                            <div class="client-subpage__top-profile">
+                                <a href="/client_page" class="client-subpage__profile profile-client">
+                                    <div class="profile-client__image">
+										<picture><source id = "webp" srcset="../static/img/client/client03.webp" type="image/webp"><img id = "jpg" src="../static/img/client/client03.jpg" alt=""></picture>
+                                            <script>
+                                                var img_webp = "../static/img/client/client03.webp";
+                                                var img_jpg = "../static/img/client/client03.jpg";
+                                                var gender = {{user[0][4]}}
+                                                if (gender == "женский") {(img_webp = "../static/img/client/client01.webp"); (img_jpg = "../static/img/client/client01.jpg");} else {(img_webp = "../static/img/client/client02.webp"); (img_jpg = "../static/img/client/client02.jpg");}
+                                                document.getElementById("webp").srcset = img_webp;
+                                                document.getElementById("jpg").srcset = img_jpg;
+                                            </script>
+                                    </div>
+                                    <div class="profile-client__block">
+                                        <div class="profile-client__subtitle">Клиент</div>
+                                        <div class="profile-client__title">{{user[0][0]+ " " + user[0][1]}}</div>
+                                        <img class="profile-client__line" src="static/img/elements/choice-bg-2.svg" alt="">
+                                        <div class="profile-client__age">
+                                            Возраст:
+                                            <span> 29 лет </span>
+                                        </div>
+                                        <div class="profile-client__gender">
+                                            Пол:
+                                            <span>{{user[0][4]}}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="client-subpage__btns">
+                                    <a class="client-subpage__btn client-page__btn_plus btn" href="/sessions">
+                                        Добавить ДС
+                                        <img src="static/img/icons/plus-circle.svg" alt="">
+                                    </a>
+                                    <a class="client-subpage__btn btn" href="{{ session_link }}" target="_blank">Подключиться к сессии</a>
+                                </div>
+                            </div>
+                            <div class="client-subpage__menu menu-organizer">
+								<a href="/viduploading" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">Аналитика ДС</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+								<a href="/page" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">Разбор ДС</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+								<a href="/feedback" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">
+											ОС Паттерны
+										</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+								<a href="/preanalysis" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">ИТР</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+                                <a href="/view_customer_profile" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">Профиль</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+                            </div>
+                        </div>
+                        <div class="client-subpage__body">
+                            <div class="client-subpage__content">
+                                <h3 class="client-subpage__title">Аналитика ДС</h3>
+                                <div class="client-subpage__view view-subpage">
+                                    <div class="view-subpage__list">
+                                        <a href="/itr1" class="view-subpage__item">
+                                            <img src="static/img/person/hands-holding.svg" alt="">
+                                            <div class="view-subpage__number">01</div>
+                                            <div class="view-subpage__subtitle">Знакомство.</div>
+                                            <div class="view-subpage__text">Блок: «Демография»</div>
+                                        </a>
+                                        <a href="/itr2" class="view-subpage__item">
+                                            <img src="static/img/person/self-confidence.svg" alt="">
+                                            <div class="view-subpage__number">02</div>
+                                            <div class="view-subpage__subtitle">Знакомство.</div>
+                                            <div class="view-subpage__text">Блок: «Самооценка»</div>
+                                        </a>
+                                        <a href="/itr3" class="view-subpage__item">
+                                            <img src="static/img/person/user-identity.svg" alt="">
+                                            <div class="view-subpage__number">03</div>
+                                            <div class="view-subpage__subtitle">Знакомство.</div>
+                                            <div class="view-subpage__text">Блок: «Идентичность»</div>
+                                        </a>
+                                        <a href="/itr4" class="view-subpage__item">
+                                            <img src="static/img/person/achievement.svg" alt="">
+                                            <div class="view-subpage__number">04</div>
+                                            <div class="view-subpage__subtitle">Выявление триггеров успеха.</div>
+                                            <div class="view-subpage__text">Алгоритм переживания неудачи</div>
+                                        </a>
+                                        <a href="/itr5" class="view-subpage__item">
+                                            <img src="static/img/person/target.svg" alt="">
+                                            <div class="view-subpage__number">05</div>
+                                            <div class="view-subpage__subtitle">Диагностика 1.</div>
+                                            <div class="view-subpage__text">Представление Клиента о краткосрочных целях</div>
+                                        </a>
+                                        <a href="/itr6" class="view-subpage__item">
+                                            <picture><source srcset="static/img/person/analytics.webp" type="image/webp"><img src="static/img/person/analytics.png" alt=""></picture>
+                                            <div class="view-subpage__number">06</div>
+                                            <div class="view-subpage__subtitle">Диагностика 2.</div>
+                                            <div class="view-subpage__text">Визуализация цели</div>
+                                        </a>
+                                        <a href="/itr7" class="view-subpage__item">
+                                            <picture><source srcset="static/img/person/help.webp" type="image/webp"><img src="static/img/person/help.png" alt=""></picture>
+                                            <div class="view-subpage__number">07</div>
+                                            <div class="view-subpage__subtitle">Диагностика 3.</div>
+                                            <div class="view-subpage__text">Помощь и поддержка</div>
+                                        </a>
+                                        <a href="/itr8" class="view-subpage__item">
+                                            <picture><source srcset="static/img/person/change.webp" type="image/webp"><img src="static/img/person/change.png" alt=""></picture>
+                                            <div class="view-subpage__number">08</div>
+                                            <div class="view-subpage__subtitle">Диагностика 4.</div>
+                                            <div class="view-subpage__text">Изменения</div>
+                                        </a>
+                                        <a href="/itr9" class="view-subpage__item">
+                                            <picture><source srcset="static/img/person/objective.webp" type="image/webp"><img src="static/img/person/objective.png" alt=""></picture>
+                                            <div class="view-subpage__number">09</div>
+                                            <div class="view-subpage__subtitle">Диагностика 5.</div>
+                                            <div class="view-subpage__text">Траектория Развития Цели</div>
+                                        </a>
+                                        <a href="/itr10" class="view-subpage__item">
+                                            <picture><source srcset="static/img/person/focus.webp" type="image/webp"><img src="static/img/person/focus.png" alt=""></picture>
+                                            <div class="view-subpage__number">10</div>
+                                            <div class="view-subpage__subtitle">Диагностика 6.</div>
+                                            <div class="view-subpage__text">Траектория Развития Фокус</div>
+                                        </a>
+                                        <a href="/itr11" class="view-subpage__item">
+                                            <picture><source srcset="static/img/person/task.webp" type="image/webp"><img src="static/img/person/task.png" alt=""></picture>
+                                            <div class="view-subpage__number">11</div>
+                                            <div class="view-subpage__subtitle">Диагностика 7.</div>
+                                            <div class="view-subpage__text">Планирование и контроль</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="footer__container">
+            </div>
+        </footer>
+    </div>
+    <div id="popup-search" aria-hidden="true" class="popup-search popup">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <button data-close type="button" class="popup__close">Закрыть</button>
+                <form action="#" method="get" class="popup__form" autocomplete="off">
+                    <input placeholder="Поиск" type="text" name="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="255" class="popup__input">
+                    <button class="popup__button btn" type="submit">
+                        Найти
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/app_couch.min.js?_v=20230417171951">null</script>
+</body>
+</html>

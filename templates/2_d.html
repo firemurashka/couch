@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Blank Template for Bootstrap</title>
+        <!-- Bootstrap core CSS -->
+        <link href="../session_web_pages/css/theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../session_web_pages/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../session_web_pages/offcanvas.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <link href="../session_web_pages/style.css" rel="stylesheet"/>
+        <script>
+            function question21_onchange1(i) {
+                document.getElementById("combo_box_question_2.1_r"+i+"_c3").value = document.getElementById("combo_box_question_2.1_r"+i+"_c1").value;
+                calc();
+                analitycs();
+            }
+
+            function analitycs(){
+                let a = {
+                    1: document.getElementById('combo_box_question_2.1_r1_c1').value,
+                    2: document.getElementById('combo_box_question_2.1_r2_c1').value,
+                    3: document.getElementById('combo_box_question_2.1_r3_c1').value,
+                    4: document.getElementById('combo_box_question_2.1_r4_c1').value,
+                    5: document.getElementById('combo_box_question_2.1_r5_c1').value,
+                    6: document.getElementById('combo_box_question_2.1_r6_c1').value,
+                    7: document.getElementById('combo_box_question_2.1_r7_c1').value
+                }
+                // find the values above average
+                // get the average
+                let average = Object.values(a).reduce((a, b) => parseInt(a) + parseInt(b)) / Object.values(a).length;
+                // output average
+                console.log(average);
+                let highestValues = Object.values(a).filter(value => value > average);
+
+                //let highestValues = Object.values(a).sort((a, b) => b - a).slice(0, 3);
+                // get the corresponding keys
+                let highestKeys = Object.keys(a).filter(key => highestValues.includes(a[key]));
+                // output highest keys
+                console.log(highestKeys);
+                // output highest values
+                console.log(highestValues);
+                // assign highest keys to the combo_box_analitics_A5_combo_X combo boxes
+                for (let i = 0; i < 7; i++) {
+                    if (i < highestKeys.length){
+                        document.getElementById('combo_box_analitics_A5_combo_'+(i+1)).value = highestKeys[i];
+                    } else {
+                        document.getElementById('combo_box_analitics_A5_combo_'+(i+1)).value = 0;
+                    }
+                    //document.getElementById('combo_box_analitics_A5_combo_'+(i+1)).value = highestKeys[i];
+                }
+
+                // find the values lower than the minimum in highestValues
+                let lowestValues = Object.values(a).filter(value => value < Math.min(...highestValues));
+                //let lowestValues = Object.values(a).filter(value => value !== 9 && value !== 10).sort((a, b) => a - b).slice(0, 2);
+                // get the corresponding keys
+                let lowestKeys = Object.keys(a).filter(key => lowestValues.includes(a[key]));
+                // assign lowest keys to the combo_box_analitics_A4_combo_X combo boxes
+                for (let i = 0; i < 7; i++) {
+                    if (i < lowestKeys.length){
+                        document.getElementById('combo_box_analitics_A4_combo_'+(i+1)).value = lowestKeys[i];
+                    } else {
+                        document.getElementById('combo_box_analitics_A4_combo_'+(i+1)).value = 0;
+                    }
+                }
+            }
+            function calculate_answers1(num){
+                let e1 = document.getElementById("combo_box_question_2.1_r"+num+"_c2");
+                let answer = document.getElementById("combo_box_question_2.1_r"+num+"_c1");
+                if (e1.value === 0){
+                    answer.value = 0;
+                    return;
+                }
+                answer.value = 11 - e1.value;
+            }
+            function move_answers(num){
+                document.getElementById("combo_box_question_2.1_r"+num+"_c1").value = document.getElementById("combo_box_question_2.1_r"+num+"_c2").value;
+                question21_onchange1(num);
+                calculate_e2()
+            }
+            function calculate_e2(){
+                let e2_array = [];
+                for (let i = 1; i < 8; i++) {
+                    e2_array.push(document.getElementById("combo_box_question_2.1_r"+i+"_c2").value);
+                }
+                let answer_to_substract = document.getElementById("combo_box_question_2.2.1_name").value;
+                let amount_to_substract = document.getElementById("combo_box_question_2.2.1_value").value;
+                let answer_to_add = document.getElementById("combo_box_question_2.2.2_name").value;
+                let amount_to_add = document.getElementById("combo_box_question_2.2.2_value").value;
+                e2_array[answer_to_substract-1] = parseInt(e2_array[answer_to_substract-1]) - parseInt(amount_to_substract);
+                e2_array[answer_to_add-1] = parseInt(e2_array[answer_to_add-1]) + parseInt(amount_to_add);
+                for (let i = 1; i < 8; i++) {
+                    document.getElementById("combo_box_question_2.1_r"+i+"_c3").value = e2_array[i-1];
+                }
+            }
+        </script>
+    </head>
+    <body onload="restore(2)">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Диагностическая сессия</a>
+                <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="offcanvas" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" aria-current="page" href="/page" onclick="save(2)">К сесcии</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="save_and_exit(2)">Мои клиенты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="couch_page(2)">Мой профиль</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Настройки</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                                <li><a class="dropdown-item" href="#">Action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Another action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Поиск</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="nav-scroller bg-white shadow-sm">
+            <nav class="nav nav-underline" aria-label="Secondary navigation">
+                <a class="nav-link active" aria-current="page" onclick="save_and_exit(2)">На главную</a>
+                <a class="nav-link" onclick="previous_page(2)">К прошлой странице</a>
+                <a class="nav-link" onclick="next_page(2)">Сохранить и перейти далее</a>
+            </nav>
+        </div>
+        <div class="container">
+</div>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <h1 class="ms-3 text-center text-success">Знакомство. Блок: &laquo;Самооценка&raquo;</h1>
+        <div class="me-3 ms-3">
+            <div class="ms-3 row">
+                <div class="col-md-5 text-wrap">
+                    <h3 class="text-center"><b>Вопросы</b></h3> 
+                    <div class="input-group mb-3"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1" style="font-size: large"><b><p>2.1</p></b>&nbsp;Откалибруйте себя в текущем моменте по шкале от 1 до 10 (1 &ndash; мин, 10 -  макс) по следующим 7 критериям (после каждого критерия пауза и оценка): Ясность ума, Любовь к жизни, Любовь к себе, Стресс, Выгорание,  Энергия, Внутреннее благополучие (счастье)?</span>
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h3>Название</h3> 
+                                        <p><b>Ясность ума</b></p> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h3>Ответ&nbsp;</h3>
+                                        <select onchange="question21_onchange1(1)" id="combo_box_question_2.1_r1_c1" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r1_c1" subname="Ясность ума" subname2="ответ">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h3>Э. 1</h3> 
+                                        <select id="combo_box_question_2.1_r1_c2" onchange="move_answers(1)" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r1_c2" subname="Ясность ума" subname2="этап 1">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h3>Э.2</h3> 
+                                        <select id="combo_box_question_2.1_r1_c3" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r1_c3" subname="Ясность ума" subname2="этап 2"> 
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3"> 
+                                        <p><b>Любовь к жизни</b></p> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select onchange="question21_onchange1(2)" id="combo_box_question_2.1_r2_c1" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r2_c1" subname="Любовь к жизни" subname2="ответ">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r2_c2" onchange="move_answers(2)" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r2_c2" subname="Любовь к жизни" subname2="этап 1">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r2_c3" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r2_c3" subname="Ясность ума" subname2="этап 2"> 
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3"> 
+                                        <p><b>Любовь к себе</b></p> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select onchange="question21_onchange1(3)" id="combo_box_question_2.1_r3_c1" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r3_c1" subname="Любовь к себе" subname2="ответ">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r3_c2" onchange="move_answers(3)" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r3_c2" subname="Любовь к себе" subname2="этап 1">
+                                            <option selected value="0">0</option>
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r3_c3" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r3_c3" subname="Любовь к себе" subname2="этап 2"> 
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3"> 
+                                        <p><b>Стресс</b></p> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select onchange="question21_onchange1(4)" id="combo_box_question_2.1_r4_c1" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r4_c1" subname="Стресс" subname2="ответ">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r4_c2" onchange="calculate_answers1(4)" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r4_c2" subname="Стресс" subname2="этап 1">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r4_c3" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r4_c3" subname="Стресс" subname2="этап 2"> 
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3"> 
+                                        <p><b>Выгорание</b></p> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select onchange="question21_onchange1(5)" id="combo_box_question_2.1_r5_c1" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r5_c1" subname="Выгорание" subname2="ответ">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r5_c2" onchange="calculate_answers1(5)" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r5_c2" subname="Выгорание" subname2="этап 1">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r5_c3" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r5_c3" subname="Выгорание" subname2="этап 2"> 
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3"> 
+                                        <p><b>Энергия</b></p> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select onchange="question21_onchange1(6)" id="combo_box_question_2.1_r6_c1" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r6_c1" subname="Энергия" subname2="ответ">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r6_c2" onchange="move_answers(6)" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r6_c2" subname="Энергия" subname2="этап 1">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r6_c3" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r6_c3" subname="Энергия" subname2="этап 2"> 
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3"> 
+                                        <p><b>Внутреннее благополучие (счастье)</b></p> 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select onchange="question21_onchange1(7)" id="combo_box_question_2.1_r7_c1" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r7_c1" subname="Внутреннее благополучие (счастье)" subname2="ответ">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r7_c2" onchange="move_answers(7)" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r7_c2" subname="Внутреннее благополучие (счастье)" subname2="этап 1">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-3"> 
+                                        <select id="combo_box_question_2.1_r7_c3" class="form-select" aria-label="Default select example" name="combo_box_question_2.1_r7_c3" subname="Внутреннее благополучие (счастье)" subname2="этап 2"> 
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3"> 
+                        <div class="w-100">
+                            <span class="input-group-text text-wrap" id="basic-addon1"><b><p>2.2&nbsp;<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">Какие две шкалы хотели бы изменить?
+Какую одну шкалу уменьшить? Насколько?
+А какую одну увеличить? Насколько?</span></p></b></span><span class="input-group-text mt-1 text-wrap" id="basic-addon1"><b>2.2.1</b>&nbsp;Какую одну шкалу уменьшить? Насколько?</span>
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select id="combo_box_question_2.2.1_name" onchange="calculate_e2()" class="form-select mt-1" aria-label="Default select example" name="combo_box_question_2.2.1_name">
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стресс</option>
+                                            <option value="5">Выгорание</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее благополучие (счастье)</option>
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select id="combo_box_question_2.2.1_value" onchange="calculate_e2()" class="form-select mt-1" aria-label="Default select example" name="combo_box_question_2.2.1_value" subname="уменьшение шкалы">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="input-group-text mt-2 text-wrap" id="basic-addon1"><b>2.2.2</b>&nbsp; Какую одну шкалу увеличить? Насколько?</span>
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select id="combo_box_question_2.2.2_name" onchange="calculate_e2()" class="form-select mt-1" aria-label="Default select example" name="combo_box_question_2.2.2_name">
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стресс</option>
+                                            <option value="5">Выгорание</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее благополучие (счастье)</option>
+                                        </select>                                         
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select id="combo_box_question_2.2.2_value" onchange="calculate_e2()" class="form-select mt-1" aria-label="Default select example" name="combo_box_question_2.2.2_value" subname="уменьшение шкалы">
+                                            <option selected value="0">0</option>                                             
+                                            <option value="1">1</option>                                             
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>                                             
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>                                             
+                                        </select>                                         
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                         
+                    </div>
+                    <span class="input-group-text text-wrap" id="basic-addon1"><b>Комментарий</b></span>
+                    <input type="text" class="form-control" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="q_7_commnt"/>
+                    <p></p>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <h3 class="text-center"><b>Аналитики</b></h3> 
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А4/А5.&nbsp;</b>Анализ сторон</span>
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>А4 (Анализ  СЛАБЫХ сторон по результатам самооценки )
+Влючить все значения  с меньшим значением в синем поле</h5> 
+                                        <select id="combo_box_analitics_A4_combo_1" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A4_combo_1" subname="A4" subname2="combo 1"> 
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стресс</option>
+                                            <option value="5">Выгорание</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее неблагополучие</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A4_combo_2" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A4_combo_2" submane="A4" submane2="combo 2"> 
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стресс</option>
+                                            <option value="5">Выгорание</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее неблагополучие</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A4_combo_3" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A4_combo_3" subname="A4" subname2="combo 3">
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стресс</option>
+                                            <option value="5">Выгорание</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее неблагополучие</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A4_combo_4" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A4_combo_4" subname="A4" subname2="combo 4"> 
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стресс</option>
+                                            <option value="5">Выгорание</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее неблагополучие</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A4_combo_5" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A4_combo_5" subname="A4" subname2="combo 5"> 
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стресс</option>
+                                            <option value="5">Выгорание</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее неблагополучие</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A4_combo_6" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A4_combo_5" subname="A4" subname2="combo 5">
+                                            <option selected value="0">не указано</option>
+                                            <option value="1">Ясность ума</option>
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стресс</option>
+                                            <option value="5">Выгорание</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее неблагополучие</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A4_combo_7" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A4_combo_5" subname="A4" subname2="combo 5">
+                                            <option selected value="0">не указано</option>
+                                            <option value="1">Ясность ума</option>
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стресс</option>
+                                            <option value="5">Выгорание</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее неблагополучие</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5>А5 (Анализ  СИЛЬНЫХ сторон по результатам самооценки ) 
+Влючить все значения с оценкой 9 и 10 ИЛИ значения с наибольшим значением</h5> 
+                                        <select id="combo_box_analitics_A5_combo_1" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A5_combo_1" subname="A5" subname2="combo 1"> 
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стрессоустойчивость</option>
+                                            <option value="5">Устойчивость к выгоранию</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее благополучие (счастье)</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A5_combo_2" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A5_combo_2" subname="A5" subname2="combo 2"> 
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стрессоустойчивость</option>
+                                            <option value="5">Устойчивость к выгоранию</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее благополучие (счастье)</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A5_combo_3" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A5_combo_3" subname="A5" subname2="combo 3"> 
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стрессоустойчивость</option>
+                                            <option value="5">Устойчивость к выгоранию</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее благополучие (счастье)</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A5_combo_4" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A5_combo_4" subname="A5" subname2="combo 4"> 
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стрессоустойчивость</option>
+                                            <option value="5">Устойчивость к выгоранию</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее благополучие (счастье)</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A5_combo_5" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A5_combo_5" subname="A5" subname2="combo 5"> 
+                                            <option selected value="0">не указано</option>                                             
+                                            <option value="1">Ясность ума</option>                                             
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стрессоустойчивость</option>
+                                            <option value="5">Устойчивость к выгоранию</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее благополучие (счастье)</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A5_combo_6" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A5_combo_6" subname="A5" subname2="combo 6">
+                                            <option selected value="0">не указано</option>
+                                            <option value="1">Ясность ума</option>
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стрессоустойчивость</option>
+                                            <option value="5">Устойчивость к выгоранию</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее благополучие (счастье)</option>
+                                        </select>
+                                        <select id="combo_box_analitics_A5_combo_7" class="form-select mt-1" aria-label="Default select example" name="combo_box_analitics_A5_combo_7" subname="A5" subname2="combo 7">
+                                            <option selected value="0">не указано</option>
+                                            <option value="1">Ясность ума</option>
+                                            <option value="2">Любовь к жизни</option>
+                                            <option value="3">Любовь к себе</option>
+                                            <option value="4">Стрессоустойчивость</option>
+                                            <option value="5">Устойчивость к выгоранию</option>
+                                            <option value="6">Энергия</option>
+                                            <option value="7">Внутреннее благополучие (счастье)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А6<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">&nbsp; Среднее значение самооценки&nbsp;</span></b><b></b></span>
+                            <input disabled type="text" class="form-control w-100" aria-label="Username" aria-describedby="basic-addon1" id="A6_input" placeholder="среднее значение"/>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A6_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А7</b>&nbsp;Анализ уровня самооценки Клиента&nbsp;<b></b><b></b></span>
+                            <select id="combo_box_A7" class="form-select" aria-label="Default select example" name="paattern_A.7_select"> 
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">Самооценка низкая</option>                                 
+                                <option value="2">Самооценка средняя</option>
+                                <option value="3">Самооценка высокая</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A35_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А8<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">&nbsp;Анализ самооценка адекватная/не адекватная</span></b><b></b><b></b></span>
+                            <select id="combo_box_A8" class="form-select" aria-label="Default select example" name="paattern_A.8_select"> 
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">Адекватная самооценка</option>                                 
+                                <option value="2">Не адекватная самооценка</option>                                 
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A8_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А9</b>&nbsp;Наличие/отсутствие токсичных паттернов в самооценке&nbsp;<b></b><b></b></span>
+                            <select id="combo_box_A9" class="form-select" aria-label="Default select example" name="paattern_A.9_select"> 
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">Есть токсические паттерны Самооценки </option>                                 
+                                <option value="2">Нет токсических паттернов Самооценки</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A9_comment"/>
+                        </div>                         
+                    </div>                     
+                </div>
+            </div>
+        </div>
+        <div class="me-5 ms-3">
+            <div class="row">
+                <h3 class="text-center"><b>ПАТТЕРНЫ</b></h3>
+                <div class="col-md-6">
+                    <h3 class="text-center">&nbsp;Паттерны коммуникации</h3> 
+                    <div class="mb-3"> 
+                        <label for="formInput131" class="mb-1">
+                            Высокий контекст/ Низкий контекст
+                        </label>                         
+                        <select id="combo_box_P1.1" class="form-select" aria-label="Default select example" name="paattern_1.1_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Высокий контекст: Полагаться на неявную коммуникации. Учитывать значение жестов, поз, голоса, контекста.</option>                             
+                            <option value="2">Низкий контекст: Полагаться на явную коммуникацию. Отдавать предпочтение четким и подробным инструкциям.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput231" class="mb-1">
+                            Прямая/ Непрямая коммуникация (Критика)
+                        </label>                         
+                        <select id="combo_box_P.1.2" class="form-select" aria-label="Default select example" name="paattern_1.2_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Прямая коммуникация: Критика других прямая. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтения ясно и прямо излагать свою точку зрения, несмотря на риск задеть чувства собеседника.</option>                             
+                            <option value="2">Непрямая коммуникация: Непрямая критика. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтение поддержанию теплых отношений, рискуя быть непонятым.</option>                             
+                            ы                        
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">
+                            Эмоциональность/ Нейтральность
+                        </label>                         
+                        <select id="combo_box_P.1.3" class="form-select" aria-label="Default select example" name="psttern_1.3_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Эмоциональность: Проявлять эмоции и теплоту при общении. Установление и поддержание личных и социальных связей является ключевым.</option>                             
+                            <option value="2">Нейтральность: Подчеркивать лаконичность, точность и отстраненность при общении.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">
+                            Формальность/ Неформальность (Убеждение других)
+                        </label>                         
+                        <select id="combo_box_P.1.4" class="form-select" aria-label="Default select example" name="psttern_1.4_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Формальность: Строго соблюдать протоколы и ритуалы. Вначале  принципы</option>                             
+                            <option value="2">Неформальность: Отдавать предпочтение непринужденности и непосредственности. Вначале практика</option>                             
+                        </select>                         
+                    </div>                     
+                </div>
+                <div class="col-md-6">
+                    <h3 class="text-center">Паттерны мышления</h3>
+                    <div class="mb-3"> 
+                        <label for="formInput131" class="mb-1">
+                            <b>2.2.1&nbsp;</b>Рефлексивность/импульсивность
+                        </label>                         
+                        <select id="combo_box_P2.2.1" class="form-select" aria-label="Default select example" name="paattern_2.2.1_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Рефлексивность. Склонность принимать решения медленно. Неэффективны в ситуациях неопределенности. </option>                             
+                            <option value="2">Импульсивность:  Склонность принимать решения быстро. Быстро реагировать в ситуации множественного выбора (выбирать одно). Не испытывают стресса в ситуации неопределенности   </option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput131" class="mb-1">
+                            <b>2.2.2&nbsp;</b>Рефлексивность/импульсивность
+                        </label>                         
+                        <select id="combo_box_P2.2.2" class="form-select" aria-label="Default select example" name="paattern_2.2.2_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Рефлексивность. Склонность принимать решения медленно. Неэффективны в ситуациях неопределенности. </option>                             
+                            <option value="2">Импульсивность:  Склонность принимать решения быстро. Быстро реагировать в ситуации множественного выбора (выбирать одно). Не испытывают стресса в ситуации неопределенности   </option>                             
+                        </select>                         
+                    </div>                     
+                </div>
+            </div>
+            <div class="row" data-empty-placeholder></div>
+        </div>
+        <br/>
+        <script src="../session_web_pages/assets/js/popper.min.js"></script>
+        <script src="../session_web_pages/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../static/js/diag.js"></script>
+        <script>
+
+            /*for(let i=1; i<8; ++i){
+                document.getElementById('combo_box_question_2.1_r'+i.toString()+'_c1').setAttribute('onchange','calc();');
+            }*/
+            function calc() {
+                let a = {
+                    0: document.getElementById('combo_box_question_2.1_r1_c1').value,
+                    1: document.getElementById('combo_box_question_2.1_r2_c1').value,
+                    2: document.getElementById('combo_box_question_2.1_r3_c1').value,
+                    3: document.getElementById('combo_box_question_2.1_r4_c1').value,
+                    4: document.getElementById('combo_box_question_2.1_r5_c1').value,
+                    5: document.getElementById('combo_box_question_2.1_r6_c1').value,
+                    6: document.getElementById('combo_box_question_2.1_r7_c1').value
+                }
+                let q = 0;
+                for(let i=0; i<7; ++i){
+                    q+=parseInt(a[i])
+                }
+                document.getElementById('A6_input').value = (q/7).toFixed(2);
+            }
+
+        </script>
+    <hr>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="previous_page(2)">К прошлой странице</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="save_and_exit(2)">На главную</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="next_page(2)">Сохранить и перейти далее</button>
+
+    </body>
+</html>

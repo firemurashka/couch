@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Авторизация</title>
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    function getter() {
+
+    }
+</script>
+<div class="background">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+</div>
+<header>
+    <div id="window1">
+        <div class="form">
+            <br>
+            <br>
+            <h2 style="margin-bottom: 10px;margin-top: 0;">Авторизация</h2>
+            <form name="forma" method="post">
+                <h3>{{mes}}</h3>
+                <input type="text" placeholder="Логин" name="log" >
+                <input type="password" placeholder="Пароль" name="pas">
+                <input type="submit" style="margin-bottom: 10px;" value="ВОЙТИ">
+		        <a href="/registration">Регистрация</a>
+                <br><img src="static/img/header/logo-header.svg" style="margin: 10px 0 10px;" alt=""><br>
+                <a href="#">Забыли пароль?</a>
+            </form>
+        </div>
+    </div>
+</header>
+</body>
+</html>

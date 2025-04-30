@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Добавление клиента</title>
+    <link href="/static/css/adminstyle.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <div class="container">
+          <form name="forma" method="post">
+              <input type="text" placeholder="Имя" name="name" required>
+              <input type="text" placeholder="Фамилия" name="surname"required>
+              <input type="date" placeholder="Дата рождения" name="birthdate"required>
+              <input type="text" placeholder="Примечание" name="note" >
+              <input type="tel" pattern="[0-9]{6,}" placeholder="Телефон" name="phone"required>
+              <input type="text" placeholder="Адрес" name="address">
+              <input type="date" placeholder="Дата сессии" name="sessiondt"required>
+              <input type="submit" value="Добавить">
+          </form>
+  </div>
+</body>
+</html>

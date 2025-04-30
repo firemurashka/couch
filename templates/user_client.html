@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Главная</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="../static/css/style_client.min.css?_v=20230417161212">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<!-- 	&display=swap -->
+	<!-- 	&subset=cyrillic-ext -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230417161212" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230417161212" rel="stylesheet">
+	<script>
+		async function getSessionStatus(id){
+			let data;
+			await fetch(window.location.origin + "/session_status/"+id)
+				.then((response) => response.text())
+				.then((text) => data = text)
+				.catch((error) => {
+					console.error('Error:', error)
+				});
+			virtualSetSessionStatus(id, data);
+
+		}
+		async function setSessionStatus(id, status){
+			await fetch(window.location.origin + "/session_status/"+id, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'text/plain',
+				},
+				body: status
+			});
+			virtualSetSessionStatus(id, status);
+		}
+		function virtualSetSessionStatus(id, status){
+			let inner;
+			switch (status) {
+				case "approved":
+					inner = "<img src=\"../static/img/icons/state/circle-of-circles.svg\" alt=\"\">" +
+							"<div class=\"couch-session__sublist-text\">Подтверждена</div>";
+					document.getElementById("couch-session-link_"+id).style.visibility = "visible";
+					break;
+				case "not approved":
+					inner = '<img src="../static/img/icons/state/circle-emphasis.svg" alt=""><div class="couch-session__sublist-text">' +
+							'Ждёт подтверждения</div>';
+					document.getElementById("couch-session-link_"+id).style.visibility = "hidden";
+					break;
+				case "in progress":
+					inner = '<img src="../static/img/icons/state/pause.svg" alt="">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tВ процессе\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>';
+					document.getElementById("couch-session-link_"+id).style.visibility = "hidden";
+					break;
+				case "done":
+					inner = '<img src="../static/img/icons/state/confirmed.svg" alt="">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tПроведена\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>';
+					document.getElementById("couch-session-link_"+id).style.visibility = "hidden";
+					break;
+				case "delayed":
+					inner = '<img src="../static/img/icons/state/arrow-repeat.svg" alt="">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tПеренос\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>';
+					document.getElementById("couch-session-link_"+id).style.visibility = "hidden";
+					break;
+				case "cancelled":
+					inner = '<img src="../static/img/icons/state/stop.svg" alt="">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tОтклонена\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>';
+					document.getElementById("couch-session-link_"+id).style.visibility = "hidden";
+					break;
+                case "MLG formation":
+					inner = '<img src="../static/img/icons/state/map.svg" alt="">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tФормирование КЖО\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>';
+					document.getElementById("couch-session-link_"+id).style.visibility = "hidden";
+					break;
+                case "processed":
+					inner = '<img src="../static/img/icons/state/check-person.svg" alt="">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="couch-session__sublist-text">\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tОбработана\n' +
+							'\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>';
+					document.getElementById("couch-session-link_"+id).style.visibility = "hidden";
+					break;
+				default:
+					inner = 'ошибка'
+			}
+			document.getElementById("couch-session-button_"+id).innerHTML = inner;
+		}
+	</script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__body">
+					<a href="/user_client" class="header__logo">
+						<img src="../static/img/header/logo-header.svg" alt="">
+					</a>
+					<div class="header_menu menu" data-da=".header__profile,991.98">
+						<button type="button" class="menu__icon icon-menu">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item menu__item_logo">
+									<a href="/user_client" class="header__logo">
+										<img src="../static/img/header/logo-header.svg" alt="">
+									</a>
+								</li>
+								<li class="menu__item">
+									<a href="/user_client" class="menu__link">Главная</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_programs" class="menu__link">Мои программы</a>
+								</li>
+                                <li class="menu__item">
+									<a href="/my_ds" class="menu__link">Моя ДС</a>
+								</li>
+								<li class="menu__item">
+									<a href="/all_courses" class="menu__link">Все курсы</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_events" class="menu__link">Мои события</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_itr" class="menu__link">ИТР</a>
+								</li>
+                                <li class="menu__item">
+									<a href="/client_settings" class="menu__link">Настройки</a>
+								</li>
+
+                                <li class="menu__item menu__item_exit">
+									<a href="/login" class="menu__link">Выйти</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+                    <div class="header__profile">
+						<a href="#" data-popup="#popup-search" class="header__button _icon-search"></a>
+						<a class="header__bell _icon-bell" href=""></a>
+						<div class="header__image-box">
+							<a href="/my_profile" class="header__image">
+								<span class="header__word">К</span>
+								<span class="header__word_hidden">Изменить фото</span>
+							</a>
+						</div>
+						<a class="header__exit _icon-exit" href="/login"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="page">
+			<section class="my-profile">
+				<div class="my-profile__container">
+					<div class="my-profile__body">
+						<div class="my-profile__left">
+							<a href="/client_settings" class="my-profile__profile profile-client">
+                            <div class="profile-client__image">
+                                <picture><source id = "webp" srcset="../static/img/client/client03.webp" type="image/webp"><img id = "jpg" src="../static/img/client/client03.jpg" alt=""></picture>
+                                <script>
+                                    var img_webp = "../static/img/client/client03.webp";
+                                    var img_jpg = "../static/img/client/client03.jpg";
+                                    var gender = "{{user[0][12]}}"
+                                    if (gender == "женский") {(img_webp = "../static/img/client/client01.webp"); (img_jpg = "../static/img/client/client01.jpg");} else {(img_webp = "../static/img/client/client02.webp"); (img_jpg = "../static/img/client/client02.jpg");}
+                                    document.getElementById("webp").srcset = img_webp;
+                                    document.getElementById("jpg").srcset = img_jpg;
+                                </script>
+                            </div>
+                            <div class="profile-client__block">
+                                <div class="profile-client__title">{{user[0][0]+ " " + user[0][2]}}</div>
+                                <img class="profile-client__line" src="../static/img/elements/choice-bg-2.svg" alt="">
+                                <div class="profile-client__age">
+                                    Возраст:
+                                    <span>29 лет</span>
+                                </div>
+                                <div class="profile-client__gender">
+                                    Пол:
+                                    <span>{{user[0][12]}}</span>
+                                </div>
+                            </div>
+                            </a>
+							<div class="my-profile__menu  menu-my-profile">
+								<a href="/my_programs" class="menu-my-profile__item">
+									<img src="../static/img/person/download.svg" alt="">
+									<span>
+										Мои программы
+									</span>
+								</a>
+								<a href="/my_ds" class="menu-my-profile__item">
+									<img src="../static/img/person/feedback.svg" alt="">
+									<span>Моя ДС</span>
+								</a>
+								<a href="/all_courses" class="menu-my-profile__item">
+									<img src="../static/img/person/download.svg" alt="">
+									<span>
+										Все курсы
+									</span>
+								</a>
+								<a href="/my_events" class="menu-my-profile__item">
+									<img src="../static/img/person/eye.svg" alt="">
+									<span>
+										Мои события
+									</span>
+								</a>
+								<a href="/my_itr" class="menu-my-profile__item">
+									<img src="../static/img/person/eye.svg" alt="">
+									<span>
+										ИТР
+									</span>
+								</a>
+								<a href="/client_settings" class="menu-my-profile__item">
+									<img src="../static/img/person/feedback.svg" alt="">
+									<span>Настройки</span>
+								</a>
+							</div>
+						</div>
+
+
+                        <div class="my-profile__right">
+							<div class="my-profile__itr itr-main">
+								<div class="itr-main__item">
+									<h2 class="itr-main__title">Сессии</h2>
+									<div class="itr-main__content">
+										<div class="couch-my-event__content couch-session">
+											<!--    Не подтверждена
+											<div class="couch-session__item">
+												<div class="couch-session__block-time">
+													<div class="couch-session__data">Чт, 13 апр. 2023 г</div>
+													<div class="couch-session__time">14:00-15:00</div>
+												</div>
+
+												<a class="couch-session__video" target="_blank" title="Начать сессию" href="https://meet.jit.si/neuronircl13co0">
+													<img src="../staticimg/icons/video.svg" alt="">
+												</a>
+												<div data-spollers class="couch-session__status">
+													<div class="couch-session__accordion">
+														<button data-spoller-close class="couch-session__button couch-session__sublist-item_01" type="button" data-spoller>
+															<img src="../staticimg/icons/state/circle-emphasis.svg" alt="">
+															Не подтверждена
+														</button>
+														<div class="couch-session__sublist">
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_01">
+																<img src="../staticimg/icons/state/circle-of-circles.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Подтверждена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_02">
+																<img src="../staticimg/icons/state/pause.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	В процессе
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_03">
+																<img src="../staticimg/icons/state/confirmed.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Проведена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_04">
+																<img src="../staticimg/icons/state/arrow-repeat.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Перенос
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_05">
+																<img src="../staticimg/icons/state/stop.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Отклонена
+																</div>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div> -->
+											<!-- Подтверждена -->
+											{% for session in sessions %}
+											<div class="couch-session__item">
+												<div class="couch-session__block-time">
+													<div class="couch-session__data">{{ session[2] }}</div>
+													<div class="couch-session__time">{{ session[5] }}</div>
+												</div>
+
+												<a class="couch-session__video" id="couch-session-link_{{session[4]}}" target="_blank" title="Начать сессию" href="{{ session_link }}">
+													<img src="../static/img/icons/video.svg" alt="">
+												</a>
+												<div data-spollers class="couch-session__status">
+													<div class="couch-session__accordion">
+														<script>
+															getSessionStatus('{{session[4]}}');
+														</script>
+														<button data-spoller-close id="couch-session-button_{{session[4]}}" class="couch-session__button couch-session__sublist-item_01" type="button" data-spoller>
+															<!--<img src="../static/img/icons/state/circle-of-circles.svg" alt="">
+															Подтверждена -->
+														</button>
+														<div class="couch-session__sublist">
+															<button data-spoller-close onclick="setSessionStatus('{{session[4]}}', 'not approved')" class="couch-session__sublist-item couch-session__sublist-item_01">
+																<img src="../static/img/icons/state/circle-emphasis.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Ждёт подтверждения
+																</div>
+															</button>
+															<button data-spoller-close onclick="setSessionStatus('{{session[4]}}', 'delayed')" class="couch-session__sublist-item couch-session__sublist-item_04">
+																<img src="../static/img/icons/state/arrow-repeat.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Перенос
+																</div>
+															</button>
+															<button data-spoller-close onclick="setSessionStatus('{{session[4]}}', 'cancelled')" class="couch-session__sublist-item couch-session__sublist-item_05">
+																<img src="../static/img/icons/state/stop.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Отмена
+																</div>
+															</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											{% end %}
+											<!-- В процессе
+											<div class="couch-session__item">
+												<div class="couch-session__block-time">
+													<div class="couch-session__data">Чт, 13 апр. 2023 г</div>
+													<div class="couch-session__time">14:00-15:00</div>
+												</div>
+
+												<a class="couch-session__video" target="_blank" title="Начать сессию" href="https://meet.jit.si/neuronircl13co0">
+													<img src="img/icons/video.svg" alt="">
+												</a>
+												<div data-spollers class="couch-session__status">
+													<div class="couch-session__accordion">
+														<button data-spoller-close class="couch-session__button couch-session__sublist-item_01" type="button" data-spoller>
+															<img src="img/icons/state/pause.svg" alt="">
+															В процессе
+														</button>
+														<div class="couch-session__sublist">
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_01">
+																<img src="img/icons/state/circle-emphasis.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Не подтверждена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_02">
+																<img src="img/icons/state/circle-of-circles.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Подтверждена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_03">
+																<img src="img/icons/state/confirmed.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Проведена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_04">
+																<img src="img/icons/state/arrow-repeat.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Перенос
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_05">
+																<img src="img/icons/state/stop.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Отклонена
+																</div>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div> -->
+											<!-- Проведена
+											<div class="couch-session__item">
+												<div class="couch-session__block-time">
+													<div class="couch-session__data">Чт, 13 апр. 2023 г</div>
+													<div class="couch-session__time">14:00-15:00</div>
+												</div>
+												<a class="couch-session__video" target="_blank" title="Начать сессию" href="https://meet.jit.si/neuronircl13co0">
+													<img src="img/icons/video.svg" alt="">
+												</a>
+												<div data-spollers class="couch-session__status">
+													<div class="couch-session__accordion">
+														<button data-spoller-close class="couch-session__button couch-session__sublist-item_01" type="button" data-spoller>
+															<img src="img/icons/state/confirmed.svg" alt="">
+															Проведена
+														</button>
+														<div class="couch-session__sublist">
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_01">
+																<img src="img/icons/state/circle-emphasis.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Не подтверждена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_02">
+																<img src="img/icons/state/circle-of-circles.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Подтверждена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_03">
+																<img src="img/icons/state/pause.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	В процессе
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_04">
+																<img src="img/icons/state/arrow-repeat.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Перенос
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_05">
+																<img src="img/icons/state/stop.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Отклонена
+																</div>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div> -->
+											<!-- Перенос
+											<div class="couch-session__item">
+												<div class="couch-session__block-time">
+													<div class="couch-session__data">Чт, 13 апр. 2023 г</div>
+													<div class="couch-session__time">14:00-15:00</div>
+												</div>
+												<a class="couch-session__video" target="_blank" title="Начать сессию" href="https://meet.jit.si/neuronircl13co0">
+													<img src="img/icons/video.svg" alt="">
+												</a>
+												<div data-spollers class="couch-session__status">
+													<div class="couch-session__accordion">
+														<button data-spoller-close class="couch-session__button couch-session__sublist-item_01" type="button" data-spoller>
+															<img src="img/icons/state/arrow-repeat.svg" alt="">
+															Перенос
+														</button>
+														<div class="couch-session__sublist">
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_01">
+																<img src="img/icons/state/circle-emphasis.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Не подтверждена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_02">
+																<img src="img/icons/state/circle-of-circles.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Подтверждена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_03">
+																<img src="img/icons/state/pause.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	В процессе
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_04">
+																<img src="img/icons/state/confirmed.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Проведена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_05">
+																<img src="img/icons/state/stop.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Отклонена
+																</div>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div> -->
+											<!-- Отклонена
+											<div class="couch-session__item">
+												<div class="couch-session__block-time">
+													<div class="couch-session__data">Чт, 13 апр. 2023 г</div>
+													<div class="couch-session__time">14:00-15:00</div>
+												</div>
+												<a class="couch-session__video" target="_blank" title="Начать сессию" href="https://meet.jit.si/neuronircl13co0">
+													<img src="img/icons/video.svg" alt="">
+												</a>
+												<div data-spollers class="couch-session__status">
+													<div class="couch-session__accordion">
+														<button data-spoller-close class="couch-session__button couch-session__sublist-item_01" type="button" data-spoller>
+															<img src="img/icons/state/stop.svg" alt="">
+															Отклонена
+														</button>
+														<div class="couch-session__sublist">
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_01">
+																<img src="img/icons/state/circle-emphasis.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Не подтверждена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_02">
+																<img src="img/icons/state/circle-of-circles.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Подтверждена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_03">
+																<img src="img/icons/state/pause.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	В процессе
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_04">
+																<img src="img/icons/state/confirmed.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Проведена
+																</div>
+															</a>
+															<a href="" class="couch-session__sublist-item couch-session__sublist-item_05">
+																<img src="img/icons/state/arrow-repeat.svg" alt="">
+																<div class="couch-session__sublist-text">
+																	Перенос
+																</div>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div> -->
+										</div>
+									</div>
+								</div>
+								<div class="itr-main__item">
+									<h2 class="itr-main__title">ИТР</h2>
+									<div class="itr-main__content"></div>
+								</div>
+							</div>
+							<div class="my-profile__recording main-recording">
+								<h2 class="recording__title ">Форма записи</h2>
+								<div class="recording__body">
+									<form action="/user_client" method="POST" class="recording__form">
+										<ul class="recording__list">
+											<li>
+												<label class="recording__label" for="coach-select">Выберите коуча</label>
+												<select class="select" id="coach-select" name="coach-select" >
+													<option selected></option>
+													{% for coach in coaches %}
+													<option value="{{ coach[0] }}">{{ coach[1] + " " + coach[3] }}</option>
+													{% end %}
+												</select>
+											</li>
+											<li>
+												<label class="recording__label" for="">Выберите дату</label>
+												<input type="date" name="date" id="date" class="recording__input">
+											</li>
+											<li>
+												<label class="recording__label" for="">Выберите время</label>
+                                                <div class="form_radio_btn">
+                                                    <input id="radio-2" type="radio" name="radio" value="09:00 - 10:00">
+                                                    <label for="radio-2">09:00 - 10:00</label>
+                                                </div>
+                                                <div class="form_radio_btn">
+                                                    <input id="radio-2" type="radio" name="radio" value="10:00 - 11:00">
+                                                    <label for="radio-2">10:00 - 11:00</label>
+                                                </div>
+                                                <div class="form_radio_btn">
+                                                    <input id="radio-2" type="radio" name="radio" value="11:00 - 12:00">
+                                                    <label for="radio-2">11:00 - 12:00</label>
+                                                </div>
+                                                <div class="form_radio_btn">
+                                                    <input id="radio-2" type="radio" name="radio" value="12:00 - 13:00">
+                                                    <label for="radio-2">12:00 - 13:00</label>
+                                                </div>
+                                                <div class="form_radio_btn">
+                                                    <input id="radio-2" type="radio" name="radio" value="13:00 - 14:00">
+                                                    <label for="radio-2">13:00 - 14:00</label>
+                                                </div>
+                                                <div class="form_radio_btn">
+                                                    <input id="radio-2" type="radio" name="radio" value="14:00 - 15:00">
+                                                    <label for="radio-2">14:00 - 15:00</label>
+                                                </div>
+                                                <div class="form_radio_btn">
+                                                    <input id="radio-2" type="radio" name="radio" value="15:00 - 16:00">
+                                                    <label for="radio-2">15:00 - 16:00</label>
+                                                </div>
+                                                <div class="form_radio_btn">
+                                                    <input id="radio-2" type="radio" name="radio" value="16:00 - 17:00">
+                                                    <label for="radio-2">16:00 - 17:00</label>
+                                                </div>
+                                                <div class="form_radio_btn">
+                                                    <input id="radio-2" type="radio" name="radio" value="17:00 - 18:00">
+                                                    <label for="radio-2">17:00 - 18:00</label>
+                                                </div>
+											</li>
+											<li>
+												<button type="submit" class="recording__btn btn">Отправить</button>
+											</li>
+										</ul>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<div id="popup-search" aria-hidden="true" class="popup-search popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">Закрыть</button>
+				<form action="#" method="get" class="popup__form" autocomplete="off">
+					<input placeholder="Поиск" type="text" name="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="255" class="popup__input">
+					<button class="popup__button btn" type="submit">
+						Найти
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+		async function getData() {
+			let data;
+			await fetch(window.location.origin + "/get_client_contact_data")
+				.then((response) => response.json())
+				.then((json) => data = json)
+				.catch((error) => {
+					console.error('Error:', error)
+				});
+			window.frames['fhesus4WKIKwnCY0gaS6_sHnj'].document.getElementById('Rentact_name').value = data['name'];
+			window.frames['fhesus4WKIKwnCY0gaS6_sHnj'].document.getElementById('Rentact_phone').value = data['phone'];
+		}
+	</script>
+	<script src="../static/js/app_client.min.js?_v=20230417161212"></script>
+</body>
+
+</html>

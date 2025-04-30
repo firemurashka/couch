@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Мои клиенты</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../static/css/style_couch.min.css?_v=20230505153921">
+	<link rel="shortcut icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230505153921" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230505153921" rel="stylesheet">
+
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__body">
+					<a href="/couch" class="header__logo">
+						<img src="../static/img/header/logo-header.svg" alt="">
+					</a>
+					<div class="header_menu menu" data-da=".header__profile,991.98">
+						<button type="button" class="menu__icon icon-menu">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item menu__item_logo">
+									<a href="/couch" class="header__logo">
+										<img src="../static/img/header/logo-header.svg" alt="">
+									</a>
+								</li>
+								<li class="menu__item">
+									<a href="/couch" class="menu__link">Главная</a>
+								</li>
+
+								<li class="menu__item">
+									<a href="/my_clients" class="menu__link">Мои клиенты</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_articles" class="menu__link">Мои статьи</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_news" class="menu__link">Мои новости</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_messages" class="menu__link">Мои сообщения</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_organizer" class="menu__link">Мой органайзер</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_profile" class="menu__link">Мой профиль</a>
+								</li>
+								<li class="menu__item menu__item_exit">
+									<a href="/login" class="menu__link">Выйти</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="header__profile">
+						<a href="#" data-popup="#popup-search" class="header__button _icon-search"></a>
+						<a class="header__bell _icon-bell" href=""></a>
+						<div class="header__image-box">
+							<a href="/my_profile" class="header__image">
+								<span class="header__word">К</span>
+								<span class="header__word_hidden">Изменить фото</span>
+							</a>
+						</div>
+						<a class="header__exit _icon-exit" href="/login"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="page page-my-clients">
+			<section class="account">
+				<div class="account__container">
+					<div class="account__title title">
+						<span>Мои клиенты</span>
+						<a class="account__btn  account__btn_plus btn" href="">Добавить клиента<img src="../static/img/icons/plus-circle.svg" alt=""></a>
+
+					</div>
+					<div class="account__body">
+						<div class="account__left">
+							<form class="account__form form-filter" action="">
+								<div class="form-filter__title">Параметры поиска</div>
+								<div class="form-filter__block">
+									<div class="form-filter__item form-filter__item_01">
+										<div class="form-filter__subtitle">Возраст</div>
+										<div class="form-filter__age">
+											От
+											<select data-submit data-scroll name="form[]" class="form">
+												<option value="29" selected>29</option>
+												<option value="30">30</option>
+												<option value="31">31</option>
+												<option value="32">32</option>
+												<option value="33">33</option>
+											</select>
+										</div>
+										<div class="form-filter__age">
+											До
+											<select data-submit data-scroll name="form[]" class="form">
+												<option value="65">65</option>
+												<option value="66">66</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-filter__item form-filter__item_02">
+										<div class="form-filter__subtitle">Пол</div>
+										<div class="form-filter__radio">
+											<input type="radio" id="man" name="drone" value="мужской">
+											<label for="man">мужской</label>
+										</div>
+										<div class="form-filter__radio">
+											<input type="radio" id="woman" name="drone" value="женский">
+											<label for="woman">женский</label>
+										</div>
+									</div>
+									<div class="form-filter__item form-filter__item_03">
+										<div class="form-filter__subtitle">Проведения ДС</div>
+										<div class="form-filter__age">
+											Год
+											<select data-submit data-scroll name="form[]" class="form">
+												<option value="2023">2023</option>
+												<option value="2022">2022</option>
+												<option value="2021">2021</option>
+												<option value="2020">2020</option>
+											</select>
+										</div>
+										<div class="form-filter__age">
+											Месяц
+											<select data-submit data-scroll name="form[]" class="form">
+												<option value="january">январь</option>
+												<option value="february">февраль</option>
+												<option value="march">март</option>
+											</select>
+										</div>
+										<div class="form-filter__age">
+											Число
+											<select data-submit data-scroll name="form[]" class="form">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+
+											</select>
+										</div>
+									</div>
+									<a class="form-filter__btn btn" href="">Найти</a>
+								</div>
+							</form>
+						</div>
+						<div class="account__right">
+							<div class="account__couch-data">
+								<div class="couch-my-clients">
+									<form action="" method="get" class="couch-my-clients__filter clients-filter">
+										<div class="clients-filter__block">
+											<div class="clients-filter__title">Сортировка</div>
+											<select name="sort" id="js-sort" data-submit data-scroll class="sort">
+												<option value="name_increase" data-class="clients-filter__option_1 ">По имени (А-Я)</option>
+												<option value="2" data-class="clients-filter__option_2">По имени (Я-А)</option>
+												<option value="3" data-class="clients-filter__option_3">По фамилии (А-Я)</option>
+												<option value="4" data-class="clients-filter__option_4">По фамилии (Я-А)</option>
+											</select>
+										</div>
+									</form>
+									<div class="couch-my-clients__content">
+										<div class="couch-my-clients__content-block _scroll">
+											<!-- 1 клиент -->
+                                            {% for user in users %}
+											<div class="couch-my-clients__block-text text-block-my-clients">
+												<div class="text-block-my-clients__client">
+													<div class="text-block-my-clients__image-box">
+														<div class="text-block-my-clients__image">
+															<span class="text-block-my-clients__word">К</span>
+														</div>
+													</div>
+													<form method="post">
+													    <button class="text-block-my-clients__title" name="link" value = "{{user[2]}}">{{user[0]+ " " + user[1]}}</button>
+                                                        <input name="redirect" value="/client_page" hidden></input>
+                                                    </form>
+												</div>
+												<div class="text-block-my-clients__right">
+													<ul class="text-block-my-clients__icons">
+														<li>
+															<form method="post">
+																<button name="link" value = "{{user[2]}}">
+																<img title="Аналитика ДС" src="../static/img/person/download.svg" alt="">
+																</button>
+																<input name="redirect" value="/viduploading" hidden></input>
+															</form>
+														</li>
+                                                        <li>
+															<form method="post">
+																<button name="link" value = "{{user[2]}}">
+																	<img title="ИТР" src="../static/img/person/chart-line.svg" alt="">
+																</button>
+																<input name="redirect" value="/preanalysis" hidden></input>
+															</form>
+														</li>
+														<li>
+															<form method="post">
+																<button name="link" value = "{{user[2]}}">
+																	<img title="ОС Паттерны" src="../static/img/person/feedback.svg" alt="">
+																</button>
+																<input name="redirect" value="/feedback" hidden></input>
+															</form>
+														</li>
+														<li>
+															<form method="post">
+																<button name="link" value = "{{user[2]}}">
+																	<img title="Профиль" src="../static/img/person/eye.svg" alt="">
+																</button>
+																<input name="redirect" value="/client_page" hidden></input>
+															</form>
+														</li>
+													</ul>
+												</div>
+											</div>
+                                            {% end %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<div id="popup-search" aria-hidden="true" class="popup-search popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">Закрыть</button>
+				<form action="#" method="get" class="popup__form" autocomplete="off">
+					<input placeholder="Поиск" type="text" name="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="255" class="popup__input">
+					<button class="popup__button btn" type="submit">
+						Найти
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="../static/js/app_couch.min.js?_v=20230505153921"></script>
+</body>
+
+</html>

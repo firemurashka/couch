@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Blank Template for Bootstrap</title>
+        <!-- Bootstrap core CSS -->
+        <link href="../session_web_pages/css/theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../session_web_pages/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../session_web_pages/offcanvas.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <link href="../session_web_pages/style.css" rel="stylesheet"/>
+        <script>
+            // copy the value from question_5.3_select to combo_box_A16
+            function copyValueFromQuestion53SelectToComboBoxA16() {
+                var question_5_3_select = document.getElementById("question_5.3_select");
+                var combo_box_A16 = document.getElementById("combo_box_A22");
+                combo_box_A16.value = question_5_3_select.value;
+            }
+            function setA18(){
+                let num = 0;
+                for (let i=1; i<6; i++){
+                    if (document.getElementById("question_5.1."+ i +"_text").value !== ""){
+                        num++;
+                    }
+                }
+                if (num === 1) {
+                    document.getElementById("combo_box_A18").value = 1;
+                } else if (num < 4) {
+                    document.getElementById("combo_box_A18").value = 2;
+                } else if (num < 6) {
+                    document.getElementById("combo_box_A18").value = 4;
+                } else {
+                    document.getElementById("combo_box_A18").value = 6;
+                }
+            }
+        </script>
+        <script>/* Pinegrow Interactions, do not remove */ (function(){try{if(!document.documentElement.hasAttribute('data-pg-ia-disabled')) { window.pgia_small_mq=typeof pgia_small_mq=='string'?pgia_small_mq:'(max-width:767px)';window.pgia_large_mq=typeof pgia_large_mq=='string'?pgia_large_mq:'(min-width:768px)';var style = document.createElement('style');var pgcss='html:not(.pg-ia-no-preview) [data-pg-ia-hide=""] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show=""] {opacity:1;visibility:visible;display:block;}';if(document.documentElement.hasAttribute('data-pg-id') && document.documentElement.hasAttribute('data-pg-mobile')) {pgia_small_mq='(min-width:0)';pgia_large_mq='(min-width:99999px)'} pgcss+='@media ' + pgia_small_mq + '{ html:not(.pg-ia-no-preview) [data-pg-ia-hide="mobile"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="mobile"] {opacity:1;visibility:visible;display:block;}}';pgcss+='@media ' + pgia_large_mq + '{html:not(.pg-ia-no-preview) [data-pg-ia-hide="desktop"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="desktop"] {opacity:1;visibility:visible;display:block;}}';style.innerHTML=pgcss;document.querySelector('head').appendChild(style);}}catch(e){console&&console.log(e);}})()</script>
+    </head>
+    <body onload="restore(5)">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Диагностическая сессия</a>
+                <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="offcanvas" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" aria-current="page" href="/page" onclick="save(5)">К сесcии</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="save_and_exit(5)">Мои клиенты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="couch_page(5)">Мой профиль</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Настройки</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                                <li><a class="dropdown-item" href="#">Action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Another action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Поиск</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="nav-scroller bg-white shadow-sm">
+            <nav class="nav nav-underline" aria-label="Secondary navigation">
+                <a class="nav-link active" aria-current="page" onclick="save_and_exit(5)">На главную</a>
+                <a class="nav-link" onclick="previous_page(5)">К прошлой странице</a>
+                <a class="nav-link" onclick="next_page(5)">Сохранить и перейти далее</a>
+            </nav>
+        </div>
+        <div class="container">
+</div>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <h1 class="ms-3 text-center text-success">Диагностика 1. <br/>Представление Клиента о краткосрочных целях</h1>
+        <div class="mb-2 me-5 ms-5 mt-1">
+</div>
+        <div class="me-3 ms-3">
+            <div class="ms-3 row">
+                <div class="col-md-5 text-wrap">
+                    <h3 class="text-center"><b>Вопросы</b></h3> 
+                    <div class="input-group mb-3"> 
+                        <div class="w-100">
+                            <span class="input-group-text text-wrap" id="basic-addon1"><b>5.1</b>&nbsp; Если вообще нет барьеров и ограничений и все складывается так, как вы хотите, что Вы хотели, чтобы происходило в ближайшее время?</span>
+                            <div class="mt-1">
+                                <input onchange="setA18();" type="text" class="form-control" placeholder="5.1.1" aria-label="Username" aria-describedby="basic-addon1" id="question_5.1.1_text"/>
+                            </div>
+                            <div class="mt-1">
+                                <input onchange="setA18();" type="text" class="form-control" placeholder="5.1.2" aria-label="Username" aria-describedby="basic-addon1" id="question_5.1.2_text"/>
+                            </div>
+                            <div class="mt-1">
+                                <input onchange="setA18();" type="text" class="form-control" placeholder="5.1.3" aria-label="Username" aria-describedby="basic-addon1" id="question_5.1.3_text"/>
+                            </div>
+                            <div class="mt-1">
+                                <input onchange="setA18();" type="text" class="form-control" placeholder="5.1.4" aria-label="Username" aria-describedby="basic-addon1" id="question_5.1.4_text"/>
+                            </div>
+                            <div class="mt-1">
+                                <input onchange="setA18();" type="text" class="form-control" placeholder="5.1.5" aria-label="Username" aria-describedby="basic-addon1" id="question_5.1.5_text"/>
+                            </div>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3"> 
+                        <div class="w-100">
+                            <span class="input-group-text text-wrap" id="basic-addon1"><b>5.2</b>&nbsp;О каком временном горизонте идет речь?</span>
+                                <select id="question_5.2_select" class="form-select" aria-label="Default select example" name="question_5.2_select">
+                                    <option selected value="-1">не указано</option>
+                                    <option value="0">3 месяца</option>
+                                    <option value="1">6 месяцев</option>
+                                    <option value="2">12 месяцев</option>
+                                    <option value="3">18 месяцев</option>
+                                    <option value="4">24 месяца</option>
+                                    <option value="5">36 месяцев</option>
+                                    <option value="6">48 месяцев</option>
+                                    <option value="7">60 месяцев</option>
+                                </select>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 mw-100"> 
+                        <div class="w-100">
+                            <span class="input-group-text text-wrap" id="basic-addon1"><b>5.3</b>&nbsp;Если все происходит именно так как Вы хотите события происходят одновременно или последовательно?<b></b></span>
+                            <select onchange="copyValueFromQuestion53SelectToComboBoxA16()" id="question_5.3_select" class="form-select" aria-label="Default select example" name="question_5.3_select">
+                                    <option selected value="0">не указано</option>
+                                    <option value="1">Одновременно</option>
+                                    <option value="2">Последовательно</option>
+                                </select>
+                        </div>
+                    </div>
+                    <span class="input-group-text text-wrap" id="basic-addon1"><b>Комментарий</b></span>
+                    <input type="text" class="form-control" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="q_5_commnt"/>
+                    <p></p>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <h3 class="text-center"><b>Аналитики</b></h3> 
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100">
+                            <span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А17.&nbsp;</b>Что описывает: события, результаты, достижения, состояние (уверенность, гармония, баланс), развитие (переход на другой уровень)</span>
+                            <select id="combo_box_A17" class="form-select" aria-label="Default select example" name="paattern_A.17_select"> 
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">События</option>                                 
+                                <option value="2">Результаты</option>
+                                <option value="3">Достижения</option>
+                                <option value="4">Развитие</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A17_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100">
+                            <span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А18<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">&nbsp;Сколько всего событий/задач хочет, чтобы произошло:</span></b><b></b></span>
+                            <select id="combo_box_A18" class="form-select" aria-label="Default select example" name="paattern_A.18_select"> 
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">1</option>                                 
+                                <option value="2">2-3</option>
+                                <option value="4">4-5</option>
+                                <option value="6">более 5</option>                                 
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A18_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100">
+                            <span class="input-group-text mw-100 text-center text-wrap" id="basic-addon1"><b>А19</b>&nbsp;Масштаб изменений<b></b><b></b></span>
+                            <select id="combo_box_A19" class="form-select" aria-label="Default select example" name="paattern_A.16_select">
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">Незначительный</option>                                 
+                                <option value="2">Существенный</option>
+                                <option value="3">Большой</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A12_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100">
+                            <span class="input-group-text mw-100 text-center text-wrap" id="basic-addon1"><b>А20</b>&nbsp;Сравнение с прошлым (желание вернуть)/настоящим (сохранить)/будущим (создать)<b></b><b></b></span>
+                            <select id="combo_box_A20" class="form-select" aria-label="Default select example" name="paattern_A.16_select">
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">Сравнение с прошлым (желание вернуть)</option>                                 
+                                <option value="2">Сравнение с настоящим (сохранить)</option>
+                                <option value="3">Сравнение с будущим (создать)</option>                                 
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A12_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100">
+                            <span class="float-none input-group-text mw-100 text-center text-wrap" id="basic-addon1"><b>А21</b>&nbsp;Один или несколько фокусов?<b></b><b></b></span>
+                            <select id="combo_box_A21" class="form-select" aria-label="Default select example" name="paattern_A.16_select">
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">Один</option>
+                                <option value="1">Два</option>
+                                <option value="2">Три</option>
+                                <option value="2">Несколько</option>                                 
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A12_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100">
+                            <span class="input-group-text mw-100 text-center text-wrap" id="basic-addon1"><b>А22</b>&nbsp;События происходят параллельно или последовательно?<b></b><b></b></span>
+                            <select id="combo_box_A22" class="form-select" aria-label="Default select example" name="paattern_A.16_select">
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">Параллельно</option>                                 
+                                <option value="2">Последовательно</option>                                 
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A12_comment"/>
+                        </div>                         
+                    </div>                     
+                </div>
+            </div>
+        </div>
+        <div class="me-5 ms-3">
+            <div class="row">
+                <h3 class="text-center"><b>ПАТТЕРНЫ<br><br></b></h3>
+                <div class="col-md-6">
+                    <h3 class="text-center">&nbsp;Паттерны коммуникации</h3> 
+                    <div class="mb-3"> 
+                        <label for="formInput131" class="mb-1"><b></b>&nbsp;Высокий контекст/ Низкий контекст
+                        </label>                         
+                        <select id="combo_box_P1.1" class="form-select" aria-label="Default select example" name="paattern_1.1_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Высокий контекст: Полагаться на неявную коммуникации. Учитывать значение жестов, поз, голоса, контекста.</option>                             
+                            <option value="2">Низкий контекст: Полагаться на явную коммуникацию. Отдавать предпочтение четким и подробным инструкциям.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput231" class="mb-1"><b></b>&nbsp;Прямая/ Непрямая коммуникация (Критика)
+                        </label>                         
+                        <select id="combo_box_P.1.2" class="form-select" aria-label="Default select example" name="paattern_1.2_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Прямая коммуникация: Критика других прямая. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтения ясно и прямо излагать свою точку зрения, несмотря на риск задеть чувства собеседника.</option>                             
+                            <option value="2">Непрямая коммуникация: Непрямая критика. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтение поддержанию теплых отношений, рискуя быть непонятым.</option>                             
+                            ы                        
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">
+                            &nbsp;Эмоциональность/ Нейтральность
+</label>                         
+                        <select id="combo_box_P.1.3" class="form-select" aria-label="Default select example" name="psttern_1.3_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Эмоциональность: Проявлять эмоции и теплоту при общении. Установление и поддержание личных и социальных связей является ключевым.</option>                             
+                            <option value="2">Нейтральность: Подчеркивать лаконичность, точность и отстраненность при общении.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">&nbsp;Формальность/ Неформальность (Убеждение других)
+</label>                         
+                        <select id="combo_box_P.1.4" class="form-select" aria-label="Default select example" name="psttern_1.4_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Формальность: Строго соблюдать протоколы и ритуалы. Вначале  принципы</option>                             
+                            <option value="2">Неформальность: Отдавать предпочтение непринужденности и непосредственности. Вначале практика</option>                             
+                        </select>                         
+                    </div>                     
+                </div>
+                <div class="col-md-6">
+                    <h3 class="text-center">Паттерны рабочего поведения</h3> 
+                    <div class="mb-3"> 
+                        <label for="formInput231" class="mb-1">
+                            <b>5.1</b>&nbsp;Быть/Делать
+                        </label>                         
+                        <select id="combo_box_P.4.1" class="form-select" aria-label="Default select example" name="paattern_4.1_select"> 
+                            <option value="0" selected>не выявлено</option>                             
+                            <option value="1">Быть: Фокусироваться на самой жизни, на развитие талантов и отношений.                 </option>                             
+                            <option value="2">Делать: Уделять внимание видимым результатам и видимым достижениям.</option>                                                          
+                        </select>                         
+                    </div>                     
+                </div>
+            </div>
+            <div class="row" data-empty-placeholder></div>
+        </div>
+        <br/>
+        <script src="../session_web_pages/assets/js/popper.min.js"></script>
+        <script src="../session_web_pages/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../session_web_pages/pgia/lib/pgia.js"></script>
+        <script src="../static/js/diag.js"></script>
+        <hr>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="previous_page(5)">К прошлой странице</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="save_and_exit(5)">На главную</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="next_page(5)">Сохранить и перейти далее</button>
+
+    </body>
+</html>

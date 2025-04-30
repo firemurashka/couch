@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Карта жизненных ориентиров</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../static/css/style_kjo.min.css">
+	<link rel="shortcut icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230530085453" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230530085453" rel="stylesheet">
+</head>
+<script>
+	function changeWidthValue(elementId, newValue) {
+		const element = document.getElementById(elementId);
+		if (element) {
+			element.style.width = `${newValue}%`;
+			}
+		}
+	function getTextByA24(value) {
+	  switch (value) {
+		case "0":
+		  return "не указано";
+		case "1":
+		  return "Желание значительно больше возможностей";
+		case "2":
+		  return "Желания незначительно больше возможностей";
+		case "3":
+		  return "Возможности соответствуют желаниям";
+		case "4":
+		  return "Возможности незначительно больше желания";
+		case "5":
+		  return "Возможности значительно больше желания";
+		case "6":
+		  return "Нет желания и нет возможностей";
+  }
+}
+function getTextbyA34(value){
+  switch (value) {
+
+      case "1":
+          return "Меняем окружение";
+      case "2":
+          return "Меняем поведение (привычки)";
+      case "3":
+          return "Меняем мышление";
+      case "4":
+          return "Меняем установки";
+      case "5":
+          return "Работаем с  идентичностью";
+  }
+}
+
+function getTextbyA44(value){
+  switch (value) {
+    case "1":
+      return "Практики (техники)";
+    case "2":
+      return "Практические действия (план)";
+    case "3":
+      return "Книги";
+    case "4":
+      return "Видео (включая фильмы)";
+    case "5":
+      return "Обучение";
+    case "6":
+      return "Работа с коучем";
+    case "7":
+      return "Работа с ментором/наставником";
+    case "8":
+      return "Работа с психологом";
+    case "9":
+      return "Трекинг";
+    case "10":
+      return "Нетрадиционные методы";
+    case "11":
+      return "Практики, техники работы с эмоциями";
+    case "12":
+      return "Практики, техники работы с поведением";
+  }
+
+}
+function processSsupport(value) {
+  switch (value) {
+    case "1":
+      return "Самостоятельно (\"Парус\")";
+    case "2":
+      return "В команде (\"БОТ (лодка)\")";
+    case "3":
+      return "Индивидуально с командой экспертов (\"Яхта\")";
+
+    default:
+      return "Не указано";
+  }
+}
+function processFollowing(value) {
+  switch (value) {
+    case "1":
+      return "Индивидуальные рекомендации эксперта Коуча";
+
+    case "2":
+      return "Треккинг";
+
+    case "3":
+      return "CheckUp";
+
+    case "4":
+      return "Коучинговый продукт";
+
+    default:
+      return "Не указано";
+  }
+}
+
+function Hor_Plan(value) {
+  switch (value) {
+    case "1":
+      return "6";
+    case "2":
+      return "12";
+    case "3":
+      return "18";
+    case "4":
+      return "24";
+    case "5":
+      return "36";
+    default:
+      return "Не указано";
+  }
+}
+
+function Speed_Plan(value) {
+  switch (value) {
+    case "1":
+      return "Быстрая";
+    case "2":
+      return "Средняя";
+    case "3":
+      return "Умеренная";
+    default:
+      return "Не указано";
+  }
+}
+
+function Control_Plan(value) {
+  switch (value) {
+    case "1":
+      return "По шаговый";
+    case "2":
+      return "По отклонениям";
+    case "3":
+      return "По результату";
+    default:
+      return "Не указано";
+  }
+}
+
+	function changeStep(value){
+	if (value!=0){
+	return 11-value
+	}
+	else{return 0}
+	}
+	function loadSelfE(){
+	fetch('/preanalysis/get' + document.getElementById("session").value)
+				.then(response => response.json())
+				.then(data => {
+				//Нахождение Э.1
+					var keys = Object.keys(data);
+					var targetKeysStep1 = keys.filter(function(key) {
+					return key.includes("combo_box_question_2.1_r") && key.endsWith("_c1");});
+					var step1 = targetKeysStep1.map(function(key) {return parseInt(data[key], 10);});
+					var sumStep1 = step1.reduce(function(total, value){return total + value;}, 0);
+					window.averageStep1 = sumStep1/step1.length;
+				// Э.2
+					var targetKeysStep2 = keys.filter(function(key) {
+					return key.includes("combo_box_question_2.1_r") && key.endsWith("_c3");});
+					var step2 = targetKeysStep2.map(function(key) {return parseInt(data[key], 10);});
+					var sumStep2 = step2.reduce(function(total, value){return total + value;}, 0);
+
+			window.averageStep2 = sumStep2/step2.length;
+
+					const element = document.querySelector('.chart__numeral_10');
+					if (element) {
+						let newAfterValue = `${window.averageStep1*50}%`;
+						let newBeforeValue = `${window.averageStep2*50}%`;
+						// Устанавливаем новые значения для CSS-переменных
+						element.style.setProperty('--after-left', newAfterValue);
+						element.style.setProperty('--before-left', newBeforeValue);
+
+					}
+				for (let i = 1; i <= 6; i++) {
+							let elementId1 = `step1_${i}`;
+							let newValue1 = step1[i-1] * 8.37;
+							let elementId2 = `step2_${i}`;
+							let newValue2 = step2[i-1] * 8.37;
+							changeWidthValue(elementId2, newValue2);
+							changeWidthValue(elementId1, newValue1);
+						}
+
+				loadProtiv(data);
+				loadPossibility(data, keys);
+				noFocus(data);
+				methodsOfDevelopment(data);
+				let ulElement = document.getElementById("development_list");
+				ulElement.innerHTML = "";
+                DirectionOfDevelopment(data, keys);
+				resources(data);
+				patterns(data);
+				weakstrong(data);
+				plannig(data);
+                devproject(data);
+				});
+	}
+
+	function resources(data){
+		document.getElementById("support").textContent = processSsupport(data["summary_support_value"]);
+		document.getElementById("following").textContent = processFollowing(data["summary_following_value"]);
+
+
+	}
+	function weakstrong(data){
+		let strong = [];
+		let weak = [];
+		let strong_keys = {
+			"1": "Ум",
+            "2": "Гибкость",
+            "3": "Удачливость",
+            "4": "Трудолюбие",
+            "5": "Воображение",
+            "6": "Общительность",
+            "7": "Чувство юмора",
+            "8": "Другое",
+		}
+		let weak_keys = {
+			"1": "Эмоциональность",
+			"2": "Скептицизм",
+			"3": "Осторожность",
+			"4": "Прилежность",
+			"5": "Сам в себе",
+			"6": "Сам по себе",
+			"7": "Исполненность сознания долга",
+			"8": "Самоуверенность",
+			"9": "Театральность",
+			"10": "Богатое воображение",
+			"11": "Увлекательность",
+			"12": "Другое",
+		}
+		for(let key in data){
+			if (key === "combo_box_A15.1" || key === "combo_box_A15.2" || key === "combo_box_A15.3"){
+				if (data[key] == "0" || data[key] == "8"){
+					continue;
+				} else {
+					strong.push(strong_keys[data[key]]);
+				}
+			}
+			if (key === "combo_box_A16.1" || key === "combo_box_A16.2" || key === "combo_box_A16.3"){
+				if (data[key] == "0" || data[key] == "12"){
+					continue;
+				} else {
+					weak.push(weak_keys[data[key]]);
+				}
+			}
+			if (key === "combo_box_A15.4" || key === "combo_box_A15.5" || key === "combo_box_A15.6"){
+				if(data[key] !== "" && data[key] !== "0"){
+					strong.push(data[key]);
+				}
+				//strong.push(data[key]);
+			}
+			if (key === "combo_box_A16.4" || key === "combo_box_A16.5" || key === "combo_box_A16.6"){
+				if(data[key] !== "" && data[key] !== "0") {
+					weak.push(data[key]);
+				}
+			}
+		}
+		// clear the weak_points
+		let ulElement = document.getElementById("weak_points");
+		ulElement.innerHTML = "";
+		weak.forEach(function(value) {
+			let liElement = document.createElement("li");
+			liElement.textContent = value;
+			ulElement.appendChild(liElement);
+		});
+		// clear the strong_points
+		ulElement = document.getElementById("strong_points");
+		ulElement.innerHTML = "";
+		strong.forEach(function(value) {
+			let liElement = document.createElement("li");
+			liElement.textContent = value;
+			ulElement.appendChild(liElement);
+		});
+	}
+	function patterns(data){
+		document.getElementById("kjo_pattern_1").innerText = data["KJOP1"];
+		document.getElementById("kjo_pattern_2").innerText = data["KJOP2"];
+	}
+	function methodsOfDevelopment(data){
+		for (let i=1; i<=3; i++){
+			document.getElementById("A44."+i).textContent = getTextbyA44(data["combo_box_A44."+i]);
+
+		}
+	}
+
+	function DirectionOfDevelopment(data, keys){
+	        let targetKeys = keys.filter(function(key) {
+					return key.includes("combo_box_A34.");});
+			let valForDevelopment = targetKeys.map(function(key) {return data[key];});
+			let ulElement = document.getElementById("development_list");
+			valForDevelopment.forEach(function(value) {
+				if (value !== "0") {
+					let liElement = document.createElement("li");
+					liElement.textContent = getTextbyA34(value);
+					ulElement.appendChild(liElement);
+			}
+			});
+
+	}
+
+	function loadProtiv(data){
+		// for each item-kjo__item-check class
+		let items = document.getElementsByClassName("item-kjo__item-check");
+		// remove check-map-active class
+		for (let i = 0; i < items.length; i++) {
+			items[i].classList.remove("check-map-active");
+		}
+		//for check_1 to check_6
+		for (let i = 1; i <= 6; i++) {
+			// if check_1 is checked
+			if (data["check_" + i] == true) {
+				items[i - 1].classList.add("check-map-active");
+			}
+		}
+
+	}
+	function loadPossibility(data, keys){
+        let bNUKeys = keys.filter(function(key) {
+            return key.includes("A13.1") && key.endsWith("_value");});
+        let bNUValue = bNUKeys.map(function(key) {return data[key]});
+        let opportunitiesKeys = keys.filter(function(key) {
+            return key.includes("A13.2") && key.endsWith("_value");});
+        let opportunitiesValue = opportunitiesKeys.map(function(key) {return data[key]});
+   		let items = document.getElementsByClassName("scope__item");
+   		let bNUCount = 0;
+   		let opportunitiesCount = 0;
+   		for (let i=0;  i < items.length; i++){
+			if (items[i].classList.contains("scope-active")){
+				items[i].textContent =  bNUValue[bNUCount];
+				bNUCount++;
+			}
+			else{
+				items[i].textContent =  opportunitiesValue[opportunitiesCount];
+				opportunitiesCount++;
+			}
+
+
+			}
+
+    		}
+	function loadITR(){
+		// for each select tag
+		let selects = document.getElementsByTagName("select");
+		// remove "hidden" for each select
+		for (let i = 0; i < selects.length; i++) {
+			selects[i].removeAttribute("hidden");
+		}
+	loadSelfE();
+	}
+	function noFocus(data){
+				document.getElementById("potential").textContent = getTextByA24(data["combo_box_A24"]);
+				let count_target = data["combo_box_A39"];
+				document.getElementById("count_target").textContent =  count_target;
+				let valueFocus = data["summary_yes-or-no_value"];
+				let valueFocusId = document.getElementById("isFocus");
+				switch (valueFocus){
+					case "0": valueFocusId.textContent = "Фокуса нет";
+                            break;
+					case "1": valueFocusId.textContent = "Фокус есть";
+                            break;
+					}
+				let valueA41 = data["combo_box_A41"];
+				let valueA41id = document.getElementById("targetOrMoney");
+				switch (valueA41){
+					case "1": valueA41id.textContent = "Цель";
+					break;
+					case "2": valueA41id.textContent = "Состояние";
+					break;
+					case "3": valueA41id.textContent = "Развитие";
+					break;
+					}
+				let valueA33 = data["combo_box_A33"];
+				let valueA33id = document.getElementById("yesornochange");
+				switch (valueA33){
+					case "0": valueA33id.textContent = "Не указано";
+					break;
+					case "1": valueA33id.textContent = "Нет";
+					break;
+					case "2": valueA33id.textContent = "Есть";
+					break;
+					}
+
+					}
+
+	function plannig(data){
+        let hor = document.getElementById('Horizont');
+        let hor_value = data['monthVal'];
+        hor.textContent = Hor_Plan(hor_value);
+
+        let control = document.getElementById('Controlling');
+        let control_value = data['question_11.3_select'];
+        control.textContent = Control_Plan(control_value);
+
+        let sprint = document.getElementById('Speed');
+        let sprint_value = data['summary_speed_value'];
+        sprint.textContent = Speed_Plan(sprint_value);
+	}
+
+
+    function loadPossibility(data){
+
+        var keys = Object.keys(data)
+        var targetKeysStep1 = keys.filter(function(key) {
+            return key.includes("judgments_features_know_ but_not_used") && key.endsWith("_value");});
+        var step1 = targetKeysStep1.map(function(key) {return data[key]});
+
+        var targetKeysStep2 = keys.filter(function(key) {
+            return key.includes("judgments_unused_opportunities") && key.endsWith("_value");});
+        var step2 = targetKeysStep2.map(function(key) {return data[key]});
+
+        for (let i = 1; i <= 6; i++) {
+      if ((document.getElementsByClassName("scope__item scope-active")) && (document.getElementsByClassName("scope__item scope-active").textContent != step1[i]))
+            {
+        document.getElementsByClassName("scope__item scope-active").textContent = step1[i]
+      }
+    }
+
+        for (let j = 1; j <= 6; j++) {
+      if ((document.getElementsByClassName("scope__item")) && (document.getElementsByClassName("scope__item").textContent != step2[j]))
+            {
+        document.getElementsByClassName("scope__item").textContent = step2[j]
+      }
+    }
+
+    }
+function vector(key, value) {
+      switch (key) {
+        case "feedback-to-feedback_ag-person_good-life_comment_1": return ["Личность", "чудесная жизнь", vector1(value)];
+        case "feedback-to-feedback_ag-person_good-life_comment_2": return ["Личность", "чудесная жизнь", vector1(value)];
+        case "feedback-to-feedback_ag-person_good-life_comment_3": return ["Личность", "чудесная жизнь", vector1(value)];
+        case "feedback-to-feedback_ag-person_well-being_comment_1": return ["Личность", "самочувствие", vector2(value)];
+        case "feedback-to-feedback_ag-person_well-being_comment_2": return ["Личность", "самочувствие", vector2(value)];
+        case "feedback-to-feedback_ag-person_well-being_comment_3": return ["Личность", "самочувствие", vector2(value)];
+        case "feedback-to-feedback_inner-circle-ag_family_comment1": return ["Близкий круг", "семья", vector3(value)];
+        case "feedback-to-feedback_inner-circle-ag_family_comment2": return ["Близкий круг", "семья", vector3(value)];
+        case "feedback-to-feedback_inner-circle-ag_family_comment3": return ["Близкий круг", "семья", vector3(value)];
+        case "feedback-to-feedback_inner-circle-ag_close-people_comment1": return ["Близкий круг", "близкие люди", vector4(value)];
+        case "feedback-to-feedback_inner-circle-ag_close-people_comment2": return ["Близкий круг", "близкие люди", vector4(value)];
+        case "feedback-to-feedback_inner-circle-ag_close-people_comment3": return ["Близкий круг", "близкие люди", vector4(value)];
+        case "feedback-to-feedback_inner-circle-ag_build-or-end_comment1": return ["Близкий круг", "выстраивание/прекращение", vector5(value)];
+        case "feedback-to-feedback_inner-circle-ag_build-or-end_comment2": return ["Близкий круг", "выстраивание/прекращение", vector5(value)];
+        case "feedback-to-feedback_inner-circle-ag_build-or-end_comment3": return ["Близкий круг", "выстраивание/прекращение", vector5(value)];
+        case "feedback-to-feedback_ag-career_career_comment1": return ["Карьера", "карьера", vector6(value)];
+        case "feedback-to-feedback_ag-career_career_comment2": return ["Карьера", "карьера", vector6(value)];
+        case "feedback-to-feedback_ag-career_career_comment3": return ["Карьера", "карьера", vector6(value)];
+        case "feedback-to-feedback_ag-career_self-realization_comment1": return ["Карьера", "самореализация", vector7(value)];
+        case "feedback-to-feedback_ag-career_self-realization_comment2": return ["Карьера", "самореализация", vector7(value)];
+        case "feedback-to-feedback_ag-career_self-realization_comment3": return ["Карьера", "самореализация", vector7(value)];
+        case "feedback-to-feedback_ag-society_personal-brand-development_comment1": return ["Общество", "развитие личностного бренда", vector8(value)];
+        case "feedback-to-feedback_ag-society_personal-brand-development_comment2": return ["Общество", "развитие личностного бренда", vector8(value)];
+        case "feedback-to-feedback_ag-society_personal-brand-development_comment3": return ["Общество", "развитие личностного бренда", vector8(value)];
+
+        case "feedback-to-feedback_ag-society_fame_comment1": return ["Общество", "известность в широких кругах", vector9(value)];
+        case "feedback-to-feedback_ag-society_fame_comment2": return ["Общество", "известность в широких кругах", vector9(value)];
+        case "feedback-to-feedback_ag-society_fame_comment3": return ["Общество", "известность в широких кругах", vector9(value)];
+
+        case "feedback-to-feedback_ag-society_join-to-circle_comment":
+          return ["Общество", "войти в круг значимых лиц (города/области/региона/страны/мира)", vector10(value)];
+        case "feedback-to-feedback_ag-society_safety_comment":
+          return ["Общество", "безопасность", vector11(value)];
+      }
+    }
+    function vector1(value){
+        switch (value) {
+            case 1:
+                return "Спорт/игры";
+            case 2:
+                return "Таланты/творчество(сам)";
+            case 3:
+                return "Эстетика/искусство(потребление)";
+            case 4:
+                return "Путешествия";
+            case 5:
+                return "Интересные люди";
+            case 6:
+                return "События/эмоции/подарки";
+            case 7:
+                return "Природа/разумный эгоизм";
+            case 8:
+                return "Литература/история";
+            case 9:
+                return "Чувство юмора";
+        }
+    }
+
+    function vector2(value){
+        switch (value) {
+            case 1:
+                return "Экология/окружение";
+            case 2:
+                return "Репродуктивное здоровье";
+            case 3:
+                return "Молдость/долголетие/диагностика";
+            case 4:
+                return "Физическая форма";
+            case 5:
+                return "Психологическое здоровье/ясность ума/стрессоустойчивость";
+            case 6:
+                return "Питания";
+            case 7:
+                return "Дыхание";
+            case 8:
+                return "Сон";
+            case 9:
+                return "Внешность";
+        }
+    }
+
+    function vector3(value){
+        switch (value) {
+            case 1:
+                return "Семейный бюджет/экономика семьи";
+            case 2:
+                return "Родители(бабушки/дедушки)";
+            case 3:
+                return "Супруг/супруга";
+            case 4:
+                return "Дети/внуки";
+            case 5:
+                return "Дом/уют/безопасность";
+            case 6:
+                return "Транспорт/техника";
+            case 7:
+                return "Родня";
+            case 8:
+                return "Мир семьи/традиции/правила/ценности";
+            case 9:
+                return "Сексуальность";
+            case 10:
+                return "Влюблённость";
+            case 11:
+                return "Любимый/любимая";
+            case 12:
+                return "Общение/связи/коммуникации";
+            case 13:
+                return "Динамика отношений";
+            case 14:
+                return "Преодоление непреодолимых преград";
+            case 15:
+                return "Длительные отношения";
+            case 16:
+                return "Выход из созависимых отношений";
+        }
+    }
+
+    function vector4(value){
+        switch (value) {
+            case 1:
+                return "Влюблённость";
+            case 2:
+                return "Любимый/любимая";
+            case 3:
+                return "Общение/связи/коммуникации";
+            case 4:
+                return "Динамика отношений";
+            case 5:
+                return "Преодоление непреодолимых преград";
+        }
+    }
+
+     function vector5(value){
+        switch (value) {
+            case 1:
+                return "Длительные отношения";
+            case 2:
+                return "Выход из созависимых отношений";
+            case 3:
+                return "Избавиться от токсичных отношений";
+        }
+    }
+
+    function vector6(value){
+        switch (value) {
+            case 1:
+                return "Партнёры";
+            case 2:
+                return "Команда/штат/корпоративная культура";
+            case 3:
+                return "Инвестиции";
+            case 4:
+                return "Экономика деятельности";
+            case 5:
+                return "Менеджмент/руководитель";
+            case 6:
+                return "Юридические вопросы/безопасность";
+            case 7:
+                return "Профессионализм";
+            case 8:
+                return "Карьера";
+            case 9:
+                return "Высокий статус";
+            case 10:
+                return "Клиенты/маркетинг/CRM";
+            case 11:
+                return "Удовлетворение от результатов деятельности";
+        }
+    }
+
+    function vector7(value){
+        switch (value) {
+            case 1:
+                return "Цели/мечты/амбиции";
+            case 2:
+                return "Навыки/тренинги/мышление";
+            case 3:
+                return "Обучение/знание/эрудиция";
+            case 4:
+                return "Языки";
+            case 5:
+                return "Наставники";
+            case 6:
+                return "Тренды";
+            case 7:
+                return "Духовное развитие/вера/медитации";
+            case 8:
+                return "Эмоциональный интеллект/психология";
+            case 9:
+                return "Лидерство";
+        }
+    }
+
+    function vector8(value){
+        switch (value) {
+            case 1:
+                return "Бренд";
+            case 2:
+                return "Соц.группы/соц.сети";
+            case 3:
+                return "Выступления/публикации/самопрезентация";
+        }
+    }
+
+    function vector9(value){
+        switch (value) {
+            case 1:
+                return "Друзья";
+            case 2:
+                return "Контакты";
+            case 3:
+                return "Випы";
+            case 4:
+                return "Ученики";
+            case 5:
+                return "Прошлое/личный мир прошлого";
+        }
+    }
+
+    function vector10(value){
+        switch (value) {
+            case 1:
+                return "Нетворкинг";
+            case 2:
+                return "Профессиональная среда/статус";
+        }
+    }
+
+    function vector11(value){
+        switch (value) {
+            case 1:
+                return "Минимизация рисков";
+            case 2:
+                return "Права и свободы";
+            case 3:
+                return "Государство/лоббизм";
+        }
+    }
+
+    function devproject(data){
+        var key = ["feedback-to-feedback_ag-person_good-life_comment_1","feedback-to-feedback_ag-person_good-life_comment_2","feedback-to-feedback_ag-person_good-life_comment_3","feedback-to-feedback_ag-person_well-being_comment_1","feedback-to-feedback_ag-person_well-being_comment_2","feedback-to-feedback_ag-person_well-being_comment_3","feedback-to-feedback_inner-circle-ag_family_comment1","feedback-to-feedback_inner-circle-ag_family_comment2","feedback-to-feedback_inner-circle-ag_family_comment3","feedback-to-feedback_inner-circle-ag_close-people_comment1","feedback-to-feedback_inner-circle-ag_close-people_comment2","feedback-to-feedback_inner-circle-ag_close-people_comment3","feedback-to-feedback_inner-circle-ag_build-or-end_comment1","feedback-to-feedback_inner-circle-ag_build-or-end_comment2","feedback-to-feedback_inner-circle-ag_build-or-end_comment3","feedback-to-feedback_ag-career_career_comment1","feedback-to-feedback_ag-career_career_comment2","feedback-to-feedback_ag-career_career_comment3","feedback-to-feedback_ag-career_self-realization_comment1","feedback-to-feedback_ag-career_self-realization_comment2","feedback-to-feedback_ag-career_self-realization_comment3","feedback-to-feedback_ag-society_personal-brand-development_comment1","feedback-to-feedback_ag-society_personal-brand-development_comment2","feedback-to-feedback_ag-society_personal-brand-development_comment3","feedback-to-feedback_ag-society_fame_comment1","feedback-to-feedback_ag-society_fame_comment2","feedback-to-feedback_ag-society_fame_comment3","feedback-to-feedback_ag-society_join-to-circle_comment","feedback-to-feedback_ag-society_safety_comment"]
+        var val = []
+        for (var i = 0; i < key.length; ++i) {
+            if (data[key[i]] != 0){
+                let v = vector(key[i], Number(data[key[i]]));
+                val.push(v);
+            }
+        }
+        for ( var k = 0; k < val.length; ++k){
+            if (val[k][0] == "Личность"){
+                let perdivElement = document.getElementById("project");
+                let divElement = document.createElement("div");
+                divElement.classList.add('how-it-works__text')
+                divElement.innerText = val[k][2];
+                perdivElement.appendChild(divElement);
+                let div2Element = document.createElement("div");
+                div2Element.classList.add('how-it-works__number')
+                perdivElement.appendChild(div2Element);
+                let div3Element = document.createElement("div");
+                div3Element.classList.add('how-it-works__text')
+                div3Element.innerText = val[k][1];
+                perdivElement.appendChild(div3Element);
+            }
+            else if (val[k][0] == "Близкий круг"){
+                let perdivElement = document.getElementById("project");
+                let divElement = document.createElement("div");
+                divElement.classList.add('how-it-works__text')
+                divElement.innerText = val[k][2];
+                perdivElement.appendChild(divElement);
+                let div2Element = document.createElement("div");
+                div2Element.classList.add('how-it-works__number')
+                div2Element.classList.add('how-it-works__number_green')
+                perdivElement.appendChild(div2Element);
+                let div3Element = document.createElement("div");
+                div3Element.classList.add('how-it-works__text')
+                div3Element.innerText = val[k][1];
+                perdivElement.appendChild(div3Element);
+            }
+            else if (val[k][0] == "Карьера"){
+                let perdivElement = document.getElementById("project");
+                let divElement = document.createElement("div");
+                divElement.classList.add('how-it-works__text')
+                divElement.innerText = val[k][2];
+                perdivElement.appendChild(divElement);
+                let div2Element = document.createElement("div");
+                div2Element.classList.add('how-it-works__number')
+                div2Element.classList.add('how-it-works__number_purple')
+                perdivElement.appendChild(div2Element);
+                let div3Element = document.createElement("div");
+                div3Element.classList.add('how-it-works__text')
+                div3Element.innerText = val[k][1];
+                perdivElement.appendChild(div3Element);
+            }
+            else if (val[k][0] == "Общество"){
+                let perdivElement = document.getElementById("project");
+                let divElement = document.createElement("div");
+                divElement.classList.add('how-it-works__text')
+                divElement.innerText = val[k][2];
+                perdivElement.appendChild(divElement);
+                let div2Element = document.createElement("div");
+                div2Element.classList.add('how-it-works__number')
+                div2Element.classList.add('how-it-works__number_blue')
+                perdivElement.appendChild(div2Element);
+                let div3Element = document.createElement("div");
+                div3Element.classList.add('how-it-works__text')
+                div3Element.innerText = val[k][1];
+                perdivElement.appendChild(div3Element);
+            }
+
+        }
+    }
+
+	</script>
+<body onload="loadITR()">
+	<div class="wrapper">
+		<main class="page">
+			<div id="invoice">
+				<div class="menu-kjo">
+					<div class="menu-kjo__container">
+						<div class="menu-kjo__body">
+							<a href="/couch" class="menu-kjo__logo">
+								<img src="../static/img/kjo/logo-kjo.svg" alt="">
+							</a>
+							<div class="menu-kjo__client">
+								<div class="menu-kjo__label">Клиент:</div>
+								<div class="menu-kjo__name-client">{{data2[0][0]+ " " + data2[0][1]}}</div>
+								<div class="menu-kjo__label">Дата диагностической сессии:</div>
+								<select onchange="loadITR()" id="session">
+								<option selected onclick="loadITR()" value="{{ sessions[0][0] }}">{{ sessions[0][1] }} {{ sessions[0][2] }}</option>
+								{% for session in sessions[1:] %}
+								<option onclick="loadITR()" value="{{ session[0] }}">{{ session[1] }} {{ session[2] }}</option>
+								{% end %}
+							</select>
+							</div>
+							<div class="menu-kjo__couch">
+								<div class="menu-kjo__label">Коуч:</div>
+								<div class="menu-kjo__name-couch">{{data[0][0]+ " " + data[0][1]}}</div>
+							</div>
+							<div class="menu-kjo__contact">
+								<!--Email  -->
+								<a class="menu-kjo__icon" target="_blank" title="Email" href="mailto:info@ai4g.ru">
+									<img src="../static/img/kjo/icons/email-kjo.svg" alt="">
+									<span>info@ai4g.ru</span>
+								</a>
+								<!--телефон  -->
+								<a class="menu-kjo__icon" target="_blank" title="Телефон" href="tel:+79852000434">
+									<img src="../static/img/kjo/icons/telegram-kjo.svg" alt="phone">
+									<span> +7-(985)-200-04-34</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="map-kjo">
+					<div class="map-kjo__container">
+						<h1 class="map-kjo__title">
+							<span>Карта жизненных ориентиров</span>
+							<div class="line"></div>
+						</h1>
+						<div class="map-kjo__body">
+							<!-- Паттерны -->
+							<div class="map-kjo__item item-kjo">
+								<h2 class="item-kjo__subtitle subtitle">Паттерны</h2>
+								<ul class="item-kjo__list">
+									<li id="kjo_pattern_1" class="item-kjo__item">
+										Конкуренция:
+										Содействовать успеху и прогрессу за счет стимулирования конкуренции. Конфронтаиия.
+									</li>
+									<li id="kjo_pattern_2" class="item-kjo__item">
+										Непрямая коммуникация:
+										Непрямая критика. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтение поддержанию теплых отношений, рискуя быть непонятым.
+									</li>
+								</ul>
+							</div>
+							<!--Противоречия -->
+							<div class="map-kjo__item item-kjo">
+								<h2 class="item-kjo__subtitle subtitle">
+									Противоречия
+								</h2>
+								<ul class="item-kjo__list-check">
+									<li class="item-kjo__item-check">
+										Самооценка и Цели
+									</li>
+									<li class="item-kjo__item-check check-map-active">
+										Идентичность и Цели
+									</li>
+									<li class="item-kjo__item-check check-map-active">
+										Цели и Готовность к изменениям
+									</li>
+									<li class="item-kjo__item-check">
+										Цели и Поддержка
+									</li>
+									<li class="item-kjo__item-check check-map-active">
+										Цели и Траектория развития
+									</li>
+									<li class="item-kjo__item-check check-map-active">
+										Краткосрочных целей и Планирования
+									</li>
+								</ul>
+							</div>
+							<!--Слабые стороны -->
+							<div class="map-kjo__item item-kjo">
+								<h2 class="item-kjo__subtitle subtitle">
+									Слабые стороны
+								</h2>
+								<ul id="weak_points" class="item-kjo__list">
+									<li class="item-kjo__item">
+										Прилежность
+									</li>
+									<li class="item-kjo__item">
+										Богатое воображение
+									</li>
+								</ul>
+							</div>
+							<!--Сильные стороны-->
+							<div class="map-kjo__item item-kjo">
+								<h2 class="item-kjo__subtitle subtitle">
+									Сильные стороны
+								</h2>
+								<ul id="strong_points" class="item-kjo__list">
+									<li class="item-kjo__item">
+										Удачливость
+									</li>
+									<li class="item-kjo__item">
+										Трудолюбие
+									</li>
+									<li class="item-kjo__item">
+										Другое
+									</li>
+								</ul>
+							</div>
+							<!-- Потенциал -->
+							<div class="map-kjo__item item-kjo">
+								<h2 class="item-kjo__subtitle subtitle subtitle_italic">Потенциал</h2>
+								<div class="item-kjo__caption">(насколько желаемое выше/ниже возможностей личности)</div>
+								<ul class="item-kjo__list">
+									<li class="item-kjo__item" id="potential">
+										Возможности соотвествуют желаниям
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="map-kjo-middle">
+					<div class="map-kjo-middle__container">
+						<div class="map-kjo-middle__body">
+							<!-- Возможности -->
+							<div class="map-kjo-middle__item scope">
+								<h2 class="scope__subtitle subtitle">Возможности</h2>
+								<div class="scope__content">
+									<!-- 1 -->
+									<div class="scope__item scope-active">Харизма</div>
+									<!-- 2 -->
+									<div class="scope__item">Стратегемность</div>
+									<!-- 3 -->
+									<div class="scope__item  scope-active">Быть ментором</div>
+									<!-- 4 -->
+									<div class="scope__item">Репутация</div>
+									<!-- 5 -->
+									<div class="scope__item ">Воля</div>
+									<!-- 6 -->
+									<div class="scope__item scope-active">Доброта</div>
+									<!-- 7 -->
+									<div class="scope__item  ">Планирование</div>
+									<!-- 8 -->
+									<div class="scope__item scope-active">Удача</div>
+									<!-- 9 -->
+									<div class="scope__item scope-active">Саморазвитие</div>
+									<!-- 10 -->
+									<div class="scope__item">Здоровье</div>
+									<!-- 11 -->
+									<div class="scope__item  scope-active">Сексуальность</div>
+									<!-- 12 -->
+									<div class="scope__item">Личный бренд</div>
+								</div>
+								<div class="scope__explanation explanation">
+									<div class="explanation__item">
+										<div class="explanation__square explanation__square_dark"></div>
+										<span>Есть возможности, вы о них знаете, но осознанно их не используете (в темных ячейках)</span>
+									</div>
+									<div class="explanation__item">
+										<div class="explanation__square"></div>
+										<span>Есть возможности, но вы их не используете (в светлых ячейках)</span>
+									</div>
+								</div>
+							</div>
+							<!-- Факторы благополучия -->
+							<div class="map-kjo-middle__item factor">
+								<h2 class="factor__subtitle subtitle">Факторы благополучия</h2>
+								<div class="factor__content">
+									<div class="chart">
+										<div class="chart__item">
+											<p>Ясность ума</p>
+											<div class="chart__graf">
+												<div class="pipe">
+													<div id="step1_1" style="width:0%"></div>
+												</div>
+												<div class="pipe pipe_purple">
+													<div id="step2_1" style="width: 0%"></div>
+												</div>
+											</div>
+										</div>
+										<div class="chart__item">
+											<p>Любовь к жизни</p>
+											<div class="chart__graf">
+												<div class="pipe">
+													<div id="step1_2" style="width: 0%"></div>
+												</div>
+												<div class="pipe pipe_purple">
+													<div id="step2_2" style="width: 0%"></div>
+												</div>
+											</div>
+										</div>
+										<div class="chart__item">
+											<p>Любовь к себе</p>
+											<div class="chart__graf">
+												<div class="pipe">
+													<div id="step1_3" style="width: 0%"></div>
+												</div>
+												<div class="pipe pipe_purple">
+													<div id="step2_3" style="width: 0%"></div>
+												</div>
+											</div>
+										</div>
+										<div class="chart__item">
+											<p>Стресс</p>
+											<div class="chart__graf">
+												<div class="pipe">
+													<div id="step1_4" style="width: 0%"></div>
+												</div>
+												<div class="pipe pipe_purple">
+													<div id="step2_4" style="width: 0%"></div>
+												</div>
+											</div>
+										</div>
+										<div class="chart__item">
+											<p>Выгорание</p>
+											<div class="chart__graf">
+												<div class="pipe">
+													<div id="step1_5" style="width: 0%"></div>
+												</div>
+												<div class="pipe pipe_purple">
+													<div id="step2_5" style="width: 0%"></div>
+												</div>
+											</div>
+										</div>
+										<div class="chart__item">
+											<p>Энергия</p>
+											<div class="chart__graf">
+												<div class="pipe">
+													<div id="step1_6" style="width: 0%"></div>
+												</div>
+												<div class="pipe pipe_purple">
+													<div id="step2_6" style="width: 0%"></div>
+												</div>
+											</div>
+										</div>
+										<div class="chart__item">
+											<p></p>
+											<div class="chart__graf">
+												<div class="chart__line">
+													<div class="chart__number">
+														<div class="chart__numeral chart__numeral_10">
+															<span>0</span>
+														</div>
+														<div class="chart__numeral">
+															<span>2</span>
+														</div>
+														<div class="chart__numeral">
+															<span>4</span>
+														</div>
+														<div class="chart__numeral">
+															<span>6</span>
+														</div>
+														<div class="chart__numeral">
+															<span>8</span>
+														</div>
+														<div class="chart__numeral">
+															<span>10</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="factor__bottom">
+									<div class="factor__explanation explanation-factor explanation-factor_70">
+										<div class="explanation-factor__item">
+											<div class="explanation-factor__square explanation-factor__square_green"></div>
+											<span>Анализ благополучия по Калибровке 1 (с учетом обратного порядка значений)</span>
+										</div>
+										<div class="explanation-factor__item">
+											<div class="explanation-factor__square explanation-factor__square_purple"></div>
+											<span>Калибровка 2 (изменение двух шкал)</span>
+										</div>
+									</div>
+									<div class="factor__explanation explanation-factor explanation-factor_30">
+										<div class="explanation-factor__item">
+											<div class="explanation-factor__line"></div>
+											<span>Среднее значение шкалы калибровок</span>
+										</div>
+										<div class="explanation-factor__item">
+											<div class="explanation-factor__line explanation-factor__line_dark"></div>
+											<span>Среднее значение шкалы калибровок после изменения</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="map-kjo-bottom">
+					<div class="map-kjo-bottom__container">
+						<div class="line"></div>
+						<div class="map-kjo-bottom__body">
+							<div class="map-kjo-bottom__column-left left-column">
+								<!--Фокуса нет -->
+								<div class="left-column__item item-column">
+									<h2 class="item-column__subtitle subtitle" id="isFocus">
+										<picture><source id="webp" srcset="" type="image/webp"><img id ="jpg" src="" alt=""></picture>
+										Фокуса нет
+									</h2>
+									<div class="item-column__block  item-column__block_auto">
+										<div class="item-column__point">
+											Будущее или Настоящее
+										</div>
+										<div class="item-column__point-right">
+											С будущим
+										</div>
+										<div class="item-column__point">
+											Цель или состояние
+										</div>
+										<div class="item-column__point-right" id="targetOrMoney">
+											Цель
+										</div>
+										<div class="item-column__point">
+											Готовность к изменениям
+										</div>
+										<div class="item-column__point-right" id="yesornochange">
+											Есть
+										</div>
+										<div class="item-column__point">
+											Жгучесть целей
+										</div>
+										<div class="item-column__point-right" id ="count_target">
+											6
+										</div>
+									</div>
+								</div>
+								<!--Направления развития -->
+								<div class="left-column__item item-kjo">
+									<h2 class="item-kjo__subtitle subtitle">
+										Направления развития
+									</h2>
+									<ul class="item-kjo__list" id="development_list">
+									</ul>
+								</div>
+							</div>
+							<div class="map-kjo-bottom__column-project project-column">
+								<div class="project-column__top">
+									<div class="how-it-works">
+										<h2 class="how-it-works__subtitle subtitle">Проекты развития</h2>
+										<div class="how-it-works__body" id = "project">
+
+										</div>
+									</div>
+								</div>
+								<div class="project-column__bottom">
+									<div class="project-column__item">
+										<img src="../static/img/kjo/plane/plane-1.svg" alt="">
+										<div class="project-column__text">
+											<div>αG</div>
+											<div>личность</div>
+										</div>
+									</div>
+									<div class="project-column__item">
+										<img src="../static/img/kjo/plane/plane-2.svg" alt="">
+										<div class="project-column__text">
+											<div>αG</div>
+											<div>Близкий круг</div>
+										</div>
+									</div>
+									<div class="project-column__item">
+										<img src="../static/img/kjo/plane/plane-3.svg" alt="">
+										<div class="project-column__text">
+											<div>αG</div>
+											<div>карьера</div>
+										</div>
+									</div>
+									<div class="project-column__item">
+										<img src="../static/img/kjo/plane/plane-4.svg" alt="">
+										<div class="project-column__text">
+											<div>αG</div>
+											<div>Общество</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="map-kjo-bottom__column-right right-column">
+								<!--Планирование -->
+								<div class="right-column__item item-column item-column_width">
+									<h2 class="item-column__subtitle subtitle">
+										Планирование
+									</h2>
+									<div class="item-column__block">
+										<div class="item-column__point">
+											Горизонт (мес.)
+										</div>
+										<div class="item-column__point-right" id = "Horizont">
+											6-12
+										</div>
+										<div class="item-column__point">
+											Скорость
+										</div>
+										<div class="item-column__point-right" id = "Speed">
+											Средняя
+										</div>
+										<div class="item-column__point">
+											Контроль
+										</div>
+										<div class="item-column__point-right" id = "Controlling">
+											Пошаговый
+										</div>
+									</div>
+								</div>
+								<!--Ресурсы -->
+								<div class="right-column__item item-column">
+									<h2 class="item-column__subtitle subtitle">
+										Ресурсы
+									</h2>
+									<div class="item-column__content">
+										<div class="item-column__element item-column__element_01">
+											<div class="item-column__label">
+												Команда:
+											</div>
+											<div class="item-column__block">
+												<div class="item-column__point" >
+													Поддержка
+												</div>
+												<div class="item-column__point-right" id="support">
+													Самостоятельно ("Парус")
+												</div>
+												<div class="item-column__point">
+													Сопровождение
+												</div>
+												<div class="item-column__point-right" id="following">
+													Трекинг
+												</div>
+											</div>
+										</div>
+										<div class="item-column__element item-column__element_02">
+											<div class="item-column__label">
+												Методы развития:
+											</div>
+											<div class="item-column__block item-column__block_one">
+												<div class="item-column__point" id="A44.1">
+													Практические действия (план)
+												</div>
+												<div class="item-column__point" id="A44.2">
+													Работа с психологом
+												</div>
+												<div class="item-column__point" id="A44.3">
+													Практики, техники работы с поведением
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="line"></div>
+			<div class="generatepdf">
+				<div class="generatepdf__container">
+					<button class="generatepdf__btn btn" onclick="generatePDF()">Сохранить в PDF</button>
+				</div>
+			</div>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js?_v=20230530085453"></script>
+
+			<script>
+				//====generatePDF==============================================================
+				function generatePDF() {
+					const element = document.getElementById('invoice');
+					var opt = {
+						margin: 1,
+						//pagebreak:{after:['.map-kjo','.map-kjo-middle']},
+						image: {
+							type: 'jpeg',
+							quality: 0.78
+						},
+						enableLinks: true,
+						jsPDF: {
+							orientation: 'l',
+							unit: 'mm',
+							format: 'a4',
+							putOnlyUsedFonts: true,
+							floatPrecision: 16
+						},
+
+					};
+					html2pdf()
+						.set(opt)
+						.from(element)
+						.save("Карта жизненных ориентиров")
+				}
+				//==============================================================
+			</script>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+
+
+			</div>
+		</footer>
+	</div>
+	<div id="popup-search" aria-hidden="true" class="popup-search popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">Закрыть</button>
+				<form action="#" method="get" class="popup__form" autocomplete="off">
+					<input placeholder="Поиск" type="text" name="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="255" class="popup__input">
+					<button class="popup__button btn" type="submit">
+						Найти
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="../static/js/app_couch.min.js?_v=20230530085453"></script>
+	<script>
+
+	function changeWidthValue(elementId, newValue) {
+		const element = document.getElementById(elementId);
+		if (element) {
+			element.style.width = `${newValue}%`;
+			}
+		}
+	</script>
+
+</body>
+
+</html>

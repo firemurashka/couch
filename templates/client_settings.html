@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Настройки</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="../static/css/style_client.min.css?_v=20230505153921">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<!-- 	&display=swap -->
+	<!-- 	&subset=cyrillic-ext -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230505153921" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230505153921" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__body">
+					<a href="/user_client" class="header__logo">
+						<img src="../static/img/header/logo-header.svg" alt="">
+					</a>
+					<div class="header_menu menu" data-da=".header__profile,991.98">
+						<button type="button" class="menu__icon icon-menu">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item menu__item_logo">
+									<a href="/user_client" class="header__logo">
+										<img src="../static/img/header/logo-header.svg" alt="">
+									</a>
+								</li>
+								<li class="menu__item">
+									<a href="/user_client" class="menu__link">Главная</a>
+								</li>
+
+
+								<li class="menu__item">
+									<a href="/my_programs" class="menu__link">Мои программы</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_ds" class="menu__link">Моя ДС</a>
+								</li>
+								<li class="menu__item">
+									<a href="/all_courses" class="menu__link">Все курсы</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_events" class="menu__link">Мои события</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_itr" class="menu__link">ИТР</a>
+								</li>
+								<li class="menu__item">
+									<a href="/client_settings" class="menu__link">Настройки</a>
+								</li>
+
+								<li class="menu__item menu__item_exit">
+									<a href="/login" class="menu__link">Выйти</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="header__profile">
+						<a href="#" data-popup="#popup-search" class="header__button _icon-search"></a>
+						<a class="header__bell _icon-bell" href=""></a>
+						<div class="header__image-box">
+							<a href="/user_client" class="header__image">
+								<span class="header__word">К</span>
+								<span class="header__word_hidden">Изменить фото</span>
+							</a>
+						</div>
+						<a class="header__exit _icon-exit" href="/login"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="page">
+			<section class="subpage">
+				<div class="subpage__container">
+					<h1 class="subpage__title title">Настройки</h1>
+					<div class="subpage__body">
+						<div class="profile">
+							<div class="profile__body">
+								<div class="profile__photo">
+									<div class="profile__image">
+                                        <picture><source id = "webp" srcset="../static/img/client/client03.webp" type="image/webp"><img id = "jpg" src="../static/img/client/client03.jpg" alt=""></picture>
+                                        <script>
+                                            var img_webp = "../static/img/client/client03.webp";
+                                            var img_jpg = "../static/img/client/client03.jpg";
+                                            var gender = '{{user[0][12]}}';
+                                            if (gender == "женский") {(img_webp = "../static/img/client/client01.webp"); (img_jpg = "../static/img/client/client01.jpg");} else {(img_webp = "../static/img/client/client02.webp"); (img_jpg = "../static/img/client/client02.jpg");}
+                                            document.getElementById("webp").srcset = img_webp;
+                                            document.getElementById("jpg").srcset = img_jpg;
+                                        </script>
+									</div>
+									<a href="" class="profile__link">Изменить фото</a>
+								</div>
+								<div data-tabs data-tabs-animate="100" class="tabs">
+									<nav data-tabs-titles class="tabs__navigation">
+										<button type="button" class="tabs__title _tab-active">Основные настройки</button>
+										<button type="button" class="tabs__title">Социальные сети</button>
+										<button type="button" class="tabs__title">Резюме</button>
+									</nav>
+									<div data-tabs-body class="tabs__content">
+										<div class="tabs__body">
+											<div class="form-profile">
+												<!--форма-->
+												<form action="/client_settings" method="POST" id="settings_form" class="form-profile__form">
+													<!--1 поле - ввод фамилии -->
+													<div class="form-profile__item">
+														<!--label привязан к formSurname -->
+														<label for="formSurname" class="form-profile__label"> Фамилия:</label>
+														<!--чтобы связать label и input пишем id="formSurname" -->
+														<input id="formSurname" type="text" name="formSurname" class="form-profile__input" value="{{ surname }}">
+													</div>
+													<!--2 поле - ввод имени -->
+													<div class="form-profile__item">
+														<!--label привязан к formName -->
+														<label for="formName" class="form-profile__label">
+															Имя:
+														</label>
+														<!--чтобы связать label и input пишем id="formName" -->
+														<input id="formName" type="text" name="formName" class="form-profile__input" value="{{ name }}">
+													</div>
+													<!--3 поле - дата рождения -->
+													<div class="form-profile__item">
+														<!--label привязан к formDate -->
+														<label for="formDate" class="form-profile__label">
+															Дата рождения:
+														</label>
+														<!--чтобы связать label и input пишем id="formDate" -->
+														<input type="date" class="recording__input" id="formDate" name="formDate" value="{{ birthdate }}">
+														<!--  <input
+                                                                id="formDate"
+                                                                type="text"
+                                                                name="name"
+                                                                class="form-profile__input"
+                                                            > -->
+													</div>
+													<!--4 поле - город проживания -->
+													<div class="form-profile__item">
+														<!--label привязан к formSity -->
+														<label for="formSity" class="form-profile__label">
+															Город проживания:
+														</label>
+														<!--чтобы связать label и input пишем id="formSity" -->
+														<input id="formSity" name="formSity" type="text" class="form-profile__input" value="{{ city }}">
+													</div>
+													<!--4 поле - город проживания -->
+													<div class="form-profile__item">
+														<!--label привязан к formSity -->
+														<label for="formEmail" class="form-profile__label">
+															Электронная почта:
+														</label>
+														<!--чтобы связать label и input пишем id="formSity" -->
+														<input id="formEmail" name="formEmail" type="text" class="form-profile__input" value="{{address}}">
+													</div>
+													<!--5 поле - Семейное положение -->
+													<div class="form-profile__item form-profile__item_radio">
+														<div class="form-profile__title">Семейное положение:</div>
+														<div class="form-profile__radio">
+															<div class="form-profile__radio-item">
+																<input type="radio" id="married" name="family" value="married" checked>
+																<label for="married">Женат/Замужем</label>
+															</div>
+															<div class="form-profile__radio-item">
+																<input type="radio" id="single" name="family" value="single">
+																<label for="single">Холост/Не замужем</label>
+															</div>
+															<div class="form-profile__radio-item">
+																<input type="radio" id="divorced" name="family" value="divorced">
+																<label for="divorced">Разведен/а</label>
+															</div>
+															<div class="form-profile__radio-item">
+																<input type="radio" id="widower" name="family" value="widower">
+																<label for="widower">Вдовец/Вдова</label>
+															</div>
+															<div class="form-profile__radio-item">
+																<input type="radio" id="separate" name="family" value="separate">
+																<label for="separate">Отдельное проживание</label>
+															</div>
+															<div class="form-profile__radio-item">
+																<input type="radio" id="other" name="family" value="other">
+																<label for="other">Другое</label>
+															</div>
+														</div>
+													</div>
+													<!-- 6 поле - образование -->
+													<div class="form-profile__item form-profile__item_select">
+														<div class="form-profile__title">Образование:</div>
+														<select id="formEducation" name="formEducation" class="form">
+															<option value="1" selected>Высшее</option>
+                                                            <option value="2">Неоконченное высшее</option>
+															<option value="3">Среднее общее</option>
+                                                            <option value="4">Среднее специальное</option>
+                                                            <option value="5">Основное общее</option>
+															<option value="6">Начальное общее</option>
+														</select>
+														<script>
+															//document.getElementById('formEducation').value = '{{ education }}';
+														</script>
+													</div>
+													<!--7 поле - Деятельность -->
+													<div class="form-profile__item">
+														<!--label привязан к formActivity -->
+														<label for="formActivity" class="form-profile__label">
+															Деятельность:
+														</label>
+														<!--чтобы связать label и input пишем id="formActivity" -->
+														<input id="formActivity" type="text" name="formActivity" class="form-profile__input" value="{{ activity }}">
+													</div>
+													<!--8 поле - Профессия -->
+													<div class="form-profile__item">
+														<!--label привязан к formProfession -->
+														<label for="formProfession" class="form-profile__label">
+															Профессия:
+														</label>
+														<!--чтобы связать label и input пишем id="formProfession" -->
+														<input id="formProfession" type="text" name="formProfession" class="form-profile__input" value="{{ profession }}">
+													</div>
+													<!--9 поле - Хобби/увлечения -->
+													<div class="form-profile__item">
+														<!--label привязан к formHobby -->
+														<label for="formHobby" class="form-profile__label">
+															Хобби/увлечения:
+														</label>
+														<!--чтобы связать label и input пишем id="formHobby" -->
+														<input id="formHobby" type="text" name="formHobby" class="form-profile__input" value="{{hobby}}">
+													</div>
+													<!-- 10 поле - Комментарий -->
+													<div class="form-profile__item form-profile__item_textarea">
+														<label for="formMessage" class="form-profile__label">Комментарий:</label>
+														<textarea name="formMessage" id="formMessage" class="form-profile__input" placeholder="Введите комментарий">{{ note }}</textarea>
+													</div>
+													<!--6 кнопка -->
+													<button type="submit" class="form-profile__button btn">Сохранить</button>
+												</form>
+											</div>
+										</div>
+										<div class="tabs__body">
+											<!-- Социальные сети -->
+											<form action="/client_socials" method="POST" id="form" class="form-social__form">
+												<!--1 поле - Telegram -->
+												<div class="form-social__item">
+													<div class="form-social__left">
+														<div class="form-social__icon">
+															<img src="../static/img/icons/social/telegram.svg" alt="">
+														</div>
+														<!--label привязан к formTelegram -->
+														<label for="formTelegram" class="form-social__label"> Telegram:</label>
+														<!--чтобы связать label и input пишем id="formTelegram" -->
+													</div>
+													<input id="formTelegram" type="text" name="formTelegram" class="form-social__input" value="{{ socials['telegram'] }}">
+												</div>
+												<!--2 поле - Whatsapp -->
+												<div class="form-social__item">
+													<div class="form-social__left">
+														<div class="form-social__icon">
+															<img src="../static/img/icons/social/whatsapp.svg" alt="">
+														</div>
+														<!--label привязан к formWhatsapp -->
+														<label for="formWhatsapp" class="form-social__label"> Whatsapp:</label>
+														<!--чтобы связать label и input пишем id="formWhatsapp" -->
+													</div>
+													<input id="formWhatsapp" type="text" name="formWhatsapp" class="form-social__input" value="{{ socials['whatsapp'] }}">
+												</div>
+												<!--3 поле - Instagram -->
+												<div class="form-social__item">
+													<div class="form-social__left">
+														<div class="form-social__icon">
+															<img src="../static/img/icons/social/instagram.svg" alt="">
+														</div>
+														<!--label привязан к formInstagram -->
+														<label for="formInstagram" class="form-social__label"> Instagram:</label>
+														<!--чтобы связать label и input пишем id="formInstagram" -->
+													</div>
+													<input id="formInstagram" type="text" name="formInstagram" class="form-social__input" value="{{ socials['insta'] }}">
+												</div>
+												<!--4 поле - Vk -->
+												<div class="form-social__item">
+													<div class="form-social__left">
+														<div class="form-social__icon">
+															<img src="../static/img/icons/social/vk.svg" alt="">
+														</div>
+														<!--label привязан к formVk -->
+														<label for="formVk" class="form-social__label">VK:</label>
+														<!--чтобы связать label и input пишем id="formVk" -->
+													</div>
+													<input id="formVk" type="text" name="formVk" class="form-social__input" value="{{ socials['vk'] }}">
+												</div>
+												<!--5 поле - Youtube -->
+												<div class="form-social__item">
+													<div class="form-social__left">
+														<div class="form-social__icon">
+															<img src="../static/img/icons/social/youtube.svg" alt="">
+														</div>
+														<!--label привязан к formYoutube -->
+														<label for="formYoutube" class="form-social__label"> Youtube:</label>
+														<!--чтобы связать label и input пишем id="formYoutube" -->
+													</div>
+													<input id="formYoutube" type="text" name="formYoutube" class="form-social__input" value="{{ socials['youtube'] }}">
+												</div>
+												<!--6 кнопка -->
+												<button type="submit" class="form-social__button btn">Сохранить</button>
+											</form>
+										</div>
+										<div class="tabs__body">
+											<div class="up">
+												<div class="fileName">
+													<a>
+														<span>Файл не выбран</span>
+													</a>
+												</div>
+												<div class="file-search-button">
+													<label for="file-upload" class="custom-file-upload  btn">
+														<i class="fa fa-search"></i>
+														Загрузить резюме
+													</label>
+													<input id="file-upload" type="file">
+												</div>
+												<button class="up__button btn">Сохранить</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<div id="popup-search" aria-hidden="true" class="popup-search popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">Закрыть</button>
+				<form action="#" method="get" class="popup__form" autocomplete="off">
+					<input placeholder="Поиск" type="text" name="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="255" class="popup__input">
+					<button class="popup__button btn" type="submit">
+						Найти
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="../static/js/app_client.min.js?_v=20230505153921"></script>
+</body>
+</html>

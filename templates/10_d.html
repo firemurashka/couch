@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Blank Template for Bootstrap</title>
+        <!-- Bootstrap core CSS -->
+        <link href="../session_web_pages/css/theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../session_web_pages/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../session_web_pages/offcanvas.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <link href="../session_web_pages/style.css" rel="stylesheet"/>
+        <script>
+            function set_combo_box(x, y){
+                document.getElementById(x).value = document.getElementById(y).value
+            }
+        </script>
+    </head>
+    <body onload="restore(10)">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Диагностическая сессия</a>
+                <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="offcanvas" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" aria-current="page" href="/page" onclick="save(10)">К сесcии</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="save_and_exit(10)">Мои клиенты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="couch_page(10)">Мой профиль</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Настройки</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                                <li><a class="dropdown-item" href="#">Action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Another action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Поиск</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="nav-scroller bg-white shadow-sm">
+            <nav class="nav nav-underline" aria-label="Secondary navigation">
+                <a class="nav-link active" aria-current="page" onclick="save_and_exit(10)">На главную</a>
+                <a class="nav-link" onclick="previous_page(10)">К прошлой странице</a>
+                <a class="nav-link" onclick="next_page(10)">Сохранить и перейти далее</a>
+            </nav>
+        </div>
+        <div class="container">
+</div>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <h1 class="ms-3 text-center text-success">Диагностика 6  &laquo;Траектория Развития Фокус&raquo;</h1>
+        <div class="mb-2 me-5 ms-5 mt-1">
+</div>
+        <div class="me-3 ms-3">
+            <div class="ms-3 row" name="A23_comment">
+                <div class="col-md-5 text-wrap">
+                    <h3 class="text-center"><b>Вопросы</b></h3> 
+                    <div class="input-group mb-3"> 
+                        <div class="w-100">
+                            <span class="input-group-text text-wrap" id="basic-addon1"><b>10.1</b>&nbsp; &nbsp;Что важнее сейчас: успех (деньги, карьера, достижение конкретных целей), состояние (счастье, гармония, баланс) или развитие?</span>
+                            <select onchange="set_combo_box('combo_box_A41', 'question_10.1_select')" id="question_10.1_select" class="form-select" aria-label="Default select example" name="question_10.1_select">
+                                <option selected value="-1">не указано</option>
+                                <option value="1">Успех</option>
+                                <option value="2">Состояние</option>
+                                <option value="3">Развитие</option>
+                            </select>
+                        </div>                         
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <h3 class="text-center"><b>Аналитики</b></h3> 
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100">
+                            <span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А41.&nbsp;<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">Цель, состояние, развитие</span></b></span>
+                            <select id="combo_box_A41" class="form-select" aria-label="Default select example" name="paattern_A.41_select"> 
+                                <option selected value="-1">не указано</option>
+                                <option value="1">Цель</option>                                 
+                                <option value="2">Состояние</option>                                 
+                                <option value="3">Развитие</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A41_comment"/>
+                        </div>                         
+                    </div>
+                </div>
+            </div>
+            <script>
+                function a42(){
+                    document.getElementById("combo_box_A42").value = document.getElementById("question_10.2_select").value;
+                }
+            </script>
+            <div class="ms-3 row">
+                <div class="col-md-5 text-wrap">
+                    <div class="input-group mb-3">
+                        <div class="w-100">
+                            <span class="input-group-text text-wrap" id="basic-addon1"><b>10.2</b>&nbsp;Что сначала происходит:  изменения  внутри или  внешние изменения?</span>
+                            <select onchange="a42()" id="question_10.2_select" class="form-select" aria-label="Default select example" name="question_10.2_select">
+                                <option selected value="-1">не указано</option>
+                                <option value="1">Изменения внутри</option>
+                                <option value="2">Внешние изменения</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                     <div class="input-group mb-3 w-100">
+                        <div class="mw-100 w-100">
+                            <span class="input-group-text mw-100 text-wrap" id="basic-addon1" name="paattern_A.23_select"><b>А42.&nbsp;</b>&nbsp;Изменения изнутри наружу или снаружи во внутрь</span>
+                            <select id="combo_box_A42" class="form-select" aria-label="Default select example" name="paattern_A.42_select">
+                                <option selected value="0">не указано</option>
+                                <option value="1">Изнутри наружу</option>
+                                <option value="2">Снаружи во внутрь</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A42_comment"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ms-3 row">
+                <div class="col-md-5 text-wrap">
+                    <div class="input-group mb-3 mw-100">
+                        <div class="w-100">
+                            <span class="input-group-text text-wrap" id="basic-addon1"><b>10.3</b>Вы быстрее прогрессируете через групповые или индивидуальные формы развития?<b></b></span>
+                            <select onchange="set_combo_box('combo_box_A43', 'question_10.3_select')" id="question_10.3_select" class="form-select" aria-label="Default select example" name="question_10.3_select">
+                                <option selected value="-1">не указано</option>
+                                <option value="1">Групповые</option>
+                                <option value="2">Индивидуальные</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <div class="input-group mb-3 w-100">
+                        <div class="mw-100 w-100">
+                            <span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А43.&nbsp;</b>Групповая или индивидуальная форма развития</span>
+                            <select id="combo_box_A43" class="form-select" aria-label="Default select example" name="paattern_A.43_select">
+                                <option selected value="-1">не указано</option>
+                                <option value="1">Групповая форма развития</option>
+                                <option value="2">Индивидуальная форма развития</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A43_comment"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ms-3 row">
+                <div class="col-md-5 text-wrap">
+                    <div class="input-group mb-3 mw-100">
+                        <div class="w-100">
+                            <span class="input-group-text text-wrap" id="basic-addon1"><b>10.4</b>Какие методы развития для Вас лучше работают: практики (техники),  практические действия (план), книги, видео (включая фильмы), обучение, работа с коучем, ментором, наставником, психологом, трекинг, нетрадиционные методы<b></b></span>
+                            <select multiple id="question_10.4_select" class="form-select" aria-label="Default select example" name="question_10.4_select">
+                                <option selected value="-1">не указано</option>
+                                <option value="1">Практики (техники)</option>
+                                <option value="2">Практические действия (план)</option>
+                                <option value="3">Видео, включая фильмы</option>
+                                <option value="4">Обучение</option>
+                                <option value="5">Работа с коучем, ментором, наставником, психологом</option>
+                                <option value="6">Трекинг</option>
+                                <option value="7">Нетрадиционные методы</option>
+                            </select>
+                        </div>
+                    </div><span class="input-group-text text-wrap" id="basic-addon1"><b>Комментарий</b></span>
+                    <input type="text" class="form-control" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="q_10_commnt"/>
+                    <p></p>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <div class="input-group mb-3 w-100">
+                        <div class="mw-100 w-100">
+                            <span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А44.&nbsp;</b>Приоритетные методы развития</span>
+                            <select id="combo_box_A44.1" class="form-select mt-1" aria-label="Default select example" name="paattern_A.44.1_select">
+                                <option selected value="0">не указано</option>
+                                <option value="4">Видео (включая фильмы)</option>
+                                <option value="5">Обучение</option>
+                                <option value="13">Долгосрочное планирование жизни</option>
+                                <option value="14">Краткосрочное планирование жизни</option>
+                                <option value="10">Нетрадиционные методы</option>
+                                <option value="12">Практики, техники работы с поведением</option>
+                                <option value="15">Практики, техники работы с выгоранием</option>
+                                <option value="11">Практики, техники работы с эмоциями</option>
+                                <option value="2">Проектирование траектории</option>
+                                <option value="16">Работа со специалистами</option>
+                                <option value="8">Работа с психологом</option>
+                                <option value="6">Работа с коучем</option>
+                                <option value="7">Работа с ментором</option>
+                                <option value="17">Работа с наставником</option>
+                                <option value="18">Разработка диагностической карты</option>
+                                <option value="19">Синемалогия</option>
+                                <option value="9">Трекинг</option>
+                                <option value="3">Книги</option>
+                                <option value="1">Практики (техники)</option>
+                            </select>
+                            <select id="combo_box_A44.2" class="form-select mt-1" aria-label="Default select example" name="paattern_A.44.2_select">
+                                <option selected value="0">не указано</option>
+                                <option value="4">Видео (включая фильмы)</option>
+                                <option value="5">Обучение</option>
+                                <option value="13">Долгосрочное планирование жизни</option>
+                                <option value="14">Краткосрочное планирование жизни</option>
+                                <option value="10">Нетрадиционные методы</option>
+                                <option value="12">Практики, техники работы с поведением</option>
+                                <option value="15">Практики, техники работы с выгоранием</option>
+                                <option value="11">Практики, техники работы с эмоциями</option>
+                                <option value="2">Проектирование траектории</option>
+                                <option value="16">Работа со специалистами</option>
+                                <option value="8">Работа с психологом</option>
+                                <option value="6">Работа с коучем</option>
+                                <option value="7">Работа с ментором</option>
+                                <option value="17">Работа с наставником</option>
+                                <option value="18">Разработка диагностической карты</option>
+                                <option value="19">Синемалогия</option>
+                                <option value="9">Трекинг</option>
+                                <option value="3">Книги</option>
+                                <option value="1">Практики (техники)</option>
+                            </select>
+                            <select id="combo_box_A44.3" class="form-select mt-1" aria-label="Default select example" name="paattern_A.44.3_select">
+                                <option selected value="0">не указано</option>
+                                <option value="4">Видео (включая фильмы)</option>
+                                <option value="5">Обучение</option>
+                                <option value="13">Долгосрочное планирование жизни</option>
+                                <option value="14">Краткосрочное планирование жизни</option>
+                                <option value="10">Нетрадиционные методы</option>
+                                <option value="12">Практики, техники работы с поведением</option>
+                                <option value="15">Практики, техники работы с выгоранием</option>
+                                <option value="11">Практики, техники работы с эмоциями</option>
+                                <option value="2">Проектирование траектории</option>
+                                <option value="16">Работа со специалистами</option>
+                                <option value="8">Работа с психологом</option>
+                                <option value="6">Работа с коучем</option>
+                                <option value="7">Работа с ментором</option>
+                                <option value="17">Работа с наставником</option>
+                                <option value="18">Разработка диагностической карты</option>
+                                <option value="19">Синемалогия</option>
+                                <option value="9">Трекинг</option>
+                                <option value="3">Книги</option>
+                                <option value="1">Практики (техники)</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A44_comment"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="me-5 ms-3">
+            <div class="row">
+                <h3 class="text-center"><b>ПАТТЕРНЫ</b></h3>
+                <div class="col-md-6">
+                    <h3 class="text-center">&nbsp;Паттерны коммуникации</h3> 
+                    <div class="mb-3"> 
+                        <label for="formInput131" class="mb-1">Высокий контекст/ Низкий контекст
+                        </label>                         
+                        <select id="combo_box_P1.1" class="form-select" aria-label="Default select example" name="paattern_1.1_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Высокий контекст: Полагаться на неявную коммуникации. Учитывать значение жестов, поз, голоса, контекста.</option>                             
+                            <option value="2">Низкий контекст: Полагаться на явную коммуникацию. Отдавать предпочтение четким и подробным инструкциям.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput231" class="mb-1">Прямая/ Непрямая коммуникация (Критика)
+                        </label>                         
+                        <select id="combo_box_P.1.2" class="form-select" aria-label="Default select example" name="paattern_1.2_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Прямая коммуникация: Критика других прямая. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтения ясно и прямо излагать свою точку зрения, несмотря на риск задеть чувства собеседника.</option>                             
+                            <option value="2">Непрямая коммуникация: Непрямая критика. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтение поддержанию теплых отношений, рискуя быть непонятым.</option>                             
+                            ы                        
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">Эмоциональность/ Нейтральность
+                        </label>                         
+                        <select id="combo_box_P.1.3" class="form-select" aria-label="Default select example" name="psttern_1.3_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Эмоциональность: Проявлять эмоции и теплоту при общении. Установление и поддержание личных и социальных связей является ключевым.</option>                             
+                            <option value="2">Нейтральность: Подчеркивать лаконичность, точность и отстраненность при общении.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">Формальность/ Неформальность (Убеждение других)
+                        </label>                         
+                        <select id="combo_box_P.1.4" class="form-select" aria-label="Default select example" name="psttern_1.4_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Формальность: Строго соблюдать протоколы и ритуалы. Вначале  принципы</option>                             
+                            <option value="2">Неформальность: Отдавать предпочтение непринужденности и непосредственности. Вначале практика</option>                             
+                        </select>                         
+                    </div>                     
+                </div>
+                <div class="col-md-6">
+                    <h3 class="text-center">Паттерны рабочего поведения</h3>
+                    <div class="mb-3" name="paattern_6.1_select"> 
+                        <label for="formInput231" class="mb-1"><b>10.3</b>&nbsp;Индивидуализм/ Коллективизм
+                        </label>                         
+                        <select id="combo_box_P.10.3" class="form-select" aria-label="Default select example" name="paattern_6.1_select"> 
+                            <option value="0" selected>не выявлено</option>                             
+                            <option value="1">Индивидуализм: Подчеркивать индивидуальные качества и проекты. Доверие на основе решаемых задач.</option>                             
+                            <option value="2">Коллективизм: Подчеркивать принадлежность к группе. Доверие на основе отношений.</option>                             
+                        </select>                         
+                    </div>
+                    <h3 class="text-center">&nbsp;Паттерны мышления</h3>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1"><b>10.2</b>&nbsp;Полезависимость/Поленезависимость
+                        </label>                         
+                        <select id="combo_box_P.9.8" class="form-select" aria-label="Default select example" name="psttern_9.8_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Полезависимость: Дифферинцированность образа физического Я, развитое чувство личной идентичности. Ясность, расчлененность отчетливость опыта человека.   Направленность субъекта на   внешние факторы, склонность ориентироваться на внешние обстоятельства </option>                             
+
+                            <option value="2">Поленезависимость: Направленность субъекта на внутренние факторы, склонность ориентироваться на самого себя   </option>
+                        </select>                         
+                    </div>                     
+                </div>
+            </div>
+            <div class="row" data-empty-placeholder></div>
+        </div>
+        <br/>
+        <script src="../session_web_pages/assets/js/popper.min.js"></script>
+        <script src="../session_web_pages/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../static/js/diag.js"></script>
+    <hr>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="previous_page(10)">К прошлой странице</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="save_and_exit(10)">На главную</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="next_page(10)">Сохранить и перейти далее</button>
+
+    </body>
+</html>

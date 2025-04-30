@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Аналитика ДС</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/static/css/style_page.css">
+	<link rel="shortcut icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Reset CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css?_v=20230410151735">
+	<!-- Calendar Style CSS -->
+	<link rel="stylesheet" href="scr/styles.css?_v=20230417171951">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230417171951" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230417171951" rel="stylesheet">
+	<link rel="stylesheet" href="dhtmlxscheduler_material.css?_v=20230417171951" type="text/css" charset="utf-8">
+	<script type="application/javascript"
+		 src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js">
+		</script>
+	<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__body">
+					<a href="/couch" class="header__logo">
+						<img src="../static/img/header/logo-header.svg" alt="">
+					</a>
+					<div class="header_menu menu" data-da=".header__profile,991.98">
+						<button type="button" class="menu__icon icon-menu">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item menu__item_logo">
+									<a href="/couch" class="header__logo">
+										<img src="../static/img/header/logo-header.svg" alt="">
+									</a>
+								</li>
+								<li class="menu__item">
+									<a href="/couch" class="menu__link">Главная</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_profile" class="menu__link">Мой профиль</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_clients" class="menu__link">Мои клиенты</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_articles" class="menu__link">Мои статьи</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_news" class="menu__link">Мои новости</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_messages" class="menu__link">Мои сообщения</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_organizer" class="menu__link">Мой органайзер</a>
+								</li>
+								<li class="menu__item menu__item_exit">
+									<a href="/login" class="menu__link">Выйти</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="header__profile">
+						<a href="#" data-popup="#popup-search" class="header__button _icon-search"></a>
+						<a class="header__bell _icon-bell" href=""></a>
+						<div class="header__image-box">
+							<a href="/my_profile" class="header__image">
+								<span class="header__word">К</span>
+								<span class="header__word_hidden">Изменить фото</span>
+							</a>
+						</div>
+						<a class="header__exit _icon-exit" href="/login"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="page page-viduploading page-subpage">
+			<section class="client-subpage">
+				<div class="client-subpage__container">
+					<div class="client-subpage__block">
+						<div class="client-subpage__top">
+							<div class="client-subpage__top-profile">
+								<a href="/client_page" class="client-subpage__profile profile-client">
+									<div class="profile-client__image">
+										<picture><source id = "webp" srcset="../static/img/client/client03.webp" type="image/webp"><img id = "jpg" src="../static/img/client/client03.jpg" alt=""></picture>
+                                            <script>
+                                                var img_webp = "../static/img/client/client03.webp";
+                                                var img_jpg = "../static/img/client/client03.jpg";
+                                                var gender = {{user[0][4]}}
+                                                if (gender == "женский") {(img_webp = "../static/img/client/client01.webp"); (img_jpg = "../static/img/client/client01.jpg");} else {(img_webp = "../static/img/client/client02.webp"); (img_jpg = "../static/img/client/client02.jpg");}
+                                                document.getElementById("webp").srcset = img_webp;
+                                                document.getElementById("jpg").srcset = img_jpg;
+                                            </script>
+									</div>
+									<div class="profile-client__block">
+                                        <div class="profile-client__subtitle">Клиент</div>
+										<div class="profile-client__title">{{user[0][0]+ " " + user[0][1]}}</div>
+										<img class="profile-client__line" src="../static/img/elements/choice-bg-2.svg" alt="">
+										<div class="profile-client__age">
+											Возраст:
+											<span>29 лет</span>
+										</div>
+										<div class="profile-client__gender">
+											Пол:
+											<span>{{user[0][4]}}</span>
+										</div>
+									</div>
+								</a>
+								<div class="client-subpage__btns">
+									<a class="client-subpage__btn client-page__btn_plus btn" href="/sessions">
+										Добавить ДС
+										<img src="../static/img/icons/plus-circle.svg" alt="">
+									</a>
+									<a class="client-subpage__btn btn" href="{{ session_link }}">Подключиться к сессии</a>
+								</div>
+							</div>
+							<div class="client-subpage__menu menu-organizer">
+
+								<a href="/viduploading" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">Аналитика ДС</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+								<a href="/page" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">Разбор ДС</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+								<a href="/feedback" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">
+											ОС Паттерны
+										</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+								<a href="/preanalysis" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">ИТР</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+                                <a href="/view_customer_profile" class="menu-organizer__item">
+									<div class="menu-organizer__content">
+										<h2 class="menu-organizer__title">Профиль</h2>
+									</div>
+									<div class="menu-organizer__arrow _icon-arrow-down"></div>
+								</a>
+							</div>
+						</div>
+						<div class="client-subpage__body">
+							<div class="client-subpage__content">
+								<h1 class="client-subpage__title">Аналитика ДС</h1>
+								<div class="content-viduploading__body loading">
+									<div class="loading__block">
+										<div class="loading__item loading__item_loading">
+											<h3 class="loading__title">Загрузка</h3>
+											<div class="loading__text">Выберите текст, аудио или видео</div>
+											<!-- родитель спойлеров-->
+											<div data-spollers data-one-spoller class="loading__accordion">
+												<!-- ячейка спойлера 2 Текст-->
+												<div class="loading__column">
+													<button type="button" data-spoller class="loading__subtitle btn loading__btn_grey _icon-arrow-down">Текст</button>
+													<div class="loading__row">
+														<form method="post" class="dropzone loading__form loading__text-form" id="text" enctype="multipart/form-data" action="/text_upload">
+														</form>
+														<p class="loading__text">Или вставьте текст сюда:</p>
+														<textarea class="loading__textarea" id="textarea_input" name="input"></textarea>
+														<button type="button" class="loading__btn btn" onclick="sendTextData()">Загрузить</button>
+													</div>
+												</div>
+												<!-- ячейка спойлера 1 Аудио-->
+												<div class="loading__column">
+													<button type="button" data-spoller class="loading__subtitle btn loading__btn_grey _icon-arrow-down">Аудио</button>
+													<div class="loading__row">
+														<form method="post" class="dropzone loading__form loading__text-form" id="audio" enctype="multipart/form-data" action="/audio_upload">
+														</form>
+													</div>
+												</div>
+												<!-- ячейка спойлера 3 Видео-->
+												<div class="loading__column">
+													<button type="button" data-spoller class="loading__subtitle btn loading__btn_grey _icon-arrow-down">Видео</button>
+													<div class="loading__row">
+														<form method="post" class="dropzone loading__form loading__text-form" id="video" enctype="multipart/form-data" action="/viduploading">
+															<!--<label>Загрузить видео для авторазбора</label>
+																		  <input type="file" id="file" name="file"
+																		  accept="video/*">
+																		  <button id="submit" type="submit" name="submit">Подтвердить</button>-->
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="loading__item loading__item_launch">
+											<h3 class="loading__title">Запуск</h3>
+											<div class="loading__btns">
+												<div class="loading__btn01">
+													<div class="loading__text-btn">Запустить с текстом из БД</div>
+													<button type="button" class="loading__btn   btn" onclick="triggerDatabaseQueue()">Запустить</button>
+												</div>
+												<!--<div class="loading__btn02">
+													<div class="loading__text-btn">Запустить с данными диагностик</div>
+													<button type="button" class="loading__btn loading__btn_green btn">Запустить</button>
+												</div>-->
+											</div>
+										</div>
+										<div class="loading__item loading__item_stages">
+											<h3 class="loading__title">Этапы</h3>
+											<div class="loading__stages">
+												<div class="loading__stage">
+													<span>1</span>
+													В очереди
+												</div>
+												<ul class="list-group" id="queued"></ul>
+												<div class="loading__stage">
+													<span>2</span>
+													Выделение аудио
+												</div>
+												<ul class="list-group" id="split"></ul>
+												<div class="loading__stage">
+													<span>3</span>
+													Транскрипция
+												</div>
+												<ul class="list-group" id="trans"></ul>
+												<div class="loading__stage">
+													<span>4</span>
+													Разбор аудио
+												</div>
+												<div class="loading__stage">
+													<span>5</span>
+													Готово
+												</div>
+												<ul class="list-group" id="done"></ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<div id="popup-search" aria-hidden="true" class="popup-search popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">Закрыть</button>
+				<form action="#" method="get" class="popup__form" autocomplete="off">
+					<input placeholder="Поиск" type="text" name="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="255" class="popup__input">
+					<button class="popup__button btn" type="submit">
+						Найти
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="../static/js/app.min.js"></script>
+	<script type="application/javascript">
+			Dropzone.options.video = {
+				paramName: 'file',
+				chunking: true,
+				forceChunking: true,
+				maxFilesize: 2 * 1024,
+				chunkSize: 2 * 1024 * 1024,
+				acceptedFiles: "video/*",
+				dictDefaultMessage: "Нажмите сюда, чтобы выбрать файл, или перетащите его в эту область",
+				dictInvalidFileType: "Файлы такого типа не поддерживаются",
+				dictMaxFilesExceeded: "Видеофайл уже загружен и отправлен на разбор. Перезагрузите страницу для отправки другого",
+				dictFileSizeUnits: { tb: "ТБ", gb: "ГБ", mb: "МБ", kb: "КБ", b: "б" },
+				init: function() {
+					this.on("success", file => {
+						document.getElementById("status1").style.display = "block";
+						// fetch every 2 seconds
+						setInterval(function() {
+							fetch('/checkstatus')
+								.then(response => response.json())
+								.then(data => {
+									if (data.status == "3") {
+										document.getElementById("status1").style.display = "none";
+										document.getElementById("status2").style.display = "block";
+									}
+								});
+						}, 2000);
+					});},
+				maxFiles: 1,
+				disablePreviews: true,
+			}
+            Dropzone.options.audio = {
+				paramName: 'file',
+				chunking: true,
+				forceChunking: true,
+				maxFilesize: 2 * 1024,
+				chunkSize: 2 * 1024 * 1024,
+				acceptedFiles: "audio/*",
+				dictDefaultMessage: "Нажмите сюда, чтобы выбрать файл, или перетащите его в эту область",
+				dictInvalidFileType: "Файлы такого типа не поддерживаются",
+				dictMaxFilesExceeded: "Аудиофайл уже загружен и отправлен на разбор. Перезагрузите страницу для отправки другого",
+				dictFileSizeUnits: { tb: "ТБ", gb: "ГБ", mb: "МБ", kb: "КБ", b: "б" },
+				//maxFiles: 1,
+				disablePreviews: true,
+			}
+            Dropzone.options.text = {
+				paramName: 'file',
+				chunking: false,
+				forceChunking: false,
+				maxFilesize: 2 * 1024,
+				chunkSize: 2 * 1024 * 1024,
+				acceptedFiles: "text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+				dictDefaultMessage: "Нажмите сюда, чтобы выбрать файл, или перетащите его в эту область",
+				dictInvalidFileType: "Поддерживаются только простые текстовые файлы",
+				dictMaxFilesExceeded: "Файл уже загружен и отправлен на разбор. Перезагрузите страницу для отправки другого",
+				dictFileSizeUnits: { tb: "ТБ", gb: "ГБ", mb: "МБ", kb: "КБ", b: "б" },
+				//maxFiles: 1,
+				disablePreviews: true,
+			}
+            function updateQueue(){
+    setInterval(function() {
+                    fetch('/queue')
+                        .then(response => response.json())
+                        .then(data => {
+                            let q = document.getElementsByClassName('list-group');
+                            for (let i = 0; i < q.length; i++) {
+                                q[i].innerHTML = "";
+                            }
+                            for (let i = 0; i < data['data'].length; i++) {
+                                let item = data['data'][i];
+                                let li = document.createElement("li");
+                                li.className = "list-group-item";
+                                li.innerText = "Запись №" + item[0];
+                                if (item[5] === 'done'){
+                                    let textshow = document.createElement("a");
+                                    textshow.href = "/textshow";
+                                    //textshow.innerText = "[Текст]";
+                                    textshow.className = 'textlink';
+                                    li.appendChild(textshow);
+                                    let a = document.createElement("a");
+                                    a.href = "/page";
+                                    //a.innerText = "Диагностики";
+                                    a.appendChild(li)
+                                    document.getElementById('done').appendChild(a);
+                                }
+                                if (item[5] === 'queued'){
+                                    document.getElementById('queued').appendChild(li);
+                                }
+                                if (item[5] === 'split'){
+                                    document.getElementById('split').appendChild(li);
+                                }
+                                if (item[5] === 'transcribed'){
+                                    document.getElementById('trans').appendChild(li);
+                                }
+                            }
+                        });
+                }, 2000);
+    }
+    async function sendTextData(){
+        await fetch(window.location.origin + "/textarea_upload", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: document.getElementById('textarea_input').value
+        })
+        document.getElementById('textarea_input').value = ''
+    }
+    async function triggerDatabaseQueue(){
+        await fetch(window.location.origin + "/queue_database_text", {
+            method: 'POST'
+        })
+    }
+	window.onload = updateQueue;
+		</script>
+</body>
+
+</html>

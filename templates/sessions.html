@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Мои клиенты</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="../static/css/style_couch.min.css?_v=20230403215316">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<!-- 	&display=swap -->
+	<!-- 	&subset=cyrillic-ext -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Reset CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css?_v=20230403215316">
+
+	<!-- Calendar Style CSS -->
+{#	<link rel="stylesheet" href="scr/styles.css?_v=20230403215316">#}
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230403215316" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230403215316" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__body">
+					<a href="/couch" class="header__logo">
+						<img src="static/img/header/logo-header.svg" alt="">
+					</a>
+					<div class="header_menu menu" data-da=".header__profile,991.98">
+						<button type="button" class="menu__icon icon-menu">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<nav class="menu__body">
+							<ul data-spollers="992,max" class="menu__list">
+								<li class="menu__item menu__item_logo">
+									<a href="/couch" class="header__logo">
+										<img src="static/img/header/logo-header.svg" alt="">
+									</a>
+								</li>
+								<li class="menu__item">
+									<a href="/couch" class="menu__link">Главная</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_profile" class="menu__link">Мой профиль</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_clients" class="menu__link">Мои клиенты</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_articles" class="menu__link">Мои статьи</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_news" class="menu__link">Мои новости</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_messages" class="menu__link">Мои сообщения</a>
+								</li>
+								<li class="menu__item">
+									<a href="/my_organizer" class="menu__link">Мой органайзер</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="header__profile">
+						<div data-da=".menu__body,767.98" class="header__search">
+							<input placeholder="Поиск" type="text" name="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="255" class="header__input">
+							<button class="header__button _icon-search"></button>
+						</div>
+						<a class="header__bell _icon-bell" href=""></a>
+						<div class="header__image-box">
+							<a href="/couch_settings" class="header__image">
+								<span class="header__word">К</span>
+								<span class="header__word_hidden">Изменить фото</span>
+							</a>
+						</div>
+						<a class="header__exit _icon-exit" href="/login"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="page page-my-clients">
+			<div class="account">
+				<div class="account__container">
+					<div class="account__title title">
+						Мои клиенты
+					</div>
+					<div class="account__body">
+						<div class="client-page__top">
+						<a href="/client_page" class="client-page__profile profile-client">
+							<div class="profile-client__image">
+                                <picture><source id = "webp" srcset="../static/img/client/client03.webp" type="image/webp"><img id = "jpg" src="../static/img/client/client03.jpg" alt=""></picture>
+                                <script>
+                                    var img_webp = "../static/img/client/client03.webp";
+                                    var img_jpg = "../static/img/client/client03.jpg";
+                                    var gender = '{{data[0][2]}}';
+                                    if (gender == "женский") {(img_webp = "../static/img/client/client01.webp"); (img_jpg = "../static/img/client/client01.jpg");} else {(img_webp = "../static/img/client/client02.webp"); (img_jpg = "../static/img/client/client02.jpg");}
+                                    document.getElementById("webp").srcset = img_webp;
+                                    document.getElementById("jpg").srcset = img_jpg;
+                                </script>
+							</div>
+							<div class="profile-client__block">
+                                <div class="profile-client__subtitle">Клиент</div>
+								<div class="profile-client__title">{{data[0][0] +" "+ data[0][1]}}</div>
+								<img class="profile-client__line" src="../static/img/elements/choice-bg-2.svg" alt="">
+								<div class="profile-client__age">
+									Возраст:
+									<span>29 лет</span>
+								</div>
+								<div class="profile-client__gender">
+									Пол:
+									<span>{{data[0][2]}}</span>
+								</div>
+							</div>
+						</a>
+
+						<div class="client-page__btns">
+                            <a class="client-page__btn client-page__btn_plus btn" href="/add_dc">
+								Добавить ДС
+								<img src="../static/img/icons/plus-circle.svg" alt="">
+							</a>
+							<a data-href2="/my_organizer" class="client-page__btn btn" href="{{ session_link }}">Подключиться к сессии</a>
+						</div>
+					</div>
+                    </div>
+					<div class="client-page__body">
+						<div class="client-page__menu menu-organizer">
+							<a href="/sessions" class="menu-organizer__item">
+								<div class="menu-organizer__content">
+									<h2 class="menu-organizer__title">Сессии</h2>
+								</div>
+								<div class="menu-organizer__arrow _icon-arrow-down"></div>
+							</a>
+							<a href="/feedback" class="menu-organizer__item">
+								<div class="menu-organizer__content">
+									<h2 class="menu-organizer__title">
+										ОС Паттерны
+									</h2>
+								</div>
+								<div class="menu-organizer__arrow _icon-arrow-down"></div>
+							</a>
+							<a href="/preanalysis" class="menu-organizer__item">
+								<div class="menu-organizer__content">
+									<h2 class="menu-organizer__title">ИТР</h2>
+								</div>
+								<div class="menu-organizer__arrow _icon-arrow-down"></div>
+							</a>
+                            <a href="/client_page" class="menu-organizer__item">
+								<div class="menu-organizer__content">
+									<h2 class="menu-organizer__title">Профиль</h2>
+								</div>
+								<div class="menu-organizer__arrow _icon-arrow-down"></div>
+							</a>
+						</div>
+						<div class="account__right">
+							<div class="account__couch-data">
+								<div class="couch-my-clients">
+									<div class="couch-my-clients__content">
+										<div class="couch-my-clients__content-block">
+											{% for session in sessions %}
+											<div class="couch-my-clients__block-text text-block-my-clients">
+												<div class="text-block-my-clients__client">
+													<div class="text-block-my-clients__image-box">
+														<div class="text-block-my-clients__image">
+															<span class="text-block-my-clients__word">К</span>
+														</div>
+													</div>
+                                                    <form method="post">
+													    <button class="text-block-my-clients__title" name="link" value = "{{session[0]}}">{{str(session[1])+" " +str(session[2])}}</button>
+                                                        <input name="redirect" value="/page" hidden></input>
+                                                    </form>
+												</div>
+												<div class="text-block-my-clients__right">
+													<ul class="text-block-my-clients__icons">
+														<li>
+															<form method="post">
+																<button name="link" value = "{{session[0]}}">
+																<img title="Загрузка ДС" src="../static/img/person/download.svg" alt="">
+																</button>
+																<input name="redirect" value="/viduploading" hidden></input>
+															</form>
+														</li>
+														<li>
+															<form method="post">
+																<button name="link" value = "{{session[0]}}">
+																	<img title="Разбор ДС" src="../static/img/person/feedback.svg" alt="">
+																</button>
+																<input name="redirect" value="/page" hidden></input>
+															</form>
+														</li>
+														<li>
+															<form method="post">
+																<button name="link" value = "{{session[0]}}">
+																	<img title="Просмотр профиля клиента" src="../static/img/person/eye.svg" alt="">
+																</button>
+																<input name="redirect" value="/client_page" hidden></input>
+															</form>
+														</li>
+													</ul>
+												</div>
+											</div>
+                                            {% end %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+	</div>
+	</section>
+	</main>
+	<footer class="footer">
+		<div class="footer__container">
+		</div>
+	</footer>
+	</div>
+	<!--
+<div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+			</div>
+		</div>
+	</div>
+</div>
+ -->
+	<script src="../static/js/app_couch.min.js?_v=20230403215316"></script>
+</body>
+
+</html>

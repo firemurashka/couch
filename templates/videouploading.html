@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <title>Загрузка видео</title>
+		<link rel="icon" href="favicon.ico">
+        <!-- Bootstrap core CSS -->
+        <link href="../session_web_pages/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../session_web_pages/offcanvas.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+		<script type="application/javascript"
+		 src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js">
+		</script>
+		<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    </head>
+    <body style="background: #03045e;" onload="updateQueue()">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Загрузка видео</a>
+                <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="offcanvas" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">Мои клиенты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/couch">Мой профиль</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Настройки</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                                <li><a class="dropdown-item" href="#">Action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Another action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="nav-scroller bg-white shadow-sm">
+            <nav class="nav nav-underline" aria-label="Secondary navigation">
+            </nav>
+        </div>
+        <main class="container">
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
+                <div class="row">
+					<div class="col-md-4">
+                        <h3>Загрузка</h3>
+                        <div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Аудио
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+          <form method="post" class="dropzone" id="audio" enctype="multipart/form-data" action="/audio_upload" style="display: flex; justify-content: center;align-items: center;flex-direction: column;width: 100%; outline: 2px dashed #5d5d5d;outline-offset: -12px;background-color: #dee2e6;font-family: 'Segoe UI';color: #1f3c44;"></form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Текст
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+          <form method="post" class="dropzone" id="text" enctype="multipart/form-data" action="/text_upload" style="display: flex; justify-content: center;align-items: center;flex-direction: column;width: 100%; outline: 2px dashed #5d5d5d;outline-offset: -12px;background-color: #dee2e6;font-family: 'Segoe UI';color: #1f3c44;"></form>
+          <p>Или вставьте текст сюда:</p>
+          <textarea class="stack" id="textarea_input" name="input" rows="6"></textarea>
+          <button type="button" class="btn btn-secondary" onclick="sendTextData()">Загрузить</button>
+      </div>
+    </div>
+  </div>
+                            <button type="button" class="btn btn-secondary" onclick="triggerDatabaseQueue()">Запустить с текстом из БД</button>
+                            <button type="button" class="btn btn-secondary">Запустить с данными диагностик</button>
+</div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Загрузить видео для авторазбора</h3>
+						<form method="post" class="dropzone" id="video" enctype="multipart/form-data" action="/viduploading" style="display: flex; justify-content: center;align-items: center;flex-direction: column;width: 100%; outline: 2px dashed #5d5d5d;outline-offset: -12px;background-color: #dee2e6;font-family: 'Segoe UI';color: #1f3c44;">
+						<!--<label>Загрузить видео для авторазбора</label>
+						<input type="file" id="file" name="file"
+							accept="video/*">
+						<button id="submit" type="submit" name="submit">Подтвердить</button>-->
+						</form>
+						<h6 id="status1" style="display: none;">Видео находится на обработке, подождите...</h6>
+						<h6 id="status2" style="display: none">Видео обработано, перейдите на <a href="/textshow">страницу с результатами</a></h6>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Этапы</h3>
+                        <div class="d-flex text-muted pt-3">
+							<svg id="p1" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+								<rect width="100%" height="100%" fill="#000000" id="p1"></rect>
+								<text x="50%" y="50%" fill="#ffffff" dy=".3em">1</text>
+							</svg>
+							<p class="pb-3 mb-0 small lh-sm border-bottom">В очереди</p>
+						</div>
+                        <ul class="list-group" id="queued"></ul>
+						<div class="d-flex text-muted pt-3">
+							<svg id="p1" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+								<rect width="100%" height="100%" fill="#000000" id="p1"></rect>
+								<text x="50%" y="50%" fill="#ffffff" dy=".3em">2</text>
+							</svg>
+							<p class="pb-3 mb-0 small lh-sm border-bottom">Выделение аудио</p>
+						</div>
+                        <ul class="list-group" id="split">
+                    </ul>
+						<div class="d-flex text-muted pt-3">
+							<svg id="p1" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+								<rect width="100%" height="100%" fill="#000000" id="p1"></rect>
+								<text x="50%" y="50%" fill="#ffffff" dy=".3em">3</text>
+							</svg>
+							<p class="pb-3 mb-0 small lh-sm border-bottom">Транскрипция</p>
+						</div>
+                        <ul class="list-group" id="trans">
+                    </ul>
+						<div class="d-flex text-muted pt-3">
+							<svg id="p1" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+								<rect width="100%" height="100%" fill="#000000" id="p1"></rect>
+								<text x="50%" y="50%" fill="#ffffff" dy=".3em">4</text>
+							</svg>
+							<p class="pb-3 mb-0 small lh-sm border-bottom">Разбор аудио</p>
+						</div>
+						<div class="d-flex text-muted pt-3">
+							<svg id="p1" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+								<rect width="100%" height="100%" fill="#000000" id="p1"></rect>
+								<text x="50%" y="50%" fill="#ffffff" dy=".3em">5</text>
+							</svg>
+							<p class="pb-3 mb-0 small lh-sm border-bottom">Готово</p>
+						</div>
+                        <ul class="list-group" id="done">
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script type="application/javascript">
+			Dropzone.options.video = {
+				paramName: 'file',
+				chunking: true,
+				forceChunking: true,
+				maxFilesize: 2 * 1024,
+				chunkSize: 2 * 1024 * 1024,
+				acceptedFiles: "video/*",
+				dictDefaultMessage: "Нажмите сюда, чтобы выбрать файл, или перетащите его в эту область",
+				dictInvalidFileType: "Файлы такого типа не поддерживаются",
+				dictMaxFilesExceeded: "Видеофайл уже загружен и отправлен на разбор. Перезагрузите страницу для отправки другого",
+				dictFileSizeUnits: { tb: "ТБ", gb: "ГБ", mb: "МБ", kb: "КБ", b: "б" },
+				init: function() {
+					this.on("success", file => {
+						document.getElementById("status1").style.display = "block";
+						// fetch every 2 seconds
+						setInterval(function() {
+							fetch('/checkstatus')
+								.then(response => response.json())
+								.then(data => {
+									if (data.status == "3") {
+										document.getElementById("status1").style.display = "none";
+										document.getElementById("status2").style.display = "block";
+									}
+								});
+						}, 2000);
+					});},
+				maxFiles: 1,
+				disablePreviews: true,
+			}
+            Dropzone.options.audio = {
+				paramName: 'file',
+				chunking: true,
+				forceChunking: true,
+				maxFilesize: 2 * 1024,
+				chunkSize: 2 * 1024 * 1024,
+				acceptedFiles: "audio/*",
+				dictDefaultMessage: "Нажмите сюда, чтобы выбрать файл, или перетащите его в эту область",
+				dictInvalidFileType: "Файлы такого типа не поддерживаются",
+				dictMaxFilesExceeded: "Аудиофайл уже загружен и отправлен на разбор. Перезагрузите страницу для отправки другого",
+				dictFileSizeUnits: { tb: "ТБ", gb: "ГБ", mb: "МБ", kb: "КБ", b: "б" },
+				//maxFiles: 1,
+				disablePreviews: true,
+			}
+            Dropzone.options.text = {
+				paramName: 'file',
+				chunking: false,
+				forceChunking: false,
+				maxFilesize: 2 * 1024,
+				chunkSize: 2 * 1024 * 1024,
+				acceptedFiles: "text/plain",
+				dictDefaultMessage: "Нажмите сюда, чтобы выбрать файл, или перетащите его в эту область",
+				dictInvalidFileType: "Поддерживаются только простые текстовые файлы",
+				dictMaxFilesExceeded: "Файл уже загружен и отправлен на разбор. Перезагрузите страницу для отправки другого",
+				dictFileSizeUnits: { tb: "ТБ", gb: "ГБ", mb: "МБ", kb: "КБ", b: "б" },
+				//maxFiles: 1,
+				disablePreviews: true,
+			}
+            function updateQueue(){
+    setInterval(function() {
+                    fetch('/queue')
+                        .then(response => response.json())
+                        .then(data => {
+                            let q = document.getElementsByClassName('list-group');
+                            for (let i = 0; i < q.length; i++) {
+                                q[i].innerHTML = "";
+                            }
+                            for (let i = 0; i < data['data'].length; i++) {
+                                let item = data['data'][i];
+                                let li = document.createElement("li");
+                                li.className = "list-group-item";
+                                li.innerText = "Задача " + item[0];
+                                if (item[5] === 'done'){
+                                    let textshow = document.createElement("a");
+                                    textshow.href = "/textshow";
+                                    textshow.innerText = "[Текст]";
+                                    textshow.className = 'textlink';
+                                    li.appendChild(textshow);
+                                    let a = document.createElement("a");
+                                    a.href = "/page";
+                                    a.innerText = "Диагностики";
+                                    a.appendChild(li)
+                                    document.getElementById('done').appendChild(a);
+                                }
+                                if (item[5] === 'queued'){
+                                    document.getElementById('queued').appendChild(li);
+                                }
+                                if (item[5] === 'split'){
+                                    document.getElementById('split').appendChild(li);
+                                }
+                                if (item[5] === 'transcribed'){
+                                    document.getElementById('trans').appendChild(li);
+                                }
+                            }
+                        });
+                }, 2000);
+    }
+    async function sendTextData(){
+        await fetch(window.location.origin + "/textarea_upload", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: document.getElementById('textarea_input').value
+        })
+        document.getElementById('textarea_input').value = ''
+    }
+    async function triggerDatabaseQueue(){
+        await fetch(window.location.origin + "/queue_database_text", {
+            method: 'POST'
+        })
+    }
+		</script>
+        <script>
+        (function () {
+            'use strict'
+
+            document.querySelector('[data-bs-toggle="offcanvas"]').addEventListener('click', function () {
+                document.querySelector('.offcanvas-collapse').classList.toggle('open')
+            })
+        })();
+        </script>
+    </body>
+</html>

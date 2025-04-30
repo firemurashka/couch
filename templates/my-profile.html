@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Мой профиль</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../static/css/style_couch.min.css?_v=20230425110228">
+	<link rel="shortcut icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,500,600,700,800,900&display=swap&subset=cyrillic-ext&_v=20230425110228" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:regular,500,700&display=swap&subset=cyrillic-ext&_v=20230425110228" rel="stylesheet">
+
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<div class="header__body">
+					<a href="/couch" class="header__logo">
+						<img src="../static/img/header/logo-header.svg" alt="">
+					</a>
+					<div class="header_menu menu" data-da=".header__profile,991.98">
+						<button type="button" class="menu__icon icon-menu">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item menu__item_logo">
+									<a href="/couch" class="header__logo">
+										<img src="../static/img/header/logo-header.svg" alt="">
+									</a>
+								</li>
+								<li class="menu__item">
+									<!--<a href="/couch" class="menu__link">Главная</a> -->
+									<a href="/couch" class="menu__link">Главная</a>
+								</li>
+
+								<li class="menu__item">
+									<!--<a href="/my_clients" class="menu__link">Мои клиенты</a> -->
+									<a href="/my_clients" class="menu__link">Мои клиенты</a>
+								</li>
+								<li class="menu__item">
+									<!--<a href="/my_articles" class="menu__link">Мои статьи</a> -->
+									<a href="/my_articles" class="menu__link">Мои статьи</a>
+								</li>
+								<li class="menu__item">
+									<!--<a href="/my_news" class="menu__link">Мои новости</a> -->
+									<a href="/my_news" class="menu__link">Мои новости</a>
+								</li>
+								<li class="menu__item">
+									<!--<a href="/my_messages" class="menu__link">Мои сообщения</a> -->
+									<a href="/my_messages" class="menu__link">Мои сообщения</a>
+								</li>
+								<li class="menu__item">
+									<!--<a href="/my_organizer" class="menu__link">Мой органайзер</a> -->
+									<a href="/my_organizer" class="menu__link">Мой органайзер</a>
+								</li>
+								<li class="menu__item">
+									<!--<a href="/my_profile" class="menu__link">Мой профиль</a> -->
+									<a href="/my_profile" class="menu__link">Мой профиль</a>
+								</li>
+								<li class="menu__item menu__item_exit">
+									<!--<a href="/login" class="menu__link">Выйти</a> -->
+									<a href="/login" class="menu__link">Выйти</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="header__profile">
+						<a href="#" data-popup="#popup-search" class="header__button _icon-search"></a>
+						<a class="header__bell _icon-bell" href=""></a>
+						<div class="header__image-box">
+							<!-- <a href="/my_profile" class="header__image"> -->
+							<a href="../static/my_profile" class="header__image">
+								<span class="header__word">К</span>
+								<span class="header__word_hidden">Изменить фото</span>
+							</a>
+						</div>
+						<!-- <a class="header__exit _icon-exit" href="/login"></a> -->
+						<a class="header__exit _icon-exit" href="/login"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="page">
+			<div class="profile-main">
+				<div class="profile-main__container">
+					<div class="profile-main__body">
+						<div class="profile-main__couch  couch-profile">
+							<div class="couch-profile__image-box">
+								<picture><source srcset="../static/img/aside/aside-photo.webp" type="image/webp"><img src="../static/img/aside/aside-photo.jpg" alt=""></picture>
+							</div>
+							<div class="couch-profile__block">
+								<div class="couch-profile__name">
+									 <div>{{data[0][0]}}</div>
+									 <div>{{data[0][1]}}</div>
+									 <div>{{data[0][2]}}</div>
+								</div>
+								<img class="couch-profile__line" src="../static/img/elements/choice-bg-2.svg" alt="">
+								<div class="couch-profile__profession">Бизнес-коуч</div>
+								<div class="couch-profile__location">Санкт-Петербург, Россия</div>
+							</div>
+						</div>
+						<div class="profile-main__rating rating">
+							<div class="rating__item">
+								<div class="rating__image">
+									<img src="../static/img/rating/profile.svg" alt="">
+								</div>
+								<div class="rating__number">100+</div>
+								<div class="rating__text">Клиентов</div>
+							</div>
+							<div class="rating__item">
+								<div class="rating__image">
+									<img src="../static/img/rating/graph.svg" alt="">
+								</div>
+								<div class="rating__number">9+</div>
+								<div class="rating__text">Лет работы</div>
+							</div>
+							<div class="rating__item">
+								<div class="rating__image">
+									<img src="../static/img/rating/star.svg" alt="">
+								</div>
+								<div class="rating__number">4.8</div>
+								<div class="rating__text">Рейтинг</div>
+							</div>
+							<div class="rating__item">
+								<div class="rating__image">
+									<img src="../static/img/rating/book.svg" alt="">
+								</div>
+								<div class="rating__number">40</div>
+								<div class="rating__text">Публикаций</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<section class="about-me">
+				<div class="about-me__container">
+					<h2 class="about-me__title">
+						Обо мне
+					</h2>
+					<div class="about-me__text">Здравствуйте! Я - профессиональный коуч в бизнес сфере с 9 летним опытом. За это время, я помогла более 100 клиентам достичь своих целей и улучшить свой бизнес. Мой опыт включает в себя работу с небольшими стартапами и крупными корпорациями, а также помощь в развитии навыков руководства и управления командами. Моя философия заключается в том, чтобы создать сильную и гибкую основу для достижения успеха в бизнесе. Я верю, что когда люди работают вместе и используют свой потенциал, они могут добиться невероятных результатов. Я стремлюсь помочь своим клиентам стать лучшими версиями себя, находить их истинный потенциал и использовать его для достижения своих целей в бизнесе. Я всегда готова принимать новых клиентов и помочь им на их пути к успеху.</div>
+					<a href="" class="about-me__setting setting">Изменить данные</a>
+				</div>
+			</section>
+			<section class="progress">
+				<div class="progress__container">
+					<h2 class="progress__title">
+						Мои успехи
+					</h2>
+					<ul class="progress__list">
+						<li class="progress__item">Я - опытный бизнес-коуч с 9-летним стажем, который специализируется в помощи компаниям и предпринимателям в развитии их бизнеса.</li>
+						<li class="progress__item">За свою карьеру я смог помочь более 100 клиентам в реализации их целей и уверенно двигаться по пути успешного развития.ветать.</li>
+						<li class="progress__item">Мои ключевые компетенции включают: стратегическое планирование, управление продажами и маркетингом, построение бизнес-моделей, разработку и реализацию проектов.</li>
+						<li class="progress__item">В своей работе я использую проверенные и эффективные методики, индивидуальный подход к каждому клиенту и нацеленность на результат.</li>
+						<li class="progress__item">Некоторые из моих успехов включают в себя: помощь в увеличении объемов продаж и прибыли, улучшение внутренних процессов компаний, формирование высокоэффективных команд, развитие лидерских качеств у сотрудников и руководителей.</li>
+						<li class="progress__item">Я горжусь тем, что многие из моих клиентов стали успешными бизнесменами и руководителями, создали стабильные и преуспевающие компании</li>
+						<li class="progress__item">В своей работе я постоянно совершенствую свои навыки, адаптируюсь к изменяющимся трендам рынка и использую новейшие инструменты для эффективной помощи своим клиентам.</li>
+						<li class="progress__item">Моя цель - помочь предпринимателям реализовать их мечты и замысел, построить успешные и сильные бизнесы, гармонично развиваться и процветать.</li>
+					</ul>
+					<a href="" class="progress__setting setting">Изменить данные</a>
+				</div>
+			</section>
+			<section class="profile-time">
+				<div class="profile-time__container">
+					<h2 class="profile-time__title">
+						Время работы
+					</h2>
+					<div class="profile-time__text">Понедельник-пятница, 00:09-18:00</div>
+					<a href="" class="profile-time__setting setting">Изменить данные</a>
+				</div>
+			</section>
+			<section class="profile-entrance">
+				<div class="profile-entrance__container">
+					<h2 class="profile-entrance__title">
+						Вход в личный кабинет
+					</h2>
+					<div class="profile-entrance__content">
+						<div class="profile-entrance__block">
+							<p>Логин</p>
+							<p>Пороль</p>
+							<p>Эл. почта</p>
+						</div>
+						<div class="profile-entrance__block">
+							<p>Логин</p>
+							<p>Пороль</p>
+							<p>mail@mail.com</p>
+						</div>
+					</div>
+					<a href="" class="profile-entrance__setting setting">Изменить данные</a>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+			</div>
+		</footer>
+	</div>
+	<div id="popup-search" aria-hidden="true" class="popup-search popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">Закрыть</button>
+				<form action="#" method="get" class="popup__form" autocomplete="off">
+					<input placeholder="Поиск" type="text" name="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" maxlength="255" class="popup__input">
+					<button class="popup__button btn" type="submit">
+						Найти
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="../static/js/app_couch.min.js?_v=20230425110228"></script>
+</body>
+
+</html>

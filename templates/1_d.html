@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Blank Template for Bootstrap</title>
+        <!-- Bootstrap core CSS -->
+        <link href="../session_web_pages/css/theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../session_web_pages/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../session_web_pages/offcanvas.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <link href="../session_web_pages/style.css" rel="stylesheet"/>
+
+    </head>
+    <body class="bg-light" onload="restore(1)">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Диагностическая сессия</a>
+                    <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="offcanvas" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item active">
+                                <a class="nav-link" aria-current="page" href="/page" onclick="save(1)">К сесcии</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="save_and_exit(1)">Мои клиенты</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="couch_page(1)">Мой профиль</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Настройки</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                                    <li><a class="dropdown-item" href="#">Action</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Another action</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"/>
+                            <button class="btn btn-outline-success" type="submit">Поиск</button>
+                        </form>
+                    </div>
+                </div>
+        </nav>
+        <div class="nav-scroller bg-white shadow-sm">
+            <nav class="nav nav-underline" aria-label="Secondary navigation">
+                <a class="nav-link active" aria-current="page" onclick="save_and_exit(1)">На главную</a>
+                <a class="nav-link" onclick="next_page(1)">Сохранить и перейти далее</a>
+            </nav>
+        </div>
+        <div class="container">
+        </div>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <h1 class="ms-3 text-center text-success">Знакомство. Блок: &laquo;Демография&raquo;</h1>
+        <div class="mb-2 me-5 ms-5 mt-1">
+            <p>Давайте познакомимся.  Расскажите о себе:  Как Вас зовут? Сколько Вам лет, из какого города, в каком городе живете, семейное положение, образование, чем Вы занимаетесь, кем работаете, Ваши хобби/увлечения?</p>
+        </div>
+        <div class="me-3 ms-3">
+            <div class="ms-3 row">
+                <div class="col-md-4 text-wrap">
+                    <h3 style="float:left;"><b>Вопросы</b></h3>
+                    <h3 style="float:right;"><b>Порядок</b></h3>
+                    <div class="input-group mb-3"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>1.1</b>&nbsp; Как Вас зовут?</span>
+                            <div class="mt-1 row">
+                            <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="1.1" aria-label="Username" aria-describedby="basic-addon1" id="question_1.1_text"/>
+                            </div>
+                        <div class="col-md-6">
+                            <select id="question_1.1_select" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                            <option selected value="-1">не указано</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>1.2&nbsp;<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">Сколько Вам лет?</span></b></span>
+                            <div class="mt-1 row">
+                            <div class="col-md-6">
+                                <select id="question_1.2_text" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                                    <option selected value="-1">не указано</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                    <option value="32">32</option>
+                                    <option value="33">33</option>
+                                    <option value="34">34</option>
+                                    <option value="35">35</option>
+                                    <option value="36">36</option>
+                                    <option value="37">37</option>
+                                    <option value="38">38</option>
+                                    <option value="39">39</option>
+                                    <option value="40">40</option>
+                                    <option value="41">41</option>
+                                    <option value="42">42</option>
+                                    <option value="43">43</option>
+                                    <option value="44">44</option>
+                                    <option value="45">45</option>
+                                    <option value="46">46</option>
+                                    <option value="47">47</option>
+                                    <option value="48">48</option>
+                                    <option value="49">49</option>
+                                    <option value="50">50</option>
+                                    <option value="51">51</option>
+                                    <option value="52">52</option>
+                                    <option value="53">53</option>
+                                    <option value="54">54</option>
+                                    <option value="55">55</option>
+                                    <option value="56">56</option>
+                                    <option value="57">57</option>
+                                    <option value="58">58</option>
+                                    <option value="59">59</option>
+                                    <option value="60">60</option>
+                                    <option value="61">61</option>
+                                    <option value="62">62</option>
+                                    <option value="63">63</option>
+                                    <option value="64">64</option>
+                                    <option value="65">65</option>
+                                    <option value="66">66</option>
+                                    <option value="67">67</option>
+                                    <option value="68">68</option>
+                                    <option value="69">69</option>
+                                    <option value="70">70</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select id="question_1.2_select" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                                    <option selected value="-1">не указано</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>1.3</b>&nbsp;Из какого города?</span>
+                            <div class="mt-1 row">
+                            <div class="col-md-6">
+                                <select id="question_1.3_text" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                                    <option selected value="-1">не указано</option>
+                                    <option value="2">Москва</option>
+                                    <option value="3">Санкт-Петербург</option>
+                                    <option value="4">Другой</option>
+                                </select>
+                            </div>
+                        <div class="col-md-6">
+                        <select id="question_1.3_select" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                        <option selected value="-1">не указано</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        </select>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mw-100"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>1.4</b>&nbsp;В каком городе живете?<b></b></span>
+                            <div class="mt-1 row">
+                            <div class="col-md-6">
+                                <select id="question_1.4_text" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                                    <option selected value="-1">не указано</option>
+                                    <option value="2">Москва</option>
+                                    <option value="3">Санкт-Петербург</option>
+                                    <option value="4">Другой</option>
+                                </select>
+                            </div>
+                        <div class="col-md-6">
+                        <select id="question_1.4_select" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                        <option selected value="-1">не указано</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        </select>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mw-100"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>1.5</b>&nbsp;Семейное положение?<b></b></span>
+                            <div class="mt-1 row">
+                            <div class="col-md-6">
+                                <select id="question_1.5_text" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                                    <option selected value="-1">не указано</option>
+                                    <option value="1">Замужем</option>
+                                    <option value="2">Не замужем</option>
+                                    <option value="3">Женат</option>
+                                    <option value="4">Холост</option>
+                                </select>
+                            </div>
+                        <div class="col-md-6">
+                        <select id="question_1.5_select" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                        <option selected value="-1">не указано</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        </select>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mw-100">
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>1.6</b>&nbsp;Образование?<b></b></span>
+                            <div class="mt-1 row">
+                            <div class="col-md-6">
+                                <select id="question_1.6_text" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                                    <option selected value="-1">не указано</option>
+                                    <option value="1">Среднее</option>
+                                    <option value="2">Среднее специальное</option>
+                                    <option value="3">Высшее</option>
+                                    <option value="4">Неоконченное высшее</option>
+                                </select>
+                            </div>
+                        <div class="col-md-6">
+                        <select id="question_1.6_select" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                        <option selected value="-1">не указано</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        </select>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mw-100">
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>1.7&nbsp;<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">Чем Вы занимаетесь?</span></b><b></b></span>
+                            <div class="mt-1 row">
+                            <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="1.7" aria-label="Username" aria-describedby="basic-addon1" id="question_1.7_text"/>
+                                </div>
+                        <div class="col-md-6">
+                        <select id="question_1.7_select" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                        <option selected value="-1">не указано</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        </select>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mw-100">
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>1.8</b>&nbsp;Кем работаете?<b></b></span>
+                            <div class="mt-1 row">
+                            <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="1.8" aria-label="Username" aria-describedby="basic-addon1" id="question_1.8_text"/>
+                                </div>
+                        <div class="col-md-6">
+                            <select id="question_1.8_select" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                                <option selected value="-1">не указано</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mw-100">
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>1.9</b>&nbsp;Ваши хобби/увлечения?<b></b></span>
+                            <div class="mt-1 row">
+                            <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="1.9" aria-label="Username" aria-describedby="basic-addon1" id="question_1.9_text"/>
+                                </div>
+                        <div class="col-md-6">
+                        <select id="question_1.9_select" class="form-select" aria-label="Default select example" name="question_9.7.1_select">
+                        <option selected value="-1">не указано</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        </select>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <span class="input-group-text text-wrap" id="basic-addon1"><b>Комментарий</b></span>
+                    <input type="text" class="form-control" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1"  id="q_7_comment"/>
+                    <p></p>
+
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h3 class="text-center"><b>Аналитики</b></h3>
+                    <div class="input-group mb-3 w-100">
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А1.&nbsp;</b>Субъективное восприятие времени</span>
+                            <select id="combo_box_A1" class="form-select" aria-label="Default select example" name="paattern_A.1_select">
+                                <option selected value="0">не указано</option>
+                                <option value="1">Клиент примерно уложился в «норматив» по времени рассказа о себе</option>
+                                <option value="2">Клиент говорит о себе много и/или медленно </option>
+                                <option value="3">Клиент говорит о себе мало и/или очень быстро </option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A1_comment"/>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 w-100">
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А2.1<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">&nbsp;Темп речи&nbsp;</span></b><b></b></span>
+                            <select id="combo_box_A2.1" class="form-select" aria-label="Default select example" name="paattern_A.2.1_select">
+                                <option selected value="0">не указано</option>
+                                <option value="1">Быстрый темп речи</option>
+                                <option value="2">Нормальный темп речи</option>
+                                <option value="3">Медленный темп речи</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A2_1_comment"/>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 w-100">
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А2.2</b>&nbsp;Тип темперамента<b></b><b></b></span>
+                            <select id="combo_box_A2.2" class="form-select" aria-label="Default select example" name="paattern_A.2.2_select">
+                                <option selected value="0">не указано</option>
+                                <option value="1">Сангвиник</option>
+                                <option value="2">Флегматик</option>
+                                <option value="3">Холерик</option>
+                                <option value="4">Меланхолик</option>
+                                <option value="5">Смешанный тип</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A2_2_comment"/>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 w-100">
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А3</b>&nbsp;Расхождения/дополнения/выпады<b></b><b></b></span>
+                            <select id="combo_box_A3" class="form-select" aria-label="Default select example" name="paattern_A.3_select">
+                                <option selected value="0">не указано</option>
+                                <option value="1">Клиент четко рассказал информацию в соответствии с анкетой </option>
+                                <option value="2">Факт/Гипотеза о Клиент: «Человек со сложившейся идентичностью</option>
+                                <option value="3">Факт/Гипотеза о Клиент:  «Педант и зануда»</option>
+                                <option value="4">Факт/Гипотеза о Клиент: «Человек с высоким уровнем тревожности»</option>
+                                <option value="5">Значимое расхождение. Фиксируем расширение контекста. Уточнить в ходе дальнейшей работы с Клиентом</option>
+                                <option value="6">Расхождение не значимое. Фиксируем для информаци. Уточнение не требуется</option>
+                                <option value="7">Значимое дополнение. Фиксируем расширение контекста. Уточнить в ходе дальнейшей работы с Клиентом. </option>
+                                <option value="8">Дополнение не значимое. Фиксируем для информации. Уточнение не требуется.</option>
+                                <option value="9">«Осознанное» или «не осознанное» убеждение. Вероятность того, что «Выпад» - одна из зон запроса высока "Уточнить в ходе сессии: «выпад» - зона запроса или просто «не в фокусе».</option>
+                                <option value="10">"Уточнить в ходе сессии: «выпад» - зона запроса или просто «не в фокусе»</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A3_comment"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h3 class="text-center"><b>ПАТТЕРНЫ</b></h3>
+                    <div class="col-md">
+                        <div class="mb-3">
+                            <label for="formInput131" class="mb-1">
+                                Высокий контекст/ Низкий контекст
+                            </label>
+                            <select id="combo_box_P1.1" class="form-select" aria-label="Default select example" name="paattern_1.1_select">
+                                <option selected>не выявлено</option>
+                                <option value="1">Высокий контекст: Полагаться на неявную коммуникации. Учитывать значение жестов, поз, голоса, контекста.</option>
+                                <option value="2">Низкий контекст: Полагаться на явную коммуникацию. Отдавать предпочтение четким и подробным инструкциям.</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formInput231" class="mb-1">
+                                Прямая/ Непрямая коммуникация (Критика)
+                            </label>
+                            <select id="combo_box_P.1.2" class="form-select" aria-label="Default select example" name="paattern_1.2_select">
+                                <option selected>не выявлено</option>
+                                <option value="1">Прямая коммуникация: Критика других прямая. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтения ясно и прямо излагать свою точку зрения, несмотря на риск задеть чувства собеседника.</option>
+                                <option value="2">Непрямая коммуникация: Непрямая критика. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтение поддержанию теплых отношений, рискуя быть непонятым.</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formInput331" class="mb-1">
+                                Эмоциональность/ Нейтральность
+                            </label>
+                            <select id="combo_box_P.1.3" class="form-select" aria-label="Default select example" name="psttern_1.3_select">
+                                <option selected>не выявлено</option>
+                                <option value="1">Эмоциональность: Проявлять эмоции и теплоту при общении. Установление и поддержание личных и социальных связей является ключевым.</option>
+                                <option value="2">Нейтральность: Подчеркивать лаконичность, точность и отстраненность при общении.</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formInput331" class="mb-1">
+                                Формальность/ Неформальность (Убеждение других)
+                            </label>
+                            <select id="combo_box_P.1.4" class="form-select" aria-label="Default select example" name="psttern_1.4_select">
+                                <option selected>не выявлено</option>
+                                <option value="1">Формальность: Строго соблюдать протоколы и ритуалы. Вначале  принципы</option>
+                                <option value="2">Неформальность: Отдавать предпочтение непринужденности и непосредственности. Вначале практика</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../session_web_pages/assets/js/popper.min.js"></script>
+        <script src="../session_web_pages/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../static/js/diag.js"></script>
+        <br/>
+        <hr>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="save_and_exit(1)">На главную</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="next_page(1)">Сохранить и перейти далее</button>
+    </body>
+</html>

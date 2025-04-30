@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Blank Template for Bootstrap</title>
+        <!-- Bootstrap core CSS -->
+        <link href="../session_web_pages/css/theme.css" rel="stylesheet" type="text/css"/>
+        <link href="../session_web_pages/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../session_web_pages/offcanvas.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <link href="../session_web_pages/style.css" rel="stylesheet"/>
+        <script>
+            function updateA14() {
+                let question4_1 = document.getElementById("question_4.1_select").value;
+                if (question4_1 === "2" || question4_1 === "3") {
+                    document.getElementById("combo_box_A14").value = 2;
+                } else if (question4_1 === "1") {
+                    document.getElementById("combo_box_A14").value = 1;
+                } else {
+                    document.getElementById("combo_box_A14").value = 0;
+                }
+            }
+        </script>
+    </head>
+    <body onload="restore(4)">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Диагностическая сессия</a>
+                <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="offcanvas" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" aria-current="page" href="/page" onclick="save(4)">К сесcии</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="save_and_exit(4)">Мои клиенты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="couch_page(4)">Мой профиль</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Настройки</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                                <li><a class="dropdown-item" href="#">Action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Another action</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Поиск</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="nav-scroller bg-white shadow-sm">
+            <nav class="nav nav-underline" aria-label="Secondary navigation">
+                <a class="nav-link active" aria-current="page" onclick="save_and_exit(4)">На главную</a>
+                <a class="nav-link" onclick="previous_page(4)">К прошлой странице</a>
+                <a class="nav-link" onclick="next_page(4)">Сохранить и перейти далее</a>
+            </nav>
+        </div>
+        <div class="container">
+</div>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <h1 class="ms-3 text-center text-success">4. Выявление триггеров успеха/алгоритм переживания неудачи</h1>
+        <div class="mb-2 me-5 ms-5 mt-1">
+</div>
+        <div class="me-3 ms-3">
+            <div class="ms-3 row">
+                <div class="col-md-5 text-wrap">
+                    <h3 class="text-center"><b>Вопросы</b></h3> 
+                    <div class="input-group mb-3"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>4.1</b>&nbsp; От чего зависит Ваш успех в большей степени: от Вас, от других людей, от обстоятельств?</span>
+                            <select onchange="updateA14()" id="question_4.1_select" class="form-select" aria-label="Default select example" name="paattern_A.51.3_select">
+                                <option selected value="0">не указано</option>
+                                <option value="1">От меня</option>
+                                <option value="2">От других людей</option>
+                                <option value="3">От обстоятельств</option>
+                            </select>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>4.2&nbsp;<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">Из 100% насколько Ваш успех зависит от Вас, других людей, обстоятельств?</span></b></span>
+                            <div class="mt-1 row">
+                                <div class="col-lg-6 col-md-6"> <span class="float-end text-center">от Вас?</span>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <select id="combo_box_A4_1" class="form-select" aria-label="Default select example" name="paattern_A.12_select">
+                                        <option selected value="-1">не указано</option>                                         
+                                        <option value="0">0%</option>                                         
+                                        <option value="5">5%</option>
+                                        <option value="10">10%</option>
+                                        <option value="15">15%</option>
+                                        <option value="20">20%</option>
+                                        <option value="25">25%</option>
+                                        <option value="30">30%</option>
+                                        <option value="35">35%</option>
+                                        <option value="40">40%</option>
+                                        <option value="45">45%</option>
+                                        <option value="50">50%</option>
+                                        <option value="55">55%</option>
+                                        <option value="60">60%</option>
+                                        <option value="65">65%</option>
+                                        <option value="70">70%</option>
+                                        <option value="75">75%</option>
+                                        <option value="80">80%</option>
+                                        <option value="85">85%</option>
+                                        <option value="90">90%</option>
+                                        <option value="95">95%</option>
+                                        <option value="100">100%</option>
+                                    </select>                                     
+                                </div>
+                            </div>
+                            <div class="mt-1 row">
+                                <div class="col-lg-6 col-md-6"> <span class="float-end text-center">от других людей?</span>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <select id="combo_box_A4_2" class="form-select" aria-label="Default select example" name="paattern_A.12_select">
+                                        <option selected value="-1">не указано</option>                                         
+                                        <option value="0">0%</option>                                         
+                                        <option value="5">5%</option>
+                                        <option value="10">10%</option>
+                                        <option value="15">15%</option>
+                                        <option value="20">20%</option>
+                                        <option value="25">25%</option>
+                                        <option value="30">30%</option>
+                                        <option value="35">35%</option>
+                                        <option value="40">40%</option>
+                                        <option value="45">45%</option>
+                                        <option value="50">50%</option>
+                                        <option value="55">55%</option>
+                                        <option value="60">60%</option>
+                                        <option value="65">65%</option>
+                                        <option value="70">70%</option>
+                                        <option value="75">75%</option>
+                                        <option value="80">80%</option>
+                                        <option value="85">85%</option>
+                                        <option value="90">90%</option>
+                                        <option value="95">95%</option>
+                                        <option value="100">100%</option>
+                                    </select>                                     
+                                </div>
+                            </div>
+                            <div class="mt-1 row">
+                                <div class="col-lg-6 col-md-6"> <span class="float-end text-center">от обстоятельств?</span>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <select id="combo_box_A4_3" class="form-select" aria-label="Default select example" name="paattern_A.12_select">
+                                        <option selected value="-1">не указано</option>                                         
+                                        <option value="0">0%</option>                                         
+                                        <option value="5">5%</option>
+                                        <option value="10">10%</option>
+                                        <option value="15">15%</option>
+                                        <option value="20">20%</option>
+                                        <option value="25">25%</option>
+                                        <option value="30">30%</option>
+                                        <option value="35">35%</option>
+                                        <option value="40">40%</option>
+                                        <option value="45">45%</option>
+                                        <option value="50">50%</option>
+                                        <option value="55">55%</option>
+                                        <option value="60">60%</option>
+                                        <option value="65">65%</option>
+                                        <option value="70">70%</option>
+                                        <option value="75">75%</option>
+                                        <option value="80">80%</option>
+                                        <option value="85">85%</option>
+                                        <option value="90">90%</option>
+                                        <option value="95">95%</option>
+                                        <option value="100">100%</option>
+                                    </select>                                     
+                                </div>
+                            </div>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>4.3</b>&nbsp;Какое одно качество больше всего помогает Вам достигать целей: ум, гибкость, удачливость, трудолюбие, воображение, общительность, чувство юмора?</span>
+                            <select id="question_4.3_select" class="form-select" aria-label="Default select example" name="paattern_A.51.3_select">
+                                <option selected value="0">не указано</option>
+                                <option value="1">Ум</option>
+                                <option value="2">Гибкость</option>
+                                <option value="3">Удачливость</option>
+                                <option value="4">Трудолюбие</option>
+                                <option value="5">Воображение</option>
+                                <option value="6">Общительность</option>
+                                <option value="7">Чувство юмора</option>
+                            </select>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 mw-100"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>4.4</b>&nbsp;Опишите Ваш алгоритм переживания неудачи?<b></b></span>
+                            <input type="text" class="form-control" placeholder="4.4" aria-label="Username" aria-describedby="basic-addon1" id="question_4.4_text"/>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mw-100"> 
+                        <div class="w-100"><span class="input-group-text text-wrap" id="basic-addon1"><b>4.5</b>&nbsp;Какое максимальное количество циклов преодоления неудачи Вы запускаете? <b></b></span>
+                            <select id="question_4.5_select" class="form-select" aria-label="Default select example" name="paattern_A.51.3_select">
+                                <option selected value="0">не указано</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                    </div><span class="input-group-text text-wrap" id="basic-addon1"><b>Комментарий</b></span>
+                    <input type="text" class="form-control" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="q_4_commnt"/>
+                    <p></p>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <h3 class="text-center"><b>Аналитики</b></h3> 
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А14.&nbsp;</b>Локус контроля. Интернальный/Экстернальный</span>
+                            <select id="combo_box_A14" class="form-select" aria-label="Default select example" name="paattern_A.14_select"> 
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">Интернальный локус контроля</option>                                 
+                                <option value="2">Экстернальный локус контроля</option>                                 
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A10_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А15<span style="font-size: 1rem; font-weight: 400; font-family: var(--bs-body-font-family);">&nbsp; Сильные стороны</span></b><b></b></span>
+                            <select id="combo_box_A15.1" class="form-select" aria-label="Default select example" name="paattern_A.51.1_select"> 
+                                <option selected value="0">не указано</option>                                 
+                                <option value="1">Ум</option>
+                                <option value="2">Гибкость</option>
+                                <option value="3">Удачливость</option>
+                                <option value="4">Трудолюбие</option>
+                                <option value="5">Воображение</option>
+                                <option value="6">Общительность</option>
+                                <option value="7">Чувство юмора</option>
+                                <option value="8">Другое</option>
+                            </select>
+                            <select id="combo_box_A15.2" class="form-select" aria-label="Default select example" name="paattern_A.51.2_select"> 
+                                <option selected value="0">не указано</option>                                 
+                                <option selected value="0">не указано</option>
+                                <option value="1">Ум</option>
+                                <option value="2">Гибкость</option>
+                                <option value="3">Удачливость</option>
+                                <option value="4">Трудолюбие</option>
+                                <option value="5">Воображение</option>
+                                <option value="6">Общительность</option>
+                                <option value="7">Чувство юмора</option>
+                                <option value="8">Другое</option>
+                            </select>
+                            <select id="combo_box_A15.3" class="form-select" aria-label="Default select example" name="paattern_A.51.3_select"> 
+                                <option selected value="0">не указано</option>                                 
+                                <option selected value="0">не указано</option>
+                                <option value="1">Ум</option>
+                                <option value="2">Гибкость</option>
+                                <option value="3">Удачливость</option>
+                                <option value="4">Трудолюбие</option>
+                                <option value="5">Воображение</option>
+                                <option value="6">Общительность</option>
+                                <option value="7">Чувство юмора</option>
+                                <option value="8">Другое</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="Если ДРУГОЕ, то вписать" aria-label="Username" aria-describedby="basic-addon1" id="combo_box_A15.4"/>
+                            <input type="text" class="form-control w-100" placeholder="Если ДРУГОЕ, то вписать" aria-label="Username" aria-describedby="basic-addon1" id="combo_box_A15.5"/>
+                            <input type="text" class="form-control w-100" placeholder="Если ДРУГОЕ, то вписать" aria-label="Username" aria-describedby="basic-addon1" id="combo_box_A15.6"/>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A15_comment"/>
+                        </div>                         
+                    </div>
+                    <div class="input-group mb-3 w-100"> 
+                        <div class="mw-100 w-100"><span class="input-group-text mw-100 text-wrap" id="basic-addon1"><b>А16</b>&nbsp;Слабые стороны<b></b><b></b></span>
+                            <select id="combo_box_A16.1" class="form-select" aria-label="Default select example" name="paattern_A.16.1_select">
+                                <!-- скрыты, но не удалены для обратной совместимости -->
+                                <option value="1" hidden>Эмоциональность</option>
+                                <option value="2" hidden>Скептицизм</option>
+                                <option value="3" hidden>Осторожность</option>
+                                <option value="4" hidden>Прилежность</option>
+                                <option value="5" hidden>Сам в себе</option>
+                                <option value="6" hidden>Сам по себе</option>
+                                <option value="7" hidden>Исполненность сознания долга</option>
+                                <option value="8" hidden>Самоуверенность</option>
+                                <option value="9" hidden>Театральность</option>
+                                <option value="10" hidden>Богатое воображение</option>
+                                <option value="11" hidden>Увлекательность</option>
+                                <!--<option value="12">Другое</option>-->,
+                                <option selected value="0">не указано</option>
+                                <option value="13">Неясная цель</option>
+                                <option value="14">Деструктивное мышление</option>
+                                <option value="15">Низкая эффективность</option>
+                                <option value="16">Не хватает энергии</option>
+                                <option value="17">Не задает правильных вопросов</option>
+                                <option value="18">Слабые презентационные навыки</option>
+                                <option value="19">Стресс</option>
+                                <option value="20">Отсутствие настойчивости</option>
+                                <option value="21">Одержимость деньгами</option>
+                                <option value="22">Ошибочное принятие IQ за EQ</option>
+                                <option value="23">Недостаточно развитое мышление</option>
+                                <option value="24">Низкая самооценка</option>
+                                <option value="25">Отсутствие ежедневных ритуалов</option>
+                                <option value="26">Мало отношений</option>
+                                <option value="27">Несосредоточенность на сильных сторонах</option>
+                                <option value="28">Перфекционизм</option>
+                                <option value="12">Другое</option>
+                            </select>
+                            <select id="combo_box_A16.2" class="form-select" aria-label="Default select example" name="paattern_A.16.2_select">
+                                <!-- скрыты, но не удалены для обратной совместимости -->
+                                <option value="1" hidden>Эмоциональность</option>
+                                <option value="2" hidden>Скептицизм</option>
+                                <option value="3" hidden>Осторожность</option>
+                                <option value="4" hidden>Прилежность</option>
+                                <option value="5" hidden>Сам в себе</option>
+                                <option value="6" hidden>Сам по себе</option>
+                                <option value="7" hidden>Исполненность сознания долга</option>
+                                <option value="8" hidden>Самоуверенность</option>
+                                <option value="9" hidden>Театральность</option>
+                                <option value="10" hidden>Богатое воображение</option>
+                                <option value="11" hidden>Увлекательность</option>
+                                <!--<option value="12">Другое</option>-->,
+                                <option selected value="0">не указано</option>
+                                <option value="13">Неясная цель</option>
+                                <option value="14">Деструктивное мышление</option>
+                                <option value="15">Низкая эффективность</option>
+                                <option value="16">Не хватает энергии</option>
+                                <option value="17">Не задает правильных вопросов</option>
+                                <option value="18">Слабые презентационные навыки</option>
+                                <option value="19">Стресс</option>
+                                <option value="20">Отсутствие настойчивости</option>
+                                <option value="21">Одержимость деньгами</option>
+                                <option value="22">Ошибочное принятие IQ за EQ</option>
+                                <option value="23">Недостаточно развитое мышление</option>
+                                <option value="24">Низкая самооценка</option>
+                                <option value="25">Отсутствие ежедневных ритуалов</option>
+                                <option value="26">Мало отношений</option>
+                                <option value="27">Несосредоточенность на сильных сторонах</option>
+                                <option value="28">Перфекционизм</option>
+                                <option value="12">Другое</option>
+                            </select>
+                            <select id="combo_box_A16.3" class="form-select" aria-label="Default select example" name="paattern_A.16.3_select">
+                                <!-- скрыты, но не удалены для обратной совместимости -->
+                                <option value="1" hidden>Эмоциональность</option>
+                                <option value="2" hidden>Скептицизм</option>
+                                <option value="3" hidden>Осторожность</option>
+                                <option value="4" hidden>Прилежность</option>
+                                <option value="5" hidden>Сам в себе</option>
+                                <option value="6" hidden>Сам по себе</option>
+                                <option value="7" hidden>Исполненность сознания долга</option>
+                                <option value="8" hidden>Самоуверенность</option>
+                                <option value="9" hidden>Театральность</option>
+                                <option value="10" hidden>Богатое воображение</option>
+                                <option value="11" hidden>Увлекательность</option>
+                                <!--<option value="12">Другое</option>-->,
+                                <option selected value="0">не указано</option>
+                                <option value="13">Неясная цель</option>
+                                <option value="14">Деструктивное мышление</option>
+                                <option value="15">Низкая эффективность</option>
+                                <option value="16">Не хватает энергии</option>
+                                <option value="17">Не задает правильных вопросов</option>
+                                <option value="18">Слабые презентационные навыки</option>
+                                <option value="19">Стресс</option>
+                                <option value="20">Отсутствие настойчивости</option>
+                                <option value="21">Одержимость деньгами</option>
+                                <option value="22">Ошибочное принятие IQ за EQ</option>
+                                <option value="23">Недостаточно развитое мышление</option>
+                                <option value="24">Низкая самооценка</option>
+                                <option value="25">Отсутствие ежедневных ритуалов</option>
+                                <option value="26">Мало отношений</option>
+                                <option value="27">Несосредоточенность на сильных сторонах</option>
+                                <option value="28">Перфекционизм</option>
+                                <option value="12">Другое</option>
+                            </select>
+                            <input type="text" class="form-control w-100" placeholder="Если ДРУГОЕ, то вписать" aria-label="Username" aria-describedby="basic-addon1" id="combo_box_A16.4"/>
+                            <input type="text" class="form-control w-100" placeholder="Если ДРУГОЕ, то вписать" aria-label="Username" aria-describedby="basic-addon1" id="combo_box_A16.5"/>
+                            <input type="text" class="form-control w-100" placeholder="Если ДРУГОЕ, то вписать" aria-label="Username" aria-describedby="basic-addon1" id="combo_box_A16.6"/>
+                            <input type="text" class="form-control w-100" placeholder="комментарий" aria-label="Username" aria-describedby="basic-addon1" id="A16_comment"/>
+                        </div>                         
+                    </div>                     
+                </div>
+            </div>
+        </div>
+        <div class="me-5 ms-3">
+            <div class="row">
+                <h3 class="text-center"><b>ПАТТЕРНЫ</b></h3>
+                <div class="col-md-6">
+                    <h3 class="text-center">&nbsp;Паттерны коммуникации</h3> 
+                    <div class="mb-3"> 
+                        <label for="formInput131" class="mb-1">
+                            Высокий контекст/ Низкий контекст
+                        </label>                         
+                        <select id="combo_box_P1.1" class="form-select" aria-label="Default select example" name="paattern_1.1_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Высокий контекст: Полагаться на неявную коммуникации. Учитывать значение жестов, поз, голоса, контекста.</option>                             
+                            <option value="2">Низкий контекст: Полагаться на явную коммуникацию. Отдавать предпочтение четким и подробным инструкциям.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput231" class="mb-1">
+                            Прямая/ Непрямая коммуникация (Критика)
+                        </label>                         
+                        <select id="combo_box_P.1.2" class="form-select" aria-label="Default select example" name="paattern_1.2_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Прямая коммуникация: Критика других прямая. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтения ясно и прямо излагать свою точку зрения, несмотря на риск задеть чувства собеседника.</option>                             
+                            <option value="2">Непрямая коммуникация: Непрямая критика. В конфликтной ситуации или когда нужно озвучить нечто неприятное, отдавать предпочтение поддержанию теплых отношений, рискуя быть непонятым.</option>                             
+                            ы                        
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">
+                            Эмоциональность/ Нейтральность
+                        </label>                         
+                        <select id="combo_box_P.1.3" class="form-select" aria-label="Default select example" name="psttern_1.3_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Эмоциональность: Проявлять эмоции и теплоту при общении. Установление и поддержание личных и социальных связей является ключевым.</option>                             
+                            <option value="2">Нейтральность: Подчеркивать лаконичность, точность и отстраненность при общении.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">
+                            Формальность/ Неформальность (Убеждение других)
+                        </label>                         
+                        <select id="combo_box_P.1.4" class="form-select" aria-label="Default select example" name="psttern_1.4_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Формальность: Строго соблюдать протоколы и ритуалы. Вначале  принципы</option>                             
+                            <option value="2">Неформальность: Отдавать предпочтение непринужденности и непосредственности. Вначале практика</option>                             
+                        </select>                         
+                    </div>                     
+                </div>
+                <div class="col-md-6">
+                    <h3 class="text-center">Паттерны поведения</h3>
+                    <div class="mb-3"> 
+                        <label for="formInput231" class="mb-1">
+                            <b>4.1</b>&nbsp;Контроль/Гармония/Смирение
+                        </label>                         
+                        <select id="combo_box_P.4.1" class="form-select" aria-label="Default select example" name="paattern_4.1_select"> 
+                            <option value="0" selected>не выявлено</option>                             
+                            <option value="1"> Контроль: Люди имеют определяющую силу и ответственность, чтобы создать жизнь, которую они хотят.</option>                             
+                            <option value="2">Гармония: Стремление к равновесию и гармонии с природой.</option>                             
+                            <option value="3">Смирение: Принятие неизбежных, естественных ограничений.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">
+                            <b>4.2</b>&nbsp;Контроль/Гармония/Смирение
+                        </label>                         
+                        <select id="combo_box_P.4.2" class="form-select text-wrap" aria-label="Default select example" name="psttern_4.2_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1"> Контроль: Люди имеют определяющую силу и ответственность, чтобы создать жизнь, которую они хотят.</option>                             
+                            <option value="2">Гармония: Стремление к равновесию и гармонии с природой.</option>                             
+                            <option value="3">Смирение: Принятие неизбежных, естественных ограничений.</option>                             
+                        </select>                         
+                    </div>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1"><b>4.3</b>&nbsp;Контроль/Гармония/Смирение
+                        </label>                         
+                        <select id="combo_box_P.4.3" class="form-select text-wrap" aria-label="Default select example" name="psttern_4.3_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1"> Контроль: Люди имеют определяющую силу и ответственность, чтобы создать жизнь, которую они хотят.</option>                             
+                            <option value="2">Гармония: Стремление к равновесию и гармонии с природой.</option>                             
+                            <option value="3">Смирение: Принятие неизбежных, естественных ограничений.</option>                             
+                        </select>                         
+                    </div><h3 class="text-center">&nbsp;Паттерны рабочего поведения</h3>
+                    <div class="mb-3"> 
+                        <label for="formInput331" class="mb-1">
+                            <b>4.4</b>&nbsp;Конкуренция/Сотрудничество
+                        </label>                         
+                        <select id="combo_box_P.3.4" class="form-select" aria-label="Default select example" name="psttern_3.4_select"> 
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Конкуренция: Содействовать успеху и прогрессу за счет стимулирования конкуренции. Конфронтация. </option>                             
+                            <option value="2">Сотрудничество: Содействовать успеху и прогрессу за счет взаимной поддержки, обмена передовым опытом и солидарности. Избегание конфронтации.</option>                             
+                        </select>                         
+                    </div>
+                    <h3 class="text-center">&nbsp;Паттерны поведения</h3>
+                    <div class="mb-3">
+                        <label for="formInput131" class="mb-1"><b>4.5</b>&nbsp; Защищать/ Делиться
+                        </label>                         
+                        <select id="combo_box_P.3.5" class="form-select" aria-label="Default select example" name="paattern_3.5_select">
+                            <option selected>не выявлено</option>                             
+                            <option value="1">Защищать: Защищать себя, сохраняя личную жизни и чувства в тайне (ментальные границы) и сводя к минимуму вторжения в свое физическое пространство (физические границы).</option>                             
+                            <option value="2">Делиться: Выстраивать более близкие отношения, давая доступ к психологическим и физическим аспектам.</option>                             
+                        </select>                         
+                    </div>                     
+                </div>
+            </div>
+            <div class="row" data-empty-placeholder></div>
+        </div>
+        <br/>
+        <script src="../session_web_pages/assets/js/popper.min.js"></script>
+        <script src="../session_web_pages/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../static/js/diag.js"></script>
+    <hr>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="previous_page(4)">К прошлой странице</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="save_and_exit(4)">На главную</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="next_page(4)">Сохранить и перейти далее</button>
+
+    </body>
+</html>
