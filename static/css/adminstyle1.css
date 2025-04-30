@@ -1,0 +1,38 @@
+.border {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  }
+  .border li {
+  width: 330px;
+  font-family: "Trebuchet MS", "Lucida Sans";
+  padding: 7px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border-left: 12px solid #1ccfc9;
+  border-right: 12px solid #1ccfc9;
+  box-shadow: 2px -2px 5px 0 rgba(0,0,0,.1),
+       -2px -2px 5px 0 rgba(0,0,0,.1),
+      2px 2px 5px 0 rgba(0,0,0,.1),
+      -2px 2px 5px 0 rgba(0,0,0,.1);
+  font-size: 20px;
+  letter-spacing: 2px;
+  transition: 0.3s all linear;
+  }
+
+button{
+  text-align: centre;}
+
+a{border: 2px solid #1ccfc9;
+  text-decoration: none;
+  color: #000000;
+  padding:1px 3px;}
+
+a:visited{color: #000000;}
+
+.container{
+    display: block;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px;}
