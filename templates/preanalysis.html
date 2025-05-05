@@ -839,34 +839,50 @@
           <div class="menu-kjo">
             <div class="menu-kjo__container">
               <div class="menu-kjo__body">
-                <a href="/couch" class="menu-kjo__logo">
-                  <img src="../static/img/kjo/logo-kjo.svg" alt="" />
-                </a>
-                <div class="menu-kjo__client">
-                  <div class="menu-kjo__label">Клиент:</div>
-                  <div class="menu-kjo__name-client">{{data2[0][0]+ " " + data2[0][1]}}</div>
-                  <div class="menu-kjo__label">Дата диагностической сессии:</div>
-                  <select onchange="loadITR()" id="session">
-                    <option selected onclick="loadITR()" value="{{ sessions[0][0] }}">{{ sessions[0][1] }} {{ sessions[0][2] }}</option>
-                    {% for session in sessions[1:] %}
-                    <option onclick="loadITR()" value="{{ session[0] }}">{{ session[1] }} {{ session[2] }}</option>
-                    {% end %}
-                  </select>
+                <div class="menu-kjo__mob">
+                  <a href="/couch" class="menu-kjo__logo">
+                    <img src="../static/img/kjo/logo-kjo.svg" alt="" />
+                  </a>
+                  <div class="menu-kjo__contact menu-kjo__contact_mob">
+                    <a class="menu-kjo__icon" target="_blank" title="Email" href="mailto:info@ai4g.ru">
+                      <img src="../static/img/kjo/icons/email-kjo.svg" alt="" />
+                    </a>
+
+                    <a class="menu-kjo__icon" target="_blank" title="Телефон" href="tel:+79852000434">
+                      <img src="../static/img/kjo/icons/telegram-kjo.svg" alt="phone" />
+                    </a>
+                  </div>
                 </div>
-                <div class="menu-kjo__couch">
-                  <div class="menu-kjo__label">Коуч:</div>
-                  <div class="menu-kjo__name-couch">{{data[0][0]+ " " + data[0][1]}}</div>
+
+                <div class="menu-kjo__block">
+                  <div class="menu-kjo__client menu-kjo__item">
+                    <div class="menu-kjo__label">Клиент:</div>
+                    <div class="menu-kjo__name-client">{{data2[0][0]+ " " + data2[0][1]}}</div>
+                  </div>
+
+                  <div class="menu-kjo__date menu-kjo__item">
+                    <div class="menu-kjo__label">Дата диагностической сессии:</div>
+                    <select onchange="loadITR()" id="session">
+                      <option selected onclick="loadITR()" value="{{ sessions[0][0] }}">{{ sessions[0][1] }} {{ sessions[0][2] }}</option>
+                      {% for session in sessions[1:] %}
+                      <option onclick="loadITR()" value="{{ session[0] }}">{{ session[1] }} {{ session[2] }}</option>
+                      {% end %}
+                    </select>
+                  </div>
+
+                  <div class="menu-kjo__couch menu-kjo__item">
+                    <div class="menu-kjo__label">Коуч:</div>
+                    <div class="menu-kjo__name-couch">{{data[0][0]+ " " + data[0][1]}}</div>
+                  </div>
                 </div>
-                <div class="menu-kjo__contact">
-                  <!--Email  -->
+
+                <div class="menu-kjo__contact menu-kjo__contact_comp">
                   <a class="menu-kjo__icon" target="_blank" title="Email" href="mailto:info@ai4g.ru">
                     <img src="../static/img/kjo/icons/email-kjo.svg" alt="" />
-                    <span>info@ai4g.ru</span>
                   </a>
-                  <!--телефон  -->
+
                   <a class="menu-kjo__icon" target="_blank" title="Телефон" href="tel:+79852000434">
                     <img src="../static/img/kjo/icons/telegram-kjo.svg" alt="phone" />
-                    <span> +7-(985)-200-04-34</span>
                   </a>
                 </div>
               </div>
@@ -881,9 +897,7 @@
               </h1>
 
               <div class="map-kjo__body">
-                <!-- Левая колонка -->
-                <div class="map-kjo__column">
-                  <!--Фокус -->
+                <div class="map-kjo__column map-kjo__column_left">
                   <div class="map-kjo__item item-kjo">
                     <h2 class="item-column__subtitle subtitle" id="isFocus">
                       Фокуса нет
@@ -904,7 +918,6 @@
                     </div>
                   </div>
 
-                  <!--Направления развития -->
                   <div class="map-kjo__item item-kjo">
                     <h2 class="item-kjo__subtitle subtitle">Направления развития</h2>
                     <ul class="item-kjo__list" id="development_list">
@@ -914,23 +927,30 @@
                     </ul>
                   </div>
 
-                  <!-- Потенциал -->
                   <div class="map-kjo__item item-kjo">
                     <h2 class="item-kjo__subtitle subtitle">Потенциал</h2>
-                    <!--    <div class="item-kjo__caption">(насколько желаемое выше/ниже возможностей личности)</div> -->
                     <ul class="item-kjo__list">
                       <li class="item-kjo__item" id="potential">Возможности соотвествуют желаниям</li>
                     </ul>
                   </div>
+                  <div class="map-kjo__item item-kjo">
+                    <h2 class="item-column__subtitle subtitle">Планирование</h2>
+                    <div class="item-column__block">
+                      <div class="item-column__point">Горизонт (мес.)</div>
+                      <div class="item-column__point-right" id="Horizont">6-12</div>
+                      <div class="item-column__point">Скорость</div>
+                      <div class="item-column__point-right" id="Speed">Средняя</div>
+                      <div class="item-column__point">Контроль</div>
+                      <div class="item-column__point-right" id="Controlling">Пошаговый</div>
+                    </div>
+                  </div>
                 </div>
 
-                <!-- Факторы благополучия -->
                 <div class="map-kjo-middle__item factor">
                   <h2 class="factor__subtitle subtitle">Факторы благополучия</h2>
                   <h2 class="factor__caption">Составляющие, которые влияют на ощущение счастья и внутреннего благополучия</h2>
                   <div class="factor__content">
                     <div class="chart">
-                      <!-- Ясность ума -->
                       <div class="chart__item">
                         <p>Ясность ума</p>
                         <div class="chart__graf">
@@ -943,7 +963,6 @@
                         </div>
                       </div>
 
-                      <!--Любовь к жизни  -->
                       <div class="chart__item">
                         <p>Любовь к жизни</p>
                         <div class="chart__graf">
@@ -956,7 +975,6 @@
                         </div>
                       </div>
 
-                      <!-- Любовь к себе -->
                       <div class="chart__item">
                         <p>Любовь к себе</p>
                         <div class="chart__graf">
@@ -969,7 +987,6 @@
                         </div>
                       </div>
 
-                      <!-- Устойчивость -->
                       <div class="chart__item">
                         <p>Устойчивость</p>
                         <div class="chart__graf">
@@ -982,7 +999,6 @@
                         </div>
                       </div>
 
-                      <!-- Страстная приверженность -->
                       <div class="chart__item">
                         <p>Страстная приверженность</p>
                         <div class="chart__graf">
@@ -995,7 +1011,6 @@
                         </div>
                       </div>
 
-                      <!--Энергия  -->
                       <div class="chart__item">
                         <p>Энергия</p>
                         <div class="chart__graf">
@@ -1008,7 +1023,6 @@
                         </div>
                       </div>
 
-                      <!--Эмоции   -->
                       <div class="chart__item">
                         <p>Эмоции</p>
                         <div class="chart__graf">
@@ -1021,7 +1035,6 @@
                         </div>
                       </div>
 
-                      <!--Ощущение счастья  -->
                       <div class="chart__item">
                         <p>Ощущение счастья</p>
                         <div class="chart__graf">
@@ -1072,8 +1085,7 @@
                   </div>
                 </div>
 
-                <div class="map-kjo__column">
-                  <!--Сильные стороны-->
+                <div class="map-kjo__column map-kjo__column_right">
                   <div class="map-kjo__item item-kjo">
                     <h2 class="item-kjo__subtitle subtitle">Сильные стороны</h2>
                     <ul id="strong_points" class="item-kjo__list">
@@ -1083,16 +1095,6 @@
                     </ul>
                   </div>
 
-                  <!--Слабые стороны -->
-                  <div class="map-kjo__item item-kjo">
-                    <h2 class="item-kjo__subtitle subtitle">Слабые стороны</h2>
-                    <ul id="weak_points" class="item-kjo__list">
-                      <li class="item-kjo__item">Прилежность</li>
-                      <li class="item-kjo__item">Богатое воображение</li>
-                    </ul>
-                  </div>
-
-                  <!--Индивидуальность -->
                   <div class="map-kjo__item item-kjo">
                     <h2 class="map-kjo__subtitle subtitle">Индивидуальность</h2>
                     <div class="item-column__block item-column__block_auto">
@@ -1112,112 +1114,19 @@
           </section>
 
           <div class="line"></div>
-          <section class="map-kjo-middle">
-            <div class="map-kjo-middle__container">
-              <div class="map-kjo-middle__body">
-                <div class="map-kjo__column">
-                  <!--Противоречия -->
-                  <div class="map-kjo__item item-kjo">
-                    <h2 class="item-kjo__subtitle subtitle">Противоречия</h2>
-                    <ul class="item-kjo__list-check">
-                      <li class="item-kjo__item-check">Самооценка и Цели</li>
-                      <li class="item-kjo__item-check">Идентичность и Цели</li>
-                      <li class="item-kjo__item-check">Цели и Готовность к изменениям</li>
-                      <li class="item-kjo__item-check">Цели и Поддержка</li>
-                      <li class="item-kjo__item-check">Цели и Траектория развития</li>
-                      <li class="item-kjo__item-check">Краткосрочных целей и Планирования</li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Возможности -->
-                <div class="map-kjo-middle__item scope">
-                  <h2 class="scope__subtitle subtitle">Возможности</h2>
-                  <div class="scope__content">
-                    <div class="scope__block">
-                      <h3 class="scope__label">
-                        Возможности, которые Вы видите, <br />
-                        но их не используете
-                      </h3>
-                      <ul class="scope__list scope__list_square">
-                        <li class="scope__item" id="use-energy"><p>Гармония</p></li>
-                        <li class="scope__item" id="use-strategy"><p>Реализация</p></li>
-                        <li class="scope__item" id="use-society"><p>Организация</p></li>
-                        <li class="scope__item" id="use-health"><p>Иммунитет</p></li>
-                        <li class="scope__item" id="use-intelligence"><p>Технология</p></li>
-                        <li class="scope__item" id="use-skills"><p>Системность</p></li>
-                      </ul>
-                    </div>
-                    <div class="scope__block">
-                      <h3 class="scope__label">
-                        Возможности, которые Вы видите,<br />
-                        но их не используете
-                      </h3>
-                      <ul class="scope__list scope__list_triangle">
-                        <li class="scope__item" id="notuse-energy"><p>Семья</p></li>
-                        <li class="scope__item" id="notuse-strategy"><p>Маркетинг</p></li>
-                        <li class="scope__item" id="notuse-society"><p>Репутация</p></li>
-                        <li class="scope__item" id="notuse-health"><p>Репродукция</p></li>
-                        <li class="scope__item" id="notuse-intelligence"><p>Дискурс</p></li>
-                        <li class="scope__item" id="notuse-skills"><p>Менеджмент</p></li>
-                        <li class="scope__item" id="notuse-personal-growth"><p>Эмоции</p></li>
-                        <li class="scope__item" id="notuse-personal-brand"><p>Личная история</p></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="map-kjo__column">
-                  <!--Планирование -->
-                  <div class="map-kjo__item item-kjo">
-                    <h2 class="item-column__subtitle subtitle">Планирование</h2>
-                    <div class="item-column__block">
-                      <div class="item-column__point">Горизонт (мес.)</div>
-                      <div class="item-column__point-right" id="Horizont">6-12</div>
-                      <div class="item-column__point">Скорость</div>
-                      <div class="item-column__point-right" id="Speed">Средняя</div>
-                      <div class="item-column__point">Контроль</div>
-                      <div class="item-column__point-right" id="Controlling">Пошаговый</div>
-                    </div>
-                  </div>
-
-                  <!--Ресурсы -->
-                  <div class="map-kjo__item item-kjo">
-                    <h2 class="item-column__subtitle subtitle">Ресурсы</h2>
-                    <div class="item-column__content">
-                      <div class="item-column__element item-column__element_01">
-                        <div class="item-column__label">Команда:</div>
-                        <div class="item-column__block">
-                          <div class="item-column__point">Поддержка</div>
-                          <div class="item-column__point-right" id="support">Самостоятельно ("Парус")</div>
-                          <div class="item-column__point">Сопровождение</div>
-                          <div class="item-column__point-right" id="following">Трекинг</div>
-                        </div>
-                      </div>
-                      <div class="item-column__element item-column__element_02">
-                        <div class="item-column__label">Методы развития:</div>
-
-                        <ul class="item-kjo__list">
-                          <li class="item-kjo__item" id="A44.1">Практические действия (план)</li>
-                          <li class="item-kjo__item" id="A44.2">Работа с психологом</li>
-                          <li class="item-kjo__item" id="A44.3">Практики, техники работы с поведением</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <div class="line"></div>
           <section class="kjo-patterns">
             <div class="kjo-patterns__container">
               <h2 class="kjo-patterns__subtitle subtitle">Паттерны</h2>
 
               <div class="kjo-patterns__body">
-                <!-- Паттерны организации времени -->
                 <div class="kjo-patterns__item">
                   <h3 class="kjo-patterns__label">Паттерны организации времени</h3>
                   <div class="kjo-patterns__sublabel">Основной паттерн:</div>
-                  <div class="kjo-patterns__main" id="pattern-time-main">Будущее</div>
+
+                  <ul class="kjo-patterns__list">
+                    <li class="kjo-patterns__li kjo-patterns__main" id="pattern-time-main">Будущее</li>
+                  </ul>
+
                   <div class="kjo-patterns__sublabel">Второстепенные паттерны:</div>
 
                   <ul class="kjo-patterns__list">
@@ -1226,11 +1135,12 @@
                   </ul>
                 </div>
 
-                <!-- Паттерны поведения -->
                 <div class="kjo-patterns__item">
                   <h3 class="kjo-patterns__label">Паттерны поведения</h3>
                   <div class="kjo-patterns__sublabel">Основной паттерн:</div>
-                  <div class="kjo-patterns__main" id="pattern-behaviors-main">Принятие</div>
+                  <ul class="kjo-patterns__list">
+                    <li class="kjo-patterns__li kjo-patterns__main" id="pattern-behaviors-main">Принятие</li>
+                  </ul>
                   <div class="kjo-patterns__sublabel">Второстепенные паттерны:</div>
 
                   <ul class="kjo-patterns__list">
@@ -1242,11 +1152,12 @@
                   </ul>
                 </div>
 
-                <!-- Паттерны коммуникации -->
                 <div class="kjo-patterns__item">
                   <h3 class="kjo-patterns__label">Паттерны коммуникации</h3>
                   <div class="kjo-patterns__sublabel">Основной паттерн:</div>
-                  <div class="kjo-patterns__main" id="pattern-communications-main">Эмоциональность</div>
+                  <ul class="kjo-patterns__list">
+                    <li class="kjo-patterns__li kjo-patterns__main" id="pattern-communications-main">Эмоциональность</li>
+                  </ul>
                   <div class="kjo-patterns__sublabel">Второстепенные паттерны:</div>
 
                   <ul class="kjo-patterns__list">
@@ -1256,11 +1167,12 @@
                   </ul>
                 </div>
 
-                <!-- Паттерны мышления -->
                 <div class="kjo-patterns__item">
                   <h3 class="kjo-patterns__label">Паттерны мышления</h3>
                   <div class="kjo-patterns__sublabel">Основной паттерн:</div>
-                  <div class="kjo-patterns__main" id="pattern-thinking-main">Поленезависимость</div>
+                  <ul class="kjo-patterns__list">
+                    <li class="kjo-patterns__li kjo-patterns__main" id="pattern-thinking-main">Поленезависимость</li>
+                  </ul>
                   <div class="kjo-patterns__sublabel">Второстепенные паттерны:</div>
 
                   <ul class="kjo-patterns__list">
@@ -1273,60 +1185,8 @@
             </div>
           </section>
 
-          <!--  <section class="map-kjo-bottom">
-            <div class="map-kjo-bottom__container">
-
-              <div class="map-kjo-bottom__body">
-                <div class="map-kjo-bottom__column-project project-column">
-                  <div class="project-column__top">
-                    <div class="how-it-works">
-                      <h2 class="how-it-works__subtitle subtitle">Проекты развития</h2>
-                      <div class="how-it-works__body" id="project"></div>
-                    </div>
-                  </div>
-                  <div class="project-column__bottom">
-                    <div class="project-column__item">
-                      <img src="../static/img/kjo/plane/plane-1.svg" alt="" />
-                      <div class="project-column__text">
-                        <div>αG</div>
-                        <div>личность</div>
-                      </div>
-                    </div>
-                    <div class="project-column__item">
-                      <img src="../static/img/kjo/plane/plane-2.svg" alt="" />
-                      <div class="project-column__text">
-                        <div>αG</div>
-                        <div>Близкий круг</div>
-                      </div>
-                    </div>
-                    <div class="project-column__item">
-                      <img src="../static/img/kjo/plane/plane-3.svg" alt="" />
-                      <div class="project-column__text">
-                        <div>αG</div>
-                        <div>карьера</div>
-                      </div>
-                    </div>
-                    <div class="project-column__item">
-                      <img src="../static/img/kjo/plane/plane-4.svg" alt="" />
-                      <div class="project-column__text">
-                        <div>αG</div>
-                        <div>Общество</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section> -->
+          <div class="line"></div>
         </div>
-        <div class="line"></div>
-        <!-- <div class="generatepdf">
-          <div class="generatepdf__container">
-            <button class="generatepdf__btn btn" onclick="generatePDF()">Сохранить в PDF</button>
-          </div>
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js?_v=20230530085453"></script> -->
-
         <script>
           //====generatePDF==============================================================
           function generatePDF() {
