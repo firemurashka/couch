@@ -1833,7 +1833,7 @@ input[type="file"] {
   @media (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
     align-self: stretch;
-    border: 1px solid #5c007b;
+    border: 1px solid #dedede;
     border-radius: 9px;
     padding: 10px;
   }
@@ -1976,6 +1976,9 @@ input[type="file"] {
 }
 .item-kjo {
   font-family: "Calibri";
+  border: 1px solid #5c007b;
+  border-radius: 9px;
+  padding: 10px;
 }
 
 .item-kjo__list {
@@ -2117,6 +2120,10 @@ input[type="file"] {
   display: flex;
   gap: 60px;
   justify-content: center;
+  @media (max-width: 768px) {
+flex-direction: column;
+gap: 10px;
+ }
 }
 .factor__subtitle {
   text-align: center;
@@ -2231,7 +2238,6 @@ input[type="file"] {
 }
 .chart__numeral_10 {
   width: 0;
-
 }
 .chart__numeral::after {
   position: absolute;
