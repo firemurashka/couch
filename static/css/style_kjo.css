@@ -1953,11 +1953,10 @@ input[type="file"] {
 .map-kjo__column {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   @media (max-width: 1199px) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
   }
   @media (max-width: 768px) {
     gap: 10px;
